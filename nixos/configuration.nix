@@ -65,9 +65,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
-  # boot.initrd.secrets = {
-  #   "/crypto_keyfile.bin" = null;
-  # };
 
   networking.hostName = "NoAH-II";
   networking.networkmanager.enable = true;
@@ -106,9 +103,28 @@
       description = "mia";
       initialHashedPassword = "$6$1l3TCl1ZMdmM.SQx$pmpbS5C37.XMxMihuhMzZO5gso5IZh47NP6Dg61C.Eu1jHrA.rx4xgkFSHud.d3mxV6cJxQ3GH1ZKS/nLoFHt1";
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "audio" ];
+      extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
     };
   };
+
+  programs.firejail = {
+    enable = true;
+    wrappedBinaries = {
+      firefox = {
+        executable = "${pkgs.firefox}/bin/firefox";
+      };
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    git
+    micro
+    firefox
+    neovim
+    zsh
+    wget
+    ranger
+  ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";
