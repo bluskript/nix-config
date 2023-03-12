@@ -28,11 +28,11 @@
     { device = "/dev/mapper/noah_ii";
       fsType = "btrfs";
       neededForBoot = true;
-      options = [ "subvol=nix" ];
+      options = [ "subvol=@nix" ];
     };
 
   boot.initrd.luks.devices."noah_ii" = 
-    { device = "/dev/disk/by-uuid/abc8a342-3c01-4fa6-8578-d2b7311199ab";
+    { device = "/dev/disk/by-uuid/da492e1b-e409-4102-b81d-8b43ad7f3360";
       preLVM = true;
       allowDiscards = true;
       # keyFile = null;
@@ -42,7 +42,7 @@
     { device = "/dev/mapper/noah_ii";
       fsType = "btrfs";
       neededForBoot = true;
-      options = [ "subvol=persist" ];
+      options = [ "subvol=@persist" ];
     };
 
   swapDevices = [ ];

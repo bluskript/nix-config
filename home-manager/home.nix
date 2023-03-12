@@ -10,8 +10,12 @@
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
 
+    inputs.impermanence.nixosModules.home-manager.impermanence
+
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+    ./programs/sway.nix
+    ./programs/firefox
   ];
 
   nixpkgs = {
@@ -41,17 +45,37 @@
     };
   };
 
-  # TODO: Set your username
   home = {
     username = "blusk";
     homeDirectory = "/home/blusk";
+    packages = with pkgs; [
+      swaylock
+      swayidle
+      waybar
+      wofi
+      alacritty
+      ncdu
+      light pavucontrol
+      # basic cli toolset
+      ranger micro zsh
+    ];
+    sessionVariables = {
+      EDITOR = "neovim";
+    };
+    persistence."/persist/home/blusk" = {
+      allowOther = true;
+      directories = [
+      	".mozilla/firefox/Default"
+      ];
+    };
   };
 
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
+  programs.alacritty.enable = true;
+
+  programs.neovim.enable = true;
+
   # home.packages = with pkgs; [ steam ];
 
-  # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
 

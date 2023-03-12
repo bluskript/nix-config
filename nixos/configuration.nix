@@ -10,6 +10,7 @@
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
     # inputs.hardware.nixosModules.common-ssd
+    inputs.home-manager.nixosModules.home-manager
 
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
@@ -89,9 +90,18 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
+  hardware = {
+    opengl = {
+      enable = true;
+      driSupport = true;
+    };
+  };
+
+  home-manager = {
+  	extraSpecialArgs = { inherit inputs outputs; };
+  	users = {
+  	  blusk = import ../home-manager/home.nix;
+  	};
   };
 
   users.mutableUsers = false;
@@ -107,6 +117,8 @@
     };
   };
 
+  programs.light.enable = true;
+
   programs.firejail = {
     enable = true;
     wrappedBinaries = {
@@ -116,15 +128,7 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    git
-    micro
-    firefox
-    neovim
-    zsh
-    wget
-    ranger
-  ];
+  programs.fuse.userAllowOther = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";
