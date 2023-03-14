@@ -20,6 +20,9 @@
       modifier = "Mod4";
       terminal = "alacritty";
       menu = "wofi --show run";
+      gaps = {
+        inner = 8;
+      };
       input = {
         "type:keyboard" = {
           # xkb_layout = config.services.xserver.layout;
@@ -53,6 +56,7 @@
           "${mod}+space" = "exec ${cfg.menu}";
           #"${mod}+Return" = "exec $(cfg.terminal)";
           "${mod}+w" = "kill";
+          "${mod}+s" = "floating toggle";
           "XF86AudioRaiseVolume" = "pactl set-sink-volume 0 +5%";
           "XF86AudioLowerVolume" = "pactl set-sink-volume 0 -5%";
           "XF86AudioMute" = "pactl set-sink-mute 0 toggle";

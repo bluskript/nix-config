@@ -12,6 +12,9 @@
       source ~/.profile
       # cute menu that shows up when completion
       zstyle ':completion:*' menu select
+      bindkey -e
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[1;5D" backward-word
     '';
   };
 }

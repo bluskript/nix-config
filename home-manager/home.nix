@@ -68,6 +68,8 @@
       directories = [
       	".mozilla/firefox/Default"
       	".config/Yubico"
+        ".local/share/zsh"
+        ".ssh"
       ];
     };
   };
