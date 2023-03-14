@@ -1,0 +1,19 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: Roboto;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: @base00;
+    color: @base04;
+}
+
+#workspaces button.focused {
+  background: @base01;
+}
+
+label {
+    padding: 8px 8px
+}

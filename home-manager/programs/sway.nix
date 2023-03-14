@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }: {
   imports = [
+    ./waybar
   ];
   home.sessionVariables = {
     WLR_DRM_NO_MODIFIERS = "1";

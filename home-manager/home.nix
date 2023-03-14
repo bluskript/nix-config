@@ -15,6 +15,7 @@
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
     ./programs/zsh.nix
+    ./programs/waybar
     ./programs/nvim
     ./programs/sway.nix
     ./programs/firefox
@@ -54,7 +55,6 @@
     packages = with pkgs; [
       swaylock
       swayidle
-      waybar
       wofi
       alacritty
       ncdu
@@ -62,6 +62,7 @@
       grim slurp imv
       # basic cli toolset
       bat fzf ranger micro zip unzip manix ripgrep skim
+      dt-shell-color-scripts neofetch
     ];
     persistence."/persist/home/blusk" = {
       allowOther = true;
