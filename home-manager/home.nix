@@ -1,7 +1,7 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ inputs, outputs, lib, config, nixosConfig, pkgs, ... }: {
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
@@ -14,6 +14,8 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+    ./programs/zsh.nix
+    ./programs/nvim
     ./programs/sway.nix
     ./programs/firefox
   ];
@@ -48,6 +50,7 @@
   home = {
     username = "blusk";
     homeDirectory = "/home/blusk";
+    shellAliases = nixosConfig.environment.shellAliases;
     packages = with pkgs; [
       swaylock
       swayidle
@@ -56,28 +59,43 @@
       alacritty
       ncdu
       light pavucontrol
+      grim slurp imv
       # basic cli toolset
-      ranger micro zsh
+      bat fzf ranger micro zip unzip manix ripgrep skim
     ];
-    sessionVariables = {
-      EDITOR = "neovim";
-    };
     persistence."/persist/home/blusk" = {
       allowOther = true;
       directories = [
       	".mozilla/firefox/Default"
+      	".config/Yubico"
       ];
     };
   };
 
+  programs.git = {
+    enable = true;
+    userName = "Blusk";
+    userEmail = "bluskript@gmail.com"; 
+  };
+
+  programs.bash.enable = true;
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      directory = {
+        truncate_to_repo = false;
+      };
+    };
+  };
+
   programs.alacritty.enable = true;
-
-  programs.neovim.enable = true;
-
-  # home.packages = with pkgs; [ steam ];
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+  };
 
   programs.home-manager.enable = true;
-  programs.git.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

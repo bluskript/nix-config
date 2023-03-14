@@ -4,22 +4,22 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
   # You can import other NixOS modules here
   imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
-
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
     inputs.home-manager.nixosModules.home-manager
 
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
+    inputs.hardware.nixosModules.common-pc-laptop-ssd
+    inputs.hardware.nixosModules.common-cpu-intel
 
     ../modules/nixos/impermanence.nix
+    ../modules/base
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
+  
+    ./nvidia.nix
   ];
+
+  stylix.image = ../wallpaper.jpg;
+  stylix.polarity = "dark";
 
   nixpkgs = {
     # You can add overlays here
@@ -73,6 +73,18 @@
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  services.udev.packages = [ pkgs.yubikey-personalization ];
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  security.pam.services = {
+    login.u2fAuth = true;
+    sudo.u2fAuth = true;
+  };
+
   services.xserver = {
     layout = "us";
     xkbVariant = "";
@@ -97,8 +109,17 @@
     };
   };
 
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    fira-code
+    fira-code-symbols
+  ];
+
   home-manager = {
-  	extraSpecialArgs = { inherit inputs outputs; };
+  	extraSpecialArgs = { inherit inputs outputs; nixosConfig = config; };
+        # useGlobalPkgs = true;
+        # useUserPackages = true;
   	users = {
   	  blusk = import ../home-manager/home.nix;
   	};
@@ -110,14 +131,16 @@
 
   users.users = {
     blusk = {
+      shell = pkgs.zsh;
       description = "mia";
       initialHashedPassword = "$6$1l3TCl1ZMdmM.SQx$pmpbS5C37.XMxMihuhMzZO5gso5IZh47NP6Dg61C.Eu1jHrA.rx4xgkFSHud.d3mxV6cJxQ3GH1ZKS/nLoFHt1";
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
+      extraGroups = [ "wheel" "networkmanager" "audio" "video" "adbusers" ];
     };
   };
 
   programs.light.enable = true;
+  programs.adb.enable = true;
 
   programs.firejail = {
     enable = true;
