@@ -17,7 +17,7 @@
     ./programs/zsh.nix
     ./programs/waybar
     ./programs/nvim
-    ./programs/sway.nix
+    ./programs/sway
     ./programs/firefox
   ];
 
@@ -28,7 +28,7 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
-
+      inputs.nixneovimplugins.overlays.default
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
@@ -53,17 +53,15 @@
     homeDirectory = "/home/blusk";
     shellAliases = nixosConfig.environment.shellAliases;
     packages = with pkgs; [
-      swaylock
-      swayidle
-      wofi
-      alacritty
+      swaylock swayidle wofi 
       ncdu
       light pavucontrol
       grim slurp imv
       # basic cli toolset
-      bat fzf ranger micro zip unzip manix ripgrep skim
+      bat fzf ranger micro zip unzip manix ripgrep skim termshark
       dt-shell-color-scripts neofetch
-    ];
+    ] ++ (with pkgs.unstable; [
+    ]);
     persistence."/persist/home/blusk" = {
       allowOther = true;
       directories = [
@@ -71,6 +69,10 @@
       	".config/Yubico"
         ".local/share/zsh"
         ".ssh"
+        "projects"
+      ];
+      files = [
+        ".bash_history"
       ];
     };
   };
@@ -92,11 +94,20 @@
     };
   };
 
-  programs.alacritty.enable = true;
-  programs.vscode = {
+  programs.alacritty = {
     enable = true;
-    package = pkgs.vscodium;
+    settings = {
+      window = {
+        dynamic_padding = false;
+        padding = {
+          x = 16;
+          y = 4;
+        }; 
+      };
+   };
   };
+
+  programs.chromium.enable = true;
 
   programs.home-manager.enable = true;
 

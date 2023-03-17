@@ -10,6 +10,8 @@ local sources = {
   -- Lua
   b.formatting.stylua,
 
+  b.formatting.prettier,
+
   -- Shell
   b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 }

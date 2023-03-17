@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: {
   imports = [
-    ./waybar
+    ../waybar
   ];
   home.sessionVariables = {
     WLR_DRM_NO_MODIFIERS = "1";
@@ -14,13 +14,20 @@
     XDG_CURRENT_DESKTOP = "sway";
   };
 
+  programs.mako = {
+    enable = true;
+    anchor = "bottom-right";
+  };
+
   wayland.windowManager.sway = {
     enable = true;
+    systemdIntegration = true;
     wrapperFeatures.gtk = true;
     config = {
       modifier = "Mod4";
-      terminal = "alacritty";
+      terminal = "alacritty msg create-window || alacritty";
       menu = "wofi --show run";
+      bars = [];
       gaps = {
         inner = 8;
       };
@@ -58,6 +65,8 @@
           #"${mod}+Return" = "exec $(cfg.terminal)";
           "${mod}+w" = "kill";
           "${mod}+s" = "floating toggle";
+          "${mod}+tab" = "exec swaymsg [con_id=$(swaymsg -t get_tree | ${./alttab} t)] focus";
+          "${mod}+Shift+tab" = "exec swaymsg [con_id=$(swaymsg -t get_tree | ${./alttab} f)] focus";
           "XF86AudioRaiseVolume" = "pactl set-sink-volume 0 +5%";
           "XF86AudioLowerVolume" = "pactl set-sink-volume 0 -5%";
           "XF86AudioMute" = "pactl set-sink-mute 0 toggle";

@@ -7,6 +7,7 @@ local servers = {
   "rnix",
   "terraformls",
   "yamlls",
+  "tsserver"
 }
 
 for _, lsp in ipairs(servers) do
