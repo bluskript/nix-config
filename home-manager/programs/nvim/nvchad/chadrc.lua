@@ -16,6 +16,26 @@ M.mappings = {
   },
 }
 
+M.nvimtree = {
+  git = {
+    enable = true,
+  },
+
+  renderer = {
+    highlight_git = true,
+    icons = {
+      show = {
+        git = true,
+      },
+    },
+    view = {
+      adaptive_size = false,
+      width = 30,
+      preserve_window_proportions = true,
+    },
+  },
+}
+
 M.plugins = require "custom.plugins"
 
 return M

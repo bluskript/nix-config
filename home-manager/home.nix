@@ -53,14 +53,16 @@
     homeDirectory = "/home/blusk";
     shellAliases = nixosConfig.environment.shellAliases;
     packages = with pkgs; [
-      swaylock swayidle wofi 
+      swaylock swayidle wofi wl-clipboard
       ncdu
       light pavucontrol
       grim slurp imv
+      mpv 
       # basic cli toolset
       bat fzf ranger micro zip unzip manix ripgrep skim termshark
       dt-shell-color-scripts neofetch
     ] ++ (with pkgs.unstable; [
+      yewtube
     ]);
     persistence."/persist/home/blusk" = {
       allowOther = true;

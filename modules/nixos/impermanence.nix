@@ -9,6 +9,7 @@
       "/etc/nixos"
       "/etc/NetworkManager"
       "/var/log"
+      "/etc/mullvad-vpn"
     ];
   };
 }
