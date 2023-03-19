@@ -8,9 +8,9 @@
 
     inputs.hardware.nixosModules.common-pc-laptop-ssd
     inputs.hardware.nixosModules.common-cpu-intel
+    inputs.impermanence.nixosModules.impermanence
 
-    ../modules/nixos/impermanence.nix
-    ../modules/base
+    ../common/base_cli.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -18,7 +18,7 @@
     ./nvidia.nix
   ];
 
-  stylix.image = ../wallpaper.jpg;
+  stylix.image = ./wallpaper.jpg;
   stylix.polarity = "dark";
 
   nixpkgs = {
@@ -74,6 +74,16 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   environment.variables.EDITOR = "nvim";
+
+  environment.persistence."/persist" = {
+    hideMounts = true;
+    directories = [
+      "/etc/nixos"
+      "/etc/NetworkManager"
+      "/var/log"
+      "/etc/mullvad-vpn"
+    ];
+  };
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
 
@@ -146,7 +156,7 @@
         # useGlobalPkgs = true;
         # useUserPackages = true;
   	users = {
-  	  blusk = import ../home-manager/home.nix;
+  	  blusk = import ../../homes/blusk_workstation/home.nix;
   	};
   };
 

@@ -2,6 +2,11 @@
   imports = [
     ../waybar
   ];
+
+  home.packages = with pkgs; [
+    swaylock swayidle wofi wl-clipboard
+  ];
+
   home.sessionVariables = {
     WLR_DRM_NO_MODIFIERS = "1";
     MOZ_ENABLE_WAYLAND = "1";

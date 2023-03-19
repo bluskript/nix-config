@@ -3,13 +3,4 @@
     inputs.impermanence.nixosModules.impermanence
   ];
 
-  environment.persistence."/persist" = {
-    hideMounts = true;
-    directories = [
-      "/etc/nixos"
-      "/etc/NetworkManager"
-      "/var/log"
-      "/etc/mullvad-vpn"
-    ];
-  };
 }

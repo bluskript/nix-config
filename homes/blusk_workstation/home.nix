@@ -14,11 +14,11 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    ./programs/zsh.nix
-    ./programs/waybar
-    ./programs/nvim
-    ./programs/sway
-    ./programs/firefox
+    ../programs/zsh.nix
+    ../programs/waybar
+    ../programs/nvim
+    ../programs/sway
+    ../programs/firefox
   ];
 
   nixpkgs = {
@@ -53,7 +53,6 @@
     homeDirectory = "/home/blusk";
     shellAliases = nixosConfig.environment.shellAliases;
     packages = with pkgs; [
-      swaylock swayidle wofi wl-clipboard
       ncdu
       light pavucontrol
       grim slurp imv

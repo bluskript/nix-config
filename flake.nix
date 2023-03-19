@@ -61,7 +61,7 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             inputs.stylix.nixosModules.stylix 
-            ./nixos/configuration.nix
+            ./hosts/noah_ii/configuration.nix
           ];
         };
       };
