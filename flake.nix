@@ -14,6 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixinate.url = "github:matthewcroughan/nixinate";
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -58,6 +60,8 @@
       # Reusable home-manager modules you might want to export
       # These are usually stuff you would upstream into home-manager
       homeManagerModules = import ./modules/home-manager;
+      
+      apps = inputs.nixinate.nixinate.x86_64-linux self;
 
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
@@ -67,6 +71,20 @@
           modules = [
             inputs.stylix.nixosModules.stylix 
             ./hosts/noah_ii/configuration.nix
+          ];
+        };
+        nozomi = nixpkgs.lib.nixosSystem {
+          modules = [
+            (import ./hosts/nozomi/configuration.nix)
+            {
+              _module.args.nixinate = {
+                host = "45.76.3.228";
+                sshUser = "root";
+                buildOn = "remote";
+                substituteOnTarget = true;
+                hermetic = false;
+              };
+            }
           ];
         };
       };

@@ -27,6 +27,21 @@ in
       ];
     };
 
-      # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-      system.stateVersion = "22.11";
+    boot.loader.grub = {
+      enable = true;
+      version = 2;
+      device = "/dev/vda";
+    };
+
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-label/nozomi";
+      fsType = "btrfs";
+      option = [ "subvol=@boot" ];
+    };
+
+    hardware.cpu.intel.updateMicrocode = true;
+
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+    system.stateVersion = "22.11";
   }
