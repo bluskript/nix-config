@@ -10,13 +10,18 @@
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.impermanence.nixosModules.impermanence
 
-    ../common/base_cli.nix
-
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-  
+
+    ../common/base_cli.nix
     ./nvidia.nix
+    ./gpu-passthrough.nix
   ];
+
+  specialisation."VFIO".configuration = {
+    system.nixos.tags = [ "with-vfio" ];
+    vfio.enable = true;
+  };
 
   stylix.image = ./wallpaper.jpg;
   stylix.polarity = "dark";
