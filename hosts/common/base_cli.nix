@@ -56,9 +56,6 @@ in {
       ngcdo = ifSudo "sudo nix-collect-garbage --delete-old";
       top = "${pkgs.bottom}/bin/btm";
       myip = "${pkgs.dnsutils}/bin/dig +short myip.opendns.com @208.67.222.222 2>&1";
-      mn = let
-        manix_preview = "manix '{}' | sed 's/type: /> type: /g' | bat -l Markdown --color=always --plain";
-      in ''manix "" | rg '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | sk --preview="${manix_preview}" | xargs manix'';
       # systemd
       ctl = "systemctl";
       stl = ifSudo "s systemctl";

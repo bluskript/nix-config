@@ -61,7 +61,7 @@
       bat fzf ranger micro zip unzip manix ripgrep skim termshark
       dt-shell-color-scripts neofetch
     ] ++ (with pkgs.unstable; [
-      yewtube
+      yewtube 
     ]);
     persistence."/persist/home/blusk" = {
       allowOther = true;

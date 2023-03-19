@@ -9,6 +9,11 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
 
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -34,10 +39,10 @@
     rec {
       # Your custom packages
       # Acessible through 'nix build', 'nix shell', etc
-      packages = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./pkgs { inherit pkgs; }
-      );
+      # packages = forAllSystems (system:
+      #   let pkgs = nixpkgs.legacyPackages.${system};
+      #   in import ./pkgs { inherit pkgs; }
+      # );
       # Devshell for bootstrapping
       # Acessible through 'nix develop' or 'nix-shell' (legacy)
       devShells = forAllSystems (system:
@@ -63,6 +68,16 @@
             inputs.stylix.nixosModules.stylix 
             ./hosts/noah_ii/configuration.nix
           ];
+        };
+      };
+
+      packages.x86_64-linux = {
+        nozomi-iso = inputs.nixos-generators.nixosGenerate {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/nozomi/configuration.nix
+          ];
+          format = "iso";
         };
       };
     };
