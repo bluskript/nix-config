@@ -36,6 +36,9 @@
       gaps = {
         inner = 8;
       };
+      floating.criteria = [
+        { app_id = "virt-manager"; }
+      ];
       input = {
         "type:keyboard" = {
           # xkb_layout = config.services.xserver.layout;

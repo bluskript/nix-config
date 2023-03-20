@@ -19,6 +19,7 @@
     ../programs/nvim
     ../programs/sway
     ../programs/firefox
+    ../programs/looking-glass-client
   ];
 
   nixpkgs = {
