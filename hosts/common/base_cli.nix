@@ -7,7 +7,7 @@
     else "${pkg}/bin/${pkg.pname}";
 in {
   environment.systemPackages = with pkgs; [
-    manix
+    pciutils
     ripgrep
     skim
     bottom

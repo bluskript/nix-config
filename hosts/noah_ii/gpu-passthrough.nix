@@ -3,7 +3,7 @@ let
     "10de:2520" # Graphics
     "10de:228e" # Audio
   ];
-in { pkgs, lib, config, ... }: {
+in { pkgs, pkgsUnstable, lib, config, ... }: {
   options.vfio.enable = with lib;
     mkEnableOption "Configure the machine for VFIO";
 
@@ -24,7 +24,7 @@ in { pkgs, lib, config, ... }: {
 
       kernelParams = [
         # enable IOMMU
-        "amd_iommu=on"
+        "intel_iommu=on"
       ] ++ lib.optional cfg.enable
         # isolate the GPU
         ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs);
@@ -32,6 +32,14 @@ in { pkgs, lib, config, ... }: {
 
     hardware.opengl.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
+    virtualisation.libvirtd = {
+      enable = true;
+      qemu.ovmf.enable = true;
+    };
+
+    environment.systemPackages = with pkgs.unstable; [
+      virt-manager
+    ];
   };
 }
 

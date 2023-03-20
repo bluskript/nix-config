@@ -55,13 +55,15 @@
     packages = with pkgs; [
       ncdu
       light pavucontrol
+      transmission
       grim slurp imv
-      mpv 
+      mpv
       # basic cli toolset
-      bat fzf ranger micro zip unzip manix ripgrep skim termshark
+      bat fzf ranger micro zip unzip ripgrep skim termshark
       dt-shell-color-scripts neofetch
     ] ++ (with pkgs.unstable; [
       yewtube 
+      ncgopher
     ]);
     persistence."/persist/home/blusk" = {
       allowOther = true;
