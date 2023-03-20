@@ -85,6 +85,11 @@
     enable = true;
     userName = "Blusk";
     userEmail = "bluskript@gmail.com"; 
+    extraConfig = {
+      push = {
+        autoSetupRemote = true;
+      };
+    };
   };
 
   programs.bash.enable = true;
