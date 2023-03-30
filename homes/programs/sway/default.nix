@@ -25,6 +25,7 @@
   };
 
   wayland.windowManager.sway = {
+    package = pkgs.unstable.sway;
     enable = true;
     systemdIntegration = true;
     wrapperFeatures.gtk = true;
@@ -86,5 +87,11 @@
           "XF86MonBrightnessDown" = "light -T 0.72";
         };
     };
+    extraOptions = [
+      "--unsupported-gpu"
+    ];
+    extraConfig = ''
+      primary_selection disabled
+    '';
   };
 }

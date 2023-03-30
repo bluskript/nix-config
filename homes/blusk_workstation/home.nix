@@ -20,6 +20,7 @@
     ../programs/sway
     ../programs/firefox
     ../programs/looking-glass-client
+    ../programs/ncmpcpp.nix
   ];
 
   nixpkgs = {
@@ -56,7 +57,7 @@
     packages = with pkgs; [
       ncdu
       light pavucontrol
-      transmission
+      transmission-gtk
       grim slurp imv
       mpv
       # basic cli toolset
@@ -65,6 +66,8 @@
     ] ++ (with pkgs.unstable; [
       yewtube 
       ncgopher
+      strawberry
+      vscodium
     ]);
     persistence."/persist/home/blusk" = {
       allowOther = true;
@@ -81,14 +84,27 @@
     };
   };
 
+  services.gpg-agent = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+  };
+
   programs.git = {
     enable = true;
     userName = "Blusk";
     userEmail = "bluskript@gmail.com"; 
+    signing = {
+      # signByDefault = true;
+      # key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFiwMialwh6Fcg+0j4hxE5rofjcrIZKrFSD30yPdwiXq bluskript@gmail.com";
+      # key = "3B60DABB";
+      key = null;
+    };
     extraConfig = {
       push = {
         autoSetupRemote = true;
       };
+      # gpg.format = "ssh";
     };
   };
 

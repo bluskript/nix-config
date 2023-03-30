@@ -113,4 +113,14 @@ return {
 			require("orgmode").setup({})
 		end,
 	},
+
+	["hrsh7th/nvim-cmp"] = {
+    override_options = {
+		sources = {
+			{ name = "nvim_lsp" },
+			{ name = "nvim_lua" },
+			{ name = "path" },
+		},
+    }
+	},
 }

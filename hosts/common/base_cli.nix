@@ -61,5 +61,6 @@ in {
       stl = ifSudo "s systemctl";
       utl = "systemctl --user";
       jtl = "journalctl";
+      ssh = "TERM=xterm-256color ssh";
     };
 }

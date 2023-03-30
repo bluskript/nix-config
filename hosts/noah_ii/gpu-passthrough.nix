@@ -31,6 +31,11 @@ in { pkgs, pkgsUnstable, lib, config, ... }: {
         "nvidia_modeset"
         "nvidia_uvm"
         "nvidia_drm"
+        "kvmfr"
+      ];
+
+      extraModulePackages = [
+        config.boot.kernelPackages.kvmfr
       ];
 
       kernelParams = [
