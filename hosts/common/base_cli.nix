@@ -24,6 +24,7 @@ in {
     unzip
     zip
     util-linux
+    ncdu
   ];
 
   environment.shellAliases = let

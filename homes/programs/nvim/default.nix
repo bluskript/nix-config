@@ -14,7 +14,7 @@ in
   # Clear all caches
   # rm -rf ~/.config/nvim/plugin/packer_compiled.lua ~/.cache/nvim/ ~/.local/share/nvim/site/
   imports = [
-    ./nvchad.nix
+    # ./nvchad.nix
     ./update-nix-fetchgit.nix
   ];
   # workaround for https://github.com/lewis6991/impatient.nvim/issues/42

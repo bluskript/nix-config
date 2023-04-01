@@ -1,16 +1,28 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, disko, ... }:
 let
   blusk = import ../common/blusk.nix;
 in
   {
     imports = [
-      ../common/server.nix
+      inputs.impermanence.nixosModules.impermanence
+      # ../common/server.nix
       ../common/base_cli.nix
+      ./disks.nix
+      ./conduit.nix
+      ./nginx.nix
     ];
+
+    environment.noXlibs = true;
 
     networking.hostName = "nozomi";
 
-    services.openssh.enable = true;
+    services.openssh = {
+      enable = true;
+      passwordAuthentication = false;
+      kbdInteractiveAuthentication = false;
+    };
+
+    security.sudo.wheelNeedsPassword = false;
 
     users.mutableUsers = false;
     users.users.root = {
@@ -29,17 +41,22 @@ in
 
     boot.loader.grub = {
       enable = true;
-      version = 2;
-      device = "/dev/vda";
-    };
-
-    fileSystems."/boot" = {
-      device = "/dev/disk/by-label/nozomi";
-      fsType = "btrfs";
-      option = [ "subvol=@boot" ];
+      device = "/dev/sda";
+      efiSupport = true;
+      efiInstallAsRemovable = true;
     };
 
     hardware.cpu.intel.updateMicrocode = true;
+
+    system.activationScripts.createPersist = "mkdir -p /nix/persist";
+
+    environment.persistence."/nix/persist" = {
+      hideMounts = true;
+      directories = [
+        "/var/log"
+        "/var/lib/systemd/coredump"
+      ];
+    };
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

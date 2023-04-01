@@ -25,9 +25,13 @@
 
     stylix.url = "github:danth/stylix";
     nixneovimplugins.url = "github:jooooscha/nixpkgs-vim-extra-plugins";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
@@ -74,12 +78,14 @@
           ];
         };
         nozomi = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; }; 
           modules = [
             (import ./hosts/nozomi/configuration.nix)
+            disko.nixosModules.disko
             {
               _module.args.nixinate = {
-                host = "45.76.3.228";
-                sshUser = "root";
+                host = "5.161.75.53";
+                sshUser = "blusk";
                 buildOn = "remote";
                 substituteOnTarget = true;
                 hermetic = false;

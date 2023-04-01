@@ -3,10 +3,14 @@
 # Only to be used for headless servers, at home or abroad, with more
 # security/automation-minded configuration.
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, modulesPath, ... }:
 
 {
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_15_hardened;
+  imports = [
+    (modulesPath + "/profiles/hardened.nix")
+  ];
+
+  services.fail2ban.enable = true;
 
   nix.gc = {
     automatic = true;

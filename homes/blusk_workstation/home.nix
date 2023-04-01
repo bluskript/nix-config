@@ -12,7 +12,6 @@
 
     inputs.impermanence.nixosModules.home-manager.impermanence
 
-    # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
     ../programs/zsh.nix
     ../programs/waybar
