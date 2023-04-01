@@ -5,7 +5,7 @@ in
   {
     imports = [
       inputs.impermanence.nixosModules.impermanence
-      # ../common/server.nix
+      ../common/server.nix
       ../common/base_cli.nix
       ./disks.nix
       ./conduit.nix
@@ -55,6 +55,7 @@ in
       directories = [
         "/var/log"
         "/var/lib/systemd/coredump"
+        "/var/lib/private/matrix-conduit"
       ];
     };
 
