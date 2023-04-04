@@ -9,6 +9,7 @@ in
       ../common/base_cli.nix
       ./disks.nix
       ./conduit.nix
+      ./filehost.nix
       ./nginx.nix
     ];
 
