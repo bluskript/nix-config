@@ -53,6 +53,10 @@
     username = "blusk";
     homeDirectory = "/home/blusk";
     shellAliases = nixosConfig.environment.shellAliases;
+    pointerCursor = {
+      package = pkgs.capitaine-cursors;
+      name = "capitaine-cursors";
+    };
     packages = with pkgs; [
       ncdu
       light pavucontrol

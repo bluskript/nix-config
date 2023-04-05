@@ -19,7 +19,7 @@
     XDG_CURRENT_DESKTOP = "sway";
   };
 
-  programs.mako = {
+  services.mako = {
     enable = true;
     anchor = "bottom-right";
   };
@@ -42,6 +42,7 @@
       ];
       input = {
         "type:keyboard" = {
+          xkb_options = "caps:escape";
           # xkb_layout = config.services.xserver.layout;
         };
         "type:pointer" = {
@@ -90,8 +91,5 @@
     extraOptions = [
       "--unsupported-gpu"
     ];
-    extraConfig = ''
-      primary_selection disabled
-    '';
   };
 }
