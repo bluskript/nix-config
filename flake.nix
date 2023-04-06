@@ -29,6 +29,8 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    blusk-repo.url = "github:bluskript/nix-repo";
   };
 
   outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
@@ -73,7 +75,7 @@
         NoAH-II = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
-            inputs.stylix.nixosModules.stylix 
+            inputs.stylix.nixosModules.stylix
             ./hosts/noah_ii/configuration.nix
           ];
         };

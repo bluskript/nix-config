@@ -91,6 +91,10 @@
     ];
   };
 
+  environment.systemPackages = [
+    inputs.blusk-repo.packages."${pkgs.system}".xornet-reporter
+  ];
+
   services.udev.packages = [ pkgs.yubikey-personalization ];
 
   services.gvfs.enable = true;

@@ -71,6 +71,7 @@
       ncgopher
       strawberry
       vscodium
+      element-desktop
     ]);
     persistence."/persist/home/blusk" = {
       allowOther = true;
