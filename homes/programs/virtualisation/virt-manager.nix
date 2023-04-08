@@ -1,0 +1,8 @@
+{ ... }: {
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      uris = [ "qemu:///system" ];
+      autoconnect = [ "qemu:///system" ];
+    };
+  };
+}

@@ -18,7 +18,8 @@
     ../programs/nvim
     ../programs/sway
     ../programs/firefox
-    ../programs/looking-glass-client
+    ../programs/virtualisation/virt-manager.nix
+    ../programs/virtualisation/looking-glass-client
     ../programs/ncmpcpp.nix
   ];
 
@@ -59,15 +60,27 @@
     };
     packages = with pkgs; [
       ncdu
-      light pavucontrol
+      light
+      pavucontrol
       transmission-gtk
-      grim slurp imv
+      grim
+      slurp
+      imv
       mpv
       # basic cli toolset
-      bat fzf ranger micro zip unzip ripgrep skim termshark
-      dt-shell-color-scripts neofetch
+      bat
+      fzf
+      ranger
+      micro
+      zip
+      unzip
+      ripgrep
+      skim
+      termshark
+      dt-shell-color-scripts
+      neofetch
     ] ++ (with pkgs.unstable; [
-      yewtube 
+      yewtube
       ncgopher
       strawberry
       vscodium
@@ -76,8 +89,8 @@
     persistence."/persist/home/blusk" = {
       allowOther = true;
       directories = [
-      	".mozilla/firefox/Default"
-      	".config/Yubico"
+        ".mozilla/firefox/Default"
+        ".config/Yubico"
         ".local/share/zsh"
         ".ssh"
         "projects"
@@ -97,7 +110,7 @@
   programs.git = {
     enable = true;
     userName = "Blusk";
-    userEmail = "bluskript@gmail.com"; 
+    userEmail = "bluskript@gmail.com";
     signing = {
       # signByDefault = true;
       # key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFiwMialwh6Fcg+0j4hxE5rofjcrIZKrFSD30yPdwiXq bluskript@gmail.com";
@@ -131,9 +144,9 @@
         padding = {
           x = 16;
           y = 4;
-        }; 
+        };
       };
-   };
+    };
   };
 
   programs.chromium.enable = true;
