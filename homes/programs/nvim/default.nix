@@ -1,8 +1,13 @@
 { nixosConfig, config, lib, pkgs, ... }:
 {
+  stylix.targets.vim.enable = false;
   home.sessionVariables.EDITOR = "nvim";
-  xdg.configFile."nvim/init.lua".source = ./config/init.lua;
-  xdg.configFile."nvim/lua".source = ./config/lua;
+  home.packages = with pkgs; [ gcc ];
+  home.activation = {
+    linkNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      ln -sfr /etc/nixos/homes/programs/nvim/config/* ${config.home.homeDirectory}/.config/nvim
+    '';
+  };
   programs.neovim = {
     enable = true;
     defaultEditor = true;

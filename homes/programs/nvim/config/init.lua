@@ -13,15 +13,30 @@ vim.opt.rtp:prepend(lazypath)
 
 require('config.mappings')
 
-
 require("lazy").setup({
   {
-    "folke/which-key.nvim",
-    lazy = true,
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        ensure_installed = "all",
+        highlight = { enable = true },
+        indent = { enable = true },
+      })
+    end,
   },
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup({})
+    end,
+  },
+  {
+    "tiagovla/tokyodark.nvim",
+    name = "tokyodark",
   },
   {
     "phaazon/hop.nvim",
@@ -32,6 +47,13 @@ require("lazy").setup({
     },
     config = function()
       require('hop').setup()
+    end
+  },
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require('config.lsp')
     end
   },
   {

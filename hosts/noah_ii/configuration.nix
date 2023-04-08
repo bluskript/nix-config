@@ -24,7 +24,7 @@
   };
 
   stylix.image = ./wallpaper.jpg;
-  stylix.polarity = "dark";
+  stylix.base16Scheme = ../../colors.yml;
 
   nixpkgs = {
     # You can add overlays here
