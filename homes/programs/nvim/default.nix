@@ -2,7 +2,6 @@
 {
   stylix.targets.vim.enable = false;
   home.sessionVariables.EDITOR = "nvim";
-  home.packages = with pkgs; [ gcc ];
   home.activation = {
     linkNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
       ln -sfr /etc/nixos/homes/programs/nvim/config/* ${config.home.homeDirectory}/.config/nvim
@@ -10,6 +9,16 @@
   };
   programs.neovim = {
     enable = true;
+    extraPackages = with pkgs; [
+      rust-analyzer
+      sumneko-lua-language-server
+      nodePackages_latest.typescript-language-server
+      rnix-lsp
+      tree-sitter
+      gcc
+      nixpkgs-fmt
+      stylua
+    ];
     defaultEditor = true;
     withNodeJs = false;
     withRuby = false;
