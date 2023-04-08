@@ -4,6 +4,7 @@
   home.sessionVariables.EDITOR = "nvim";
   home.activation = {
     linkNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      mkdir -p ${config.home.homeDirectory}/.config/nvim
       ln -sfr /etc/nixos/homes/programs/nvim/config/* ${config.home.homeDirectory}/.config/nvim
     '';
   };
