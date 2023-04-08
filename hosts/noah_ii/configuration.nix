@@ -23,7 +23,7 @@
     vfio.enable = true;
   };
 
-  stylix.image = ./wallpaper.jpg;
+  stylix.image = ./wallpaper.png;
   stylix.base16Scheme = ../../colors.yml;
 
   nixpkgs = {
