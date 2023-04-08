@@ -73,6 +73,12 @@
       vscodium
       element-desktop
     ]);
+    persistence."/etc/nixos/homes/programs/nvim/config" = {
+      allowOther = true;
+      files = [
+        "lazy-lock.json"
+      ];
+    };
     persistence."/persist/home/blusk" = {
       allowOther = true;
       directories = [
