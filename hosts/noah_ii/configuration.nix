@@ -12,16 +12,18 @@
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-
     ../common/base_cli.nix
-    ./nvidia.nix
     ./gpu-passthrough.nix
+		./nvidia.nix
   ];
 
   specialisation."VFIO".configuration = {
     system.nixos.tags = [ "with-vfio" ];
     vfio.enable = true;
-  };
+    nvidia.enable = false;
+	};
+
+	nvidia.enable = true;
 
   stylix.image = ./wallpaper.png;
   stylix.base16Scheme = ../../colors.yml;
@@ -72,6 +74,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
 
+  services.journald.extraConfig = "Storage=persistent";
+
   networking.hostName = "NoAH-II";
   networking.networkmanager.enable = true;
 
@@ -88,6 +92,9 @@
       "/var/log"
       "/etc/mullvad-vpn"
       "/var/lib/libvirt"
+    ];
+    files = [
+      "/etc/machine-id"
     ];
   };
 
@@ -154,31 +161,31 @@
     noto-fonts-cjk
     fira-code
     fira-code-symbols
-    (nerdfonts.override { fonts = ["FiraCode"]; })
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
   fonts.fontconfig.defaultFonts = {
-      sansSerif = [
-        "Fira Sans"
-        "Noto Sans CJK SC"
-      ];
-      serif = [
-        "Poly"
-        "Noto Serif CJK SC"
-      ];
-      monospace = [
-        "JetBrainsMono Nerd Font"
-        "Noto Sans Mono CJK SC"
-      ];
+    sansSerif = [
+      "Fira Sans"
+      "Noto Sans CJK SC"
+    ];
+    serif = [
+      "Poly"
+      "Noto Serif CJK SC"
+    ];
+    monospace = [
+      "JetBrainsMono Nerd Font"
+      "Noto Sans Mono CJK SC"
+    ];
   };
 
   home-manager = {
-  	extraSpecialArgs = { inherit inputs outputs; nixosConfig = config; };
-        # useGlobalPkgs = true;
-        # useUserPackages = true;
-  	users = {
-  	  blusk = import ../../homes/blusk_workstation/home.nix;
-  	};
+    extraSpecialArgs = { inherit inputs outputs; nixosConfig = config; };
+    # useGlobalPkgs = true;
+    # useUserPackages = true;
+    users = {
+      blusk = import ../../homes/blusk_workstation/home.nix;
+    };
   };
 
   users.mutableUsers = false;

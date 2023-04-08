@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -9,14 +9,16 @@ let
   '';
 in
 {
+  options.nvidia.enable = lib.mkEnableOption "enable nvidia offloading";
+
   imports = [
     inputs.hardware.nixosModules.common-gpu-nvidia
   ];
 
-  environment.systemPackages = [ nvidia-offload ];
+  config.environment.systemPackages = [ nvidia-offload ];
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.prime = {
+  config.services.xserver.videoDrivers = [ "nvidia" ];
+  config.hardware.nvidia.prime = {
     offload.enable = true;
     intelBusId = "PCI:01:00:0";
     nvidiaBusId = "PCI:00:02:0";
