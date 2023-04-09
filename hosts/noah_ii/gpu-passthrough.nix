@@ -11,57 +11,75 @@
 # There's a lot of different setups so it seems difficult... but it should be possible.
 let
   gpuIDs = [
+    "8086:1901" # Intel PCI bridge
     "10de:2520" # Graphics
     "10de:228e" # Audio
   ];
-in { pkgs, pkgsUnstable, lib, config, ... }: {
+in
+{ pkgs, pkgsUnstable, lib, config, ... }: {
   options.vfio.enable = with lib;
     mkEnableOption "Configure the machine for VFIO";
 
-  config = let cfg = config.vfio;
-  in {
-    boot = {
-      initrd.kernelModules = [
-        "vfio_pci"
-        "vfio"
-        "vfio_iommu_type1"
-        "vfio_virqfd"
-        "kvmfr"
-      ];
+  config =
+    let cfg = config.vfio;
+    in
+    {
+      boot = {
+        initrd.kernelModules = [
+          "vfio_pci"
+          "vfio"
+          "vfio_iommu_type1"
+          "vfio_virqfd"
+          "kvmfr"
+        ];
 
-      extraModulePackages = [
-        config.boot.kernelPackages.kvmfr
-      ];
+        extraModulePackages = [
+          config.boot.kernelPackages.kvmfr
+        ];
 
-      kernelParams = [
-        # enable IOMMU
-        "intel_iommu=on"
-      ] ++ lib.optional cfg.enable
-        # isolate the GPU
-        ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs);
-    };
-
-    hardware.opengl.enable = true;
-    virtualisation.spiceUSBRedirection.enable = true;
-    virtualisation.libvirtd = {
-      enable = true;
-      qemu = {
-        ovmf.enable = true;
-        # Full is needed for TPM and secure boot emulation
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
+        kernelParams = [
+          # enable IOMMU
+          "intel_iommu=on"
+          "iommu=pt"
+        ] ++ lib.optional cfg.enable
+          # isolate the GPU
+          ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs);
       };
+
+      hardware.opengl.enable = true;
+      virtualisation.spiceUSBRedirection.enable = true;
+      virtualisation.libvirtd = {
+        enable = true;
+        qemu = {
+          ovmf.enable = true;
+          # Full is needed for TPM and secure boot emulation
+          ovmf.packages = [ pkgs.OVMFFull.fd ];
+          swtpm.enable = true;
+        };
+      };
+
+      virtualisation.kvmfr = {
+        enable = true;
+        devices = [
+          {
+            dimensions = {
+              width = 3840;
+              height = 2160;
+            };
+            permissions = {
+              group = "libvirtd";
+              mode = "0660";
+            };
+          }
+        ];
+      };
+
+      environment.systemPackages = with pkgs.unstable; [
+        virt-manager
+      ];
+
+      # virt-manager saves settings here
+      programs.dconf.enable = true;
     };
-
-    environment.systemPackages = with pkgs.unstable; [
-      virt-manager
-    ];
-
-    # virt-manager saves settings here
-    programs.dconf.enable = true;
-
-    systemd.tmpfiles.rules = [
-      "f	/dev/shm/looking-glass	0660	blusk		qemu-libvirtd	-"
-    ];
-  };
 }
 

@@ -20,6 +20,11 @@ return {
 		vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 		vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
+		vim.api.nvim_create_autocmd('BufWritePre', {
+			callback = function()
+				vim.lsp.buf.format { async = false }
+			end
+		})
 		vim.api.nvim_create_autocmd('LspAttach', {
 			group = vim.api.nvim_create_augroup('UserLspConfig', {}),
 			callback = function(ev)

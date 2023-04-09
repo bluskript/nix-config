@@ -1,8 +1,7 @@
-# This is your system's configuration file.
-# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-
-{ inputs, outputs, lib, config, pkgs, ... }: {
-  # You can import other NixOS modules here
+{ inputs, outputs, lib, config, pkgs, ... }:
+let
+in
+{
   imports = [
     inputs.home-manager.nixosModules.home-manager
 
@@ -10,20 +9,18 @@
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.impermanence.nixosModules.impermanence
 
-    # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ../common/base_cli.nix
     ./gpu-passthrough.nix
-		./nvidia.nix
   ];
+  
+	vfio.enable = true;
 
-  specialisation."VFIO".configuration = {
-    system.nixos.tags = [ "with-vfio" ];
-    vfio.enable = true;
-    nvidia.enable = false;
-	};
-
-	nvidia.enable = true;
+  specialisation."NOVFIO".configuration = {
+    system.nixos.tags = [ "no-vfio" ];
+    vfio.enable = lib.mkForce false;
+    imports = [ ./nvidia.nix ];
+  };
 
   stylix.image = ./wallpaper.png;
   stylix.base16Scheme = ../../colors.yml;

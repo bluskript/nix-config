@@ -2,6 +2,14 @@
   programs.looking-glass-client = {
     enable = true;
     settings = {
+      app = {
+        allowDMA = true;
+        shmFile = "/dev/kvmfr0";
+      };
+      spice = {
+        enable = false;
+        audio = false;
+      };
       win = {
         size = "3840x2160";
         autoResize = "yes";
@@ -10,7 +18,7 @@
       };
       input = {
         escapeKey = 56;
-        rawMouse = "yes";
+        rawMouse = true;
         mouseSens = 6;
       };
     };

@@ -31,6 +31,8 @@
     };
 
     blusk-repo.url = "github:bluskript/nix-repo";
+
+		nixos-vfio.url = "github:bluskript/nixos-vfio";
   };
 
   outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
@@ -76,6 +78,7 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             inputs.stylix.nixosModules.stylix
+						inputs.nixos-vfio.nixosModules.kvmfr
             ./hosts/noah_ii/configuration.nix
           ];
         };
