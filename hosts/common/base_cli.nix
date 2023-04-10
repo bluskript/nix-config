@@ -1,11 +1,13 @@
-{ pkgs, config, lib, ... }: let
+{ pkgs, config, lib, ... }:
+let
   inherit (lib) fileContents mkIf;
   nixBin = "${config.nix.package}/bin/nix";
   pkgBin = pkg:
-    if (pkg.meta or {}) ? mainProgram
+    if (pkg.meta or { }) ? mainProgram
     then "${pkg}/bin/${pkg.meta.mainProgram}"
     else "${pkg}/bin/${pkg.pname}";
-in {
+in
+{
   environment.systemPackages = with pkgs; [
     pciutils
     ripgrep
@@ -25,12 +27,15 @@ in {
     zip
     util-linux
     ncdu
+    tealdeer
   ];
 
-  environment.shellAliases = let
+  environment.shellAliases =
+    let
       ifSudo = string: mkIf config.security.sudo.enable string;
       inherit (pkgs) git bat exa du-dust;
-    in {
+    in
+    {
       g = pkgBin git;
       git-optimize = "${pkgBin git} gc --aggressive --prune=now";
       cat = "${pkgBin bat} --theme=base16";

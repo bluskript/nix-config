@@ -21,6 +21,7 @@
     ../programs/virtualisation/virt-manager.nix
     ../programs/virtualisation/looking-glass-client
     ../programs/ncmpcpp.nix
+    # ../programs/nnn.nix
   ];
 
   nixpkgs = {
@@ -89,11 +90,12 @@
     persistence."/persist/home/blusk" = {
       allowOther = true;
       directories = [
+        ".config/Element"
         ".mozilla/firefox/Default"
         ".config/Yubico"
         ".local/share/zsh"
-	# note: clear this out every once in a while to make sure it still can install from scratch
-	".local/share/nvim"
+        # note: clear this out every once in a while to make sure it still can install from scratch
+        ".local/share/nvim"
         ".ssh"
         "projects"
       ];

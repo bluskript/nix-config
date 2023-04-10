@@ -7,6 +7,7 @@
 
 {
   imports = [
+    ./base_cli.nix
     (modulesPath + "/profiles/hardened.nix")
   ];
 

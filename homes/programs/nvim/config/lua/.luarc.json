@@ -1,0 +1,14 @@
+{
+    "workspace.library": [
+        "/home/blusk/.config/nvim",
+        "/home/blusk/.local/share/nvim/lazy/lazy.nvim",
+        "/home/blusk/.local/share/nvim/lazy/nvim-lspconfig",
+        "/home/blusk/.local/share/nvim/lazy/which-key.nvim",
+        "/home/blusk/.local/share/nvim/lazy/tokyodark",
+        "/nix/store/1czj8mydgi30kyfimq6q4ifh06q131ch-neovim-unwrapped-0.8.3/share/nvim/runtime",
+        "/nix/store/1czj8mydgi30kyfimq6q4ifh06q131ch-neovim-unwrapped-0.8.3/share/nvim/runtime/pack/dist/opt/matchit",
+        "/nix/store/1czj8mydgi30kyfimq6q4ifh06q131ch-neovim-unwrapped-0.8.3/lib/nvim",
+        "/home/blusk/.local/share/nvim/lazy/tokyodark/after",
+        "${3rd}/luassert/library"
+    ]
+}

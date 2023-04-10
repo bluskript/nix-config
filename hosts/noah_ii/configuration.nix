@@ -13,8 +13,8 @@ in
     ../common/base_cli.nix
     ./gpu-passthrough.nix
   ];
-  
-	vfio.enable = true;
+
+  vfio.enable = true;
 
   specialisation."NOVFIO".configuration = {
     system.nixos.tags = [ "no-vfio" ];

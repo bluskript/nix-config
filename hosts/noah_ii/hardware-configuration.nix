@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
@@ -14,32 +15,37 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "none";
+    {
+      device = "none";
       fsType = "tmpfs";
       options = [ "defaults" "size=8G" "mode=755" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-label/BOOT";
+    {
+      device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
 
   fileSystems."/nix" =
-    { device = "/dev/mapper/noah_ii";
+    {
+      device = "/dev/mapper/noah_ii";
       fsType = "btrfs";
       neededForBoot = true;
       options = [ "subvol=@nix" ];
     };
 
-  boot.initrd.luks.devices."noah_ii" = 
-    { device = "/dev/disk/by-uuid/da492e1b-e409-4102-b81d-8b43ad7f3360";
+  boot.initrd.luks.devices."noah_ii" =
+    {
+      device = "/dev/disk/by-uuid/da492e1b-e409-4102-b81d-8b43ad7f3360";
       preLVM = true;
       allowDiscards = true;
       # keyFile = null;
     };
 
   fileSystems."/persist" =
-    { device = "/dev/mapper/noah_ii";
+    {
+      device = "/dev/mapper/noah_ii";
       fsType = "btrfs";
       neededForBoot = true;
       options = [ "subvol=@persist" ];

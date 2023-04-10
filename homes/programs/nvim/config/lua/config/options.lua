@@ -1,7 +1,7 @@
-vim.wo.relativenumber = true
-vim.wo.number = true
-vim.bo.tabstop = 2
-vim.cmd('colorscheme tokyodark')
-vim.g.autoindent = "smartindent"
-vim.api.nvim_set_option("clipboard", "unnamedplus")
-
+vim.o.relativenumber = true
+vim.o.number = true
+vim.o.cursorline = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.autoindent = "smartindent"
+vim.o.clipboard = "unnamedplus"

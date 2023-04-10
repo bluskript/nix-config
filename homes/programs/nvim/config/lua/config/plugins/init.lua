@@ -1,5 +1,11 @@
 return {
 	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require('Comment').setup()
+		end
+	},
+	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
@@ -8,6 +14,22 @@ return {
 				ensure_installed = "all",
 				highlight = { enable = true },
 				indent = { enable = true },
+				autotag = {
+					enable = true,
+				},
+				rainbow = {
+					enable = true,
+					extended_mode = true,
+					max_file_lines = nil,
+					hlgroups = {
+						'TSRainbowYellow',
+						'TSRainbowBlue',
+						'TSRainbowOrange',
+						'TSRainbowGreen',
+						'TSRainbowViolet',
+						'TSRainbowCyan'
+					}
+				}
 			})
 		end,
 	},
@@ -51,5 +73,20 @@ return {
 				{ name = 'buffer' }
 			})
 		end,
-	}
+	},
+	{
+		"windwp/nvim-ts-autotag",
+	},
+	{
+		"HiPhish/nvim-ts-rainbow2",
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+	},
+	{
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup {}
+		end
+	},
 }
