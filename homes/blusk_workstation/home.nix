@@ -13,6 +13,7 @@
     inputs.impermanence.nixosModules.home-manager.impermanence
 
     # ./nvim.nix
+    ../programs/fzf.nix
     ../programs/zsh.nix
     ../programs/waybar
     ../programs/nvim

@@ -10,10 +10,11 @@ return {
 		}
 
 		for _, lsp in ipairs(servers) do
-			lspconfig[lsp].setup {}
+			lspconfig[lsp].setup { on_attach = require('virtualtypes').onattach }
 		end
 
 		lspconfig.lua_ls.setup {
+			on_attach = require('virtualtypes').onattach,
 			settings = {
 				Lua = {
 					runtime = {
@@ -69,7 +70,7 @@ return {
 				vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
 				vim.keymap.set('n', '<leader>c', vim.lsp.buf.code_action, opts)
 				vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-				vim.keymap.set('n', '<leader>f', function()
+				vim.keymap.set('n', '<leader>fm', function()
 					vim.lsp.buf.format { async = true }
 				end, opts)
 			end,
