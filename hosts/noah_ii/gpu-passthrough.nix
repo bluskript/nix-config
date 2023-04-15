@@ -11,7 +11,6 @@
 # There's a lot of different setups so it seems difficult... but it should be possible.
 let
   gpuIDs = [
-    "8086:1901" # Intel PCI bridge
     "10de:2520" # Graphics
     "10de:228e" # Audio
   ];

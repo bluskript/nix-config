@@ -1,5 +1,29 @@
 return {
 	{
+		'weilbith/nvim-code-action-menu',
+		cmd = 'CodeActionMenu',
+		keys = {
+			{ '<leader>c', '<cmd>CodeActionMenu<CR>' },
+		},
+	},
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		opts = {
+			open_mapping = [[<C-\>]]
+		}
+	},
+	{
+		'gorbit99/codewindow.nvim',
+		opts = {
+			auto_enable = true,
+			exclude_filetypes = { 'alpha', 'Trouble', 'packer', 'neorg', 'norg', 'Telescope', 'NvimTree' }
+		},
+		keys = {
+			{ "<leader>mm", function() require('codewindow').toggle_minimap() end }
+		}
+	},
+	{
 		'nvim-tree/nvim-tree.lua',
 		opts = {
 			select_prompts = true,
@@ -97,7 +121,6 @@ return {
 			require('hop').setup()
 		end
 	},
-
 	{
 		"romgrk/barbar.nvim",
 		lazy = false,
@@ -106,8 +129,9 @@ return {
 		opts = {
 		},
 		keys = {
-			{ "<Tab>",   "<cmd>BufferNext<CR>" },
-			{ "<S-Tab>", "<cmd>BufferPrev<CR>" }
+			{ "<Tab>",     "<cmd>BufferNext<CR>" },
+			{ "<S-Tab>",   "<cmd>BufferPrev<CR>" },
+			{ "<leader>x", "<cmd>BufferClose<CR>" }
 		}
 	},
 	{

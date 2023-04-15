@@ -19,6 +19,7 @@
       rust-analyzer
       sumneko-lua-language-server
       nodePackages_latest.typescript-language-server
+      nodePackages_latest.pyright
       rnix-lsp
       nixpkgs-fmt
       stylua

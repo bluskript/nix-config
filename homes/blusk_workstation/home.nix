@@ -12,16 +12,16 @@
 
     inputs.impermanence.nixosModules.home-manager.impermanence
 
-    # ./nvim.nix
+    ../programs/git.nix
     ../programs/fzf.nix
     ../programs/zsh.nix
+    ../programs/ranger.nix
     ../programs/waybar
     ../programs/nvim
     ../programs/sway
     ../programs/firefox
     ../programs/virtualisation/virt-manager.nix
     ../programs/virtualisation/looking-glass-client
-    ../programs/ncmpcpp.nix
     # ../programs/nnn.nix
   ];
 
@@ -82,15 +82,16 @@
       dt-shell-color-scripts
       neofetch
     ] ++ (with pkgs.unstable; [
+      musikcube
       yewtube
-      ncgopher
-      strawberry
       vscodium
       element-desktop
     ]);
     persistence."/persist/home/blusk" = {
       allowOther = true;
       directories = [
+        ".cache"
+        ".config/musikcube"
         ".config/Element"
         ".mozilla/firefox/Default"
         ".config/Yubico"
@@ -112,23 +113,6 @@
     enableBashIntegration = true;
   };
 
-  programs.git = {
-    enable = true;
-    userName = "Blusk";
-    userEmail = "bluskript@gmail.com";
-    signing = {
-      # signByDefault = true;
-      # key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFiwMialwh6Fcg+0j4hxE5rofjcrIZKrFSD30yPdwiXq bluskript@gmail.com";
-      # key = "3B60DABB";
-      key = null;
-    };
-    extraConfig = {
-      push = {
-        autoSetupRemote = true;
-      };
-      # gpg.format = "ssh";
-    };
-  };
 
   programs.bash.enable = true;
 
