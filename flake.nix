@@ -32,7 +32,7 @@
 
     blusk-repo.url = "github:bluskript/nix-repo";
 
-		nixos-vfio.url = "github:bluskript/nixos-vfio";
+    nixos-vfio.url = "github:bluskript/nixos-vfio";
   };
 
   outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
@@ -68,7 +68,7 @@
       # Reusable home-manager modules you might want to export
       # These are usually stuff you would upstream into home-manager
       homeManagerModules = import ./modules/home-manager;
-      
+
       apps = inputs.nixinate.nixinate.x86_64-linux self;
 
       # NixOS configuration entrypoint
@@ -78,12 +78,12 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             inputs.stylix.nixosModules.stylix
-						inputs.nixos-vfio.nixosModules.kvmfr
+            inputs.nixos-vfio.nixosModules.kvmfr
             ./hosts/noah_ii/configuration.nix
           ];
         };
         nozomi = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; }; 
+          specialArgs = { inherit inputs outputs; };
           modules = [
             (import ./hosts/nozomi/configuration.nix)
             disko.nixosModules.disko

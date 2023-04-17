@@ -6,7 +6,6 @@ in
     inputs.home-manager.nixosModules.home-manager
 
     inputs.hardware.nixosModules.common-pc-laptop-ssd
-    inputs.hardware.nixosModules.common-cpu-intel
     inputs.impermanence.nixosModules.impermanence
 
     ./hardware-configuration.nix
@@ -19,7 +18,10 @@ in
   specialisation."NOVFIO".configuration = {
     system.nixos.tags = [ "no-vfio" ];
     vfio.enable = lib.mkForce false;
-    imports = [ ./nvidia.nix ];
+    imports = [
+      inputs.hardware.nixosModules.common-cpu-intel
+      ./nvidia.nix
+    ];
   };
 
   stylix.image = ./wallpaper.png;
@@ -216,6 +218,11 @@ in
   };
 
   programs.fuse.userAllowOther = true;
+
+  services.printing.enable = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
+  services.avahi.openFirewall = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";

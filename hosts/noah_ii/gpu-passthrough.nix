@@ -10,7 +10,7 @@
 # Hmm... someone should make a common way to configure VFIO in nixos options or smth...
 # There's a lot of different setups so it seems difficult... but it should be possible.
 let
-  gpuIDs = [
+  passthroughIDs = [
     "10de:2520" # Graphics
     "10de:228e" # Audio
   ];
@@ -36,13 +36,14 @@ in
           config.boot.kernelPackages.kvmfr
         ];
 
-        kernelParams = [
+        blacklistedKernelModules = [ "nouveau" ];
+
+        kernelParams = lib.optionals cfg.enable [
           # enable IOMMU
           "intel_iommu=on"
           "iommu=pt"
-        ] ++ lib.optional cfg.enable
-          # isolate the GPU
-          ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs);
+          ("vfio-pci.ids=" + lib.concatStringsSep "," passthroughIDs)
+        ];
       };
 
       hardware.opengl.enable = true;

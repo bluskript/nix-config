@@ -79,7 +79,7 @@
       ripgrep
       skim
       termshark
-      dt-shell-color-scripts
+      dwt1-shell-color-scripts
       neofetch
     ] ++ (with pkgs.unstable; [
       musikcube
