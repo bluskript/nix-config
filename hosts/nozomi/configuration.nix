@@ -1,15 +1,18 @@
-{ config, pkgs, lib, inputs, disko, ... }:
+{ config, pkgs, lib, inputs, outputs, disko, ... }:
 let
   blusk = import ../common/blusk.nix;
 in
 {
   imports = [
     inputs.impermanence.nixosModules.impermanence
+    inputs.home-manager.nixosModules.home-manager
     ../common/server.nix
     ./disks.nix
     ./conduit.nix
     ./filehost.nix
     ./nginx.nix
+    # ./containers.nix
+    ./rss-bridge.nix
   ];
 
   environment.noXlibs = true;
@@ -18,8 +21,10 @@ in
 
   services.openssh = {
     enable = true;
-    passwordAuthentication = false;
-    kbdInteractiveAuthentication = false;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+    };
   };
 
   security.sudo.wheelNeedsPassword = false;
@@ -30,13 +35,25 @@ in
     hashedPassword = "!";
   };
 
+  programs.zsh.enable = true;
+
   users.users.blusk = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     extraGroups = [ "wheel" ];
     home = "/home/blusk";
     openssh.authorizedKeys.keys = [
       blusk.pubkey
     ];
+  };
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs outputs; nixosConfig = config; };
+    # useGlobalPkgs = true;
+    # useUserPackages = true;
+    users = {
+      blusk = import ../../homes/blusk_server/home.nix;
+    };
   };
 
   boot.loader.grub = {
@@ -56,6 +73,7 @@ in
       "/var/log"
       "/var/lib/systemd/coredump"
       "/var/lib/private/matrix-conduit"
+      "/var/lib/rss-bridge"
     ];
   };
 

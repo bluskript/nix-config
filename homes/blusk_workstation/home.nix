@@ -12,14 +12,11 @@
 
     inputs.impermanence.nixosModules.home-manager.impermanence
 
-    ../programs/git.nix
-    ../programs/fzf.nix
-    ../programs/zsh.nix
-    ../programs/ranger.nix
+    ../common/profile-cli.nix
     ../programs/waybar
-    ../programs/nvim
     ../programs/sway
     ../programs/firefox
+    ../programs/weechat.nix
     ../programs/virtualisation/virt-manager.nix
     ../programs/virtualisation/looking-glass-client
     # ../programs/nnn.nix
@@ -32,7 +29,6 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
-      inputs.nixneovimplugins.overlays.default
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
@@ -69,9 +65,6 @@
       slurp
       imv
       mpv
-      # basic cli toolset
-      bat
-      fzf
       ranger
       micro
       zip
@@ -84,13 +77,14 @@
     ] ++ (with pkgs.unstable; [
       musikcube
       yewtube
-      vscodium
       element-desktop
     ]);
     persistence."/persist/home/blusk" = {
       allowOther = true;
       directories = [
         ".cache"
+        # TODO make this declarative
+        ".config/weechat"
         ".config/musikcube"
         ".config/Element"
         ".mozilla/firefox/Default"

@@ -7,12 +7,24 @@ return {
 			"tsserver",
 			"rnix",
 			"yamlls",
-			"pyright",
+			"rust_analyzer",
 		}
 
 		for _, lsp in ipairs(servers) do
 			lspconfig[lsp].setup { on_attach = require('virtualtypes').onattach }
 		end
+
+		lspconfig.pyright.setup {
+			on_attach = require('virtualtypes').onattach,
+			settings = {
+				python = {
+					analysis = {
+						autoSearchPaths = true,
+						extraPaths = { vim.fn.getcwd() .. "/common/" },
+					},
+				},
+			},
+		}
 
 		lspconfig.lua_ls.setup {
 			on_attach = require('virtualtypes').onattach,

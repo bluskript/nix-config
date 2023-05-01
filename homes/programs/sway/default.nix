@@ -1,10 +1,15 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }:
+let
+  lock = pkgs.writeShellScript "lock" "${pkgs.swaylock}/bin/swaylock -fF";
+in
+{
   imports = [
     ../waybar
   ];
 
   home.packages = with pkgs; [
-    swaylock swayidle wofi wl-clipboard
+    wofi
+    wl-clipboard
   ];
 
   home.sessionVariables = {
@@ -24,8 +29,20 @@
     anchor = "bottom-right";
   };
 
+  programs.swaylock = {
+    enable = true;
+  };
+
+  services.swayidle = {
+    enable = true;
+    timeouts = [
+      { timeout = 60; command = "exec ${lock}"; }
+    ];
+  };
+
+
   wayland.windowManager.sway = {
-    package = pkgs.unstable.sway;
+    package = pkgs.sway;
     enable = true;
     systemdIntegration = true;
     wrapperFeatures.gtk = true;
@@ -33,7 +50,7 @@
       modifier = "Mod4";
       terminal = "alacritty msg create-window || alacritty";
       menu = "wofi --show run";
-      bars = [];
+      bars = [ ];
       gaps = {
         inner = 8;
       };
@@ -67,16 +84,20 @@
           resolution = "3480x2160";
         };
       };
-      keybindings = let 
-        cfg = config.wayland.windowManager.sway.config;
-        mod = cfg.modifier;
-      in lib.mkOptionDefault rec {
+      keybindings =
+        let
+          cfg = config.wayland.windowManager.sway.config;
+          mod = cfg.modifier;
+        in
+        lib.mkOptionDefault rec {
           "${mod}+space" = "exec ${cfg.menu}";
           #"${mod}+Return" = "exec $(cfg.terminal)";
           "${mod}+w" = "kill";
           "${mod}+s" = "floating toggle";
-          "${mod}+tab" = "exec swaymsg [con_id=$(swaymsg -t get_tree | ${./alttab} t)] focus";
-          "${mod}+Shift+tab" = "exec swaymsg [con_id=$(swaymsg -t get_tree | ${./alttab} f)] focus";
+          "${mod}+t" = "layout tabbed";
+          "Print" = "exec slurp | grim -g - - | wl-copy -t image/png";
+          "Shift+Print" = "exec slurp | grim -g - - | curl --form 'file=@-' http://0x0.st | wl-copy";
+          "ctrl+alt+l" = "exec ${lock}";
           "XF86AudioRaiseVolume" = "pactl set-sink-volume 0 +5%";
           "XF86AudioLowerVolume" = "pactl set-sink-volume 0 -5%";
           "XF86AudioMute" = "pactl set-sink-mute 0 toggle";

@@ -75,8 +75,37 @@ in
 
   services.journald.extraConfig = "Storage=persistent";
 
-  networking.hostName = "NoAH-II";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "NoAH-II";
+    nameservers = [ "127.0.0.1" "::1" ];
+    dhcpcd.extraConfig = "nohook resolv.conf";
+    networkmanager = {
+      enable = true;
+      dns = "none";
+    };
+  };
+
+  services.dnscrypt-proxy2 = {
+    enable = true;
+    settings = {
+      ipv6_servers = true;
+      require_dnssec = true;
+
+      sources.public-resolvers = {
+        urls = [
+          "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
+          "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
+        ];
+        cache_file = "/var/lib/dnscrypt-proxy2/public-resolvers.md";
+        minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
+      };
+      server_names = [ "cloudflare" "cloudflare-ipv6" ];
+    };
+  };
+
+  systemd.services.dnscrypt-proxy2.serviceConfig = {
+    StateDirectory = "dnscrypt-proxy";
+  };
 
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -130,6 +159,8 @@ in
     pulse.enable = true;
   };
 
+  programs.sway.enable = true;
+
   virtualisation = {
     podman = {
       enable = true;
@@ -142,6 +173,7 @@ in
   };
 
   programs.wireshark.enable = true;
+  programs.wireshark.package = pkgs.wireshark;
 
   xdg.portal = {
     enable = true;
