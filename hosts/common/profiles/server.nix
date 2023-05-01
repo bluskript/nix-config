@@ -7,9 +7,12 @@
 
 {
   imports = [
+    ../default.nix
     ./base_cli.nix
     (modulesPath + "/profiles/hardened.nix")
   ];
+
+  ssh.disableBloatware = true;
 
   services.fail2ban.enable = true;
 

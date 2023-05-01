@@ -74,14 +74,15 @@
       termshark
       dwt1-shell-color-scripts
       neofetch
-    ] ++ (with pkgs.unstable; [
       musikcube
       yewtube
       element-desktop
-    ]);
+      tmsu
+    ];
     persistence."/persist/home/blusk" = {
       allowOther = true;
       directories = [
+        ".tmsu"
         ".cache"
         # TODO make this declarative
         ".config/weechat"

@@ -40,9 +40,12 @@ in
     ];
   };
 
+  programs.wlogout = {
+    enable = true;
+  };
 
   wayland.windowManager.sway = {
-    package = pkgs.sway;
+    package = pkgs.swayfx;
     enable = true;
     systemdIntegration = true;
     wrapperFeatures.gtk = true;
@@ -98,6 +101,7 @@ in
           "Print" = "exec slurp | grim -g - - | wl-copy -t image/png";
           "Shift+Print" = "exec slurp | grim -g - - | curl --form 'file=@-' http://0x0.st | wl-copy";
           "ctrl+alt+l" = "exec ${lock}";
+          "${mod}+ctrl+l" = "exec ${pkgs.wlogout}/bin/wlogout";
           "XF86AudioRaiseVolume" = "pactl set-sink-volume 0 +5%";
           "XF86AudioLowerVolume" = "pactl set-sink-volume 0 -5%";
           "XF86AudioMute" = "pactl set-sink-mute 0 toggle";
