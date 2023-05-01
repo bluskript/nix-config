@@ -3,10 +3,10 @@
     ./nix.nix
     ./auth.nix
     ./boot.nix
-    ./dns.nix
-    ./sshd.nix
     ./video.nix
     ./audio.nix
+    ./networking/dns.nix
+    ./networking/sshd.nix
   ];
 
   options = {
