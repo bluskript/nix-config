@@ -24,7 +24,6 @@
     impermanence.url = "github:nix-community/impermanence";
 
     stylix.url = "github:danth/stylix";
-    nixneovimplugins.url = "github:jooooscha/nixpkgs-vim-extra-plugins";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
