@@ -31,8 +31,9 @@
     };
 
     blusk-repo.url = "github:bluskript/nix-repo";
-
     nixos-vfio.url = "github:bluskript/nixos-vfio";
+
+    swayfx.url = "github:WillPower3309/swayfx";
   };
 
   outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:

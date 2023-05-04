@@ -1,12 +1,12 @@
 { config, pkgs, lib, inputs, outputs, disko, ... }:
 let
-  blusk = import ../common/blusk.nix;
+  blusk = import ../../identities/blusk.nix;
 in
 {
   imports = [
     inputs.impermanence.nixosModules.impermanence
     inputs.home-manager.nixosModules.home-manager
-    ../common/server.nix
+    ../common/profiles/server.nix
     ./disks.nix
     ./conduit.nix
     ./filehost.nix
@@ -15,17 +15,10 @@ in
     ./rss-bridge.nix
   ];
 
-  environment.noXlibs = true;
-
   networking.hostName = "nozomi";
 
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = false;
-    };
-  };
+  services.openssh.enable = true;
+  services.openssh.allowSFTP = true;
 
   security.sudo.wheelNeedsPassword = false;
 
@@ -62,6 +55,7 @@ in
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
+  boot.loader.efi.canTouchEfiVariables = false;
 
   hardware.cpu.intel.updateMicrocode = true;
 

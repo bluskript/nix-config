@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, inputs, pkgs, ... }:
 let
   lock = pkgs.writeShellScript "lock" "${pkgs.swaylock}/bin/swaylock -fF";
 in
@@ -98,8 +98,13 @@ in
           "${mod}+w" = "kill";
           "${mod}+s" = "floating toggle";
           "${mod}+t" = "layout tabbed";
+          "${mod}+d" = "layout stacking";
+          # screenshot to clipboard
           "Print" = "exec slurp | grim -g - - | wl-copy -t image/png";
+          # upload screenshot
           "Shift+Print" = "exec slurp | grim -g - - | curl --form 'file=@-' http://0x0.st | wl-copy";
+          # color picker
+          "${mod}+p" = "exec slurp -p | grim -g - -t ppm - | ${pkgs.imagemagick}/bin/convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy";
           "ctrl+alt+l" = "exec ${lock}";
           "${mod}+ctrl+l" = "exec ${pkgs.wlogout}/bin/wlogout";
           "XF86AudioRaiseVolume" = "pactl set-sink-volume 0 +5%";
@@ -113,6 +118,11 @@ in
           "XF86MonBrightnessDown" = "light -T 0.72";
         };
     };
+    extraConfigEarly = ''
+      default_dim_inactive 0.1
+      corner_radius 4
+      smart_corner_radius enable
+    '';
     extraOptions = [
       "--unsupported-gpu"
     ];

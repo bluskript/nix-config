@@ -1,6 +1,6 @@
 { inputs, ... }:
 let
-  blusk = import ../common/blusk.nix;
+  blusk = import ../../identities/blusk.nix;
 in
 {
   services.nginx = {

@@ -7,12 +7,16 @@
 
 {
   imports = [
-    ../default.nix
-    ./base_cli.nix
     (modulesPath + "/profiles/hardened.nix")
+    ./base_cli.nix
+    ../nix.nix
+    ../networking/dns.nix
+    ../networking/sshd.nix
   ];
 
-  ssh.disableBloatware = true;
+  dns.encryption.enable = false;
+  services.openssh.enable = true;
+  environment.noXlibs = true;
 
   services.fail2ban.enable = true;
 

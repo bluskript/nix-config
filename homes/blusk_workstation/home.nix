@@ -66,7 +66,6 @@
       imv
       mpv
       ranger
-      micro
       zip
       unzip
       ripgrep
@@ -133,7 +132,11 @@
     };
   };
 
-  programs.chromium.enable = true;
+  xdg = {
+    enable = true;
+    mime.enable = true;
+    mimeApps.enable = true;
+  };
 
   programs.home-manager.enable = true;
 

@@ -1,26 +1,12 @@
-{ pkgs, lib, config, ... }: with lib; {
-  options = {
-    auth = {
-      yubikey = mkEnableOption "yubikey authentication";
-      gpg = mkEnableOption "gpg agent";
-    };
+{ pkgs, lib, config, ... }: {
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
   };
 
-  config = let cfg = config.auth; in
-    mkMerge [
-      (mkIf cfg.gpg
-        {
-          programs.gnupg.agent = {
-            enable = true;
-            enableSSHSupport = true;
-          };
-        })
-      (mkIf cfg.yubikey {
-        services.udev.packages = [ pkgs.yubikey-personalization ];
-        security.pam.services = {
-          login.u2fAuth = true;
-          sudo.u2fAuth = true;
-        };
-      })
-    ];
+  services.udev.packages = [ pkgs.yubikey-personalization ];
+  security.pam.services = {
+    login.u2fAuth = true;
+    sudo.u2fAuth = true;
+  };
 }

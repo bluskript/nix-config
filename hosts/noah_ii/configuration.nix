@@ -6,27 +6,18 @@
     inputs.hardware.nixosModules.common-pc-laptop-ssd
 
     ./hardware-configuration.nix
-    ../common
-    ../common/fonts.nix
-    ../common/networking/podman.nix
-    ../common/profiles/base_cli.nix
+    ../common/profiles/desktop.nix
     ./users.nix
     ./gpu-passthrough.nix
     ./impermanence.nix
     ./firejail.nix
   ];
 
-  computer.isLaptop = true;
-
   networking.hostName = "NoAH-II";
   stylix.image = ./wallpaper.png;
   stylix.base16Scheme = ../common/colors.yml;
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
-
-  video.sway = true;
-  auth.yubikey = true;
-  auth.gpg = true;
 
   vfio.enable = true;
   specialisation."NOVFIO".configuration = {

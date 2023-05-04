@@ -36,7 +36,6 @@
           networking = {
             dhcpcd.extraConfig = "nohook resolv.conf";
             networkmanager = {
-              enable = true;
               dns = "none";
             };
           };
