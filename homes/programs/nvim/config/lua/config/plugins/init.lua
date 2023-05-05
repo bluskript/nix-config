@@ -71,34 +71,6 @@ return {
 		end
 	},
 	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			require('nvim-treesitter.configs').setup({
-				ensure_installed = "all",
-				highlight = { enable = true },
-				indent = { enable = true },
-				autotag = {
-					enable = true,
-				},
-				rainbow = {
-					enable = true,
-					extended_mode = true,
-					max_file_lines = nil,
-					hlgroups = {
-						'TSRainbowYellow',
-						'TSRainbowBlue',
-						'TSRainbowOrange',
-						'TSRainbowGreen',
-						'TSRainbowViolet',
-						'TSRainbowCyan'
-					}
-				}
-			})
-		end,
-	},
-	{
 		"folke/which-key.nvim",
 		config = function()
 			vim.o.timeout = true

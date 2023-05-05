@@ -70,7 +70,6 @@
       unzip
       ripgrep
       skim
-      termshark
       dwt1-shell-color-scripts
       neofetch
       musikcube

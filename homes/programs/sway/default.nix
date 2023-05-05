@@ -91,6 +91,11 @@ in
         let
           cfg = config.wayland.windowManager.sway.config;
           mod = cfg.modifier;
+          wlogout = "${pkgs.wlogout}/bin/wlogout";
+          imagemagick = pkgs.imagemagick;
+          pactl = "${pkgs.pulseaudioFull}/bin/pactl";
+          playerctl = "${pkgs.playerctl}/bin/playerctl";
+          light = "${pkgs.light}/bin/light";
         in
         lib.mkOptionDefault rec {
           "${mod}+space" = "exec ${cfg.menu}";
@@ -104,18 +109,18 @@ in
           # upload screenshot
           "Shift+Print" = "exec slurp | grim -g - - | curl --form 'file=@-' http://0x0.st | wl-copy";
           # color picker
-          "${mod}+p" = "exec slurp -p | grim -g - -t ppm - | ${pkgs.imagemagick}/bin/convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy";
+          "${mod}+p" = "exec slurp -p | grim -g - -t ppm - | ${imagemagick}/bin/convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy";
           "ctrl+alt+l" = "exec ${lock}";
-          "${mod}+ctrl+l" = "exec ${pkgs.wlogout}/bin/wlogout";
-          "XF86AudioRaiseVolume" = "pactl set-sink-volume 0 +5%";
-          "XF86AudioLowerVolume" = "pactl set-sink-volume 0 -5%";
-          "XF86AudioMute" = "pactl set-sink-mute 0 toggle";
-          "XF86AudioPlay" = "playerctl play-pause";
-          "XF86AudioPrev" = "playerctl previous";
-          "XF86AudioNext" = "playerctl next";
-          "XF86AudioStop" = "playerctl stop";
-          "XF86MonBrightnessUp" = "light -T 1.4";
-          "XF86MonBrightnessDown" = "light -T 0.72";
+          "${mod}+ctrl+l" = "exec ${wlogout}";
+          "XF86AudioRaiseVolume" = "exec ${pactl} set-sink-volume 0 +5%";
+          "XF86AudioLowerVolume" = "exec ${pactl} set-sink-volume 0 -5%";
+          "XF86AudioMute" = "exec ${pactl} set-sink-mute 0 toggle";
+          "XF86AudioPlay" = "exec ${playerctl} play-pause";
+          "XF86AudioPrev" = "exec ${playerctl} previous";
+          "XF86AudioNext" = "exec ${playerctl} next";
+          "XF86AudioStop" = "exec ${playerctl} stop";
+          "XF86MonBrightnessUp" = "exec ${light} -T 1.4";
+          "XF86MonBrightnessDown" = "exec ${light} -T 0.72";
         };
     };
     extraConfigEarly = ''
