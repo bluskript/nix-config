@@ -22,7 +22,7 @@ in
   config =
     let cfg = config.vfio;
     in
-    {
+    lib.mkIf cfg.enable {
       boot = {
         initrd.kernelModules = [
           "vfio_pci"
@@ -38,10 +38,12 @@ in
 
         blacklistedKernelModules = [ "nouveau" ];
 
-        kernelParams = lib.optionals cfg.enable [
+        kernelParams = [
           # enable IOMMU
           "intel_iommu=on"
           "iommu=pt"
+          # potential workaround: echo "efi-framebuffer.0" > /sys/bus/platform/devices/efi-framebuffer.0/driver/unbind 
+          "video=efifb:off"
           ("vfio-pci.ids=" + lib.concatStringsSep "," passthroughIDs)
         ];
       };

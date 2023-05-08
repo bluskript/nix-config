@@ -18,7 +18,7 @@
       "Noto Serif CJK SC"
     ];
     monospace = [
-      "JetBrainsMono Nerd Font"
+      "FiraCode Nerd Font Mono"
       "Noto Sans Mono CJK SC"
     ];
   };

@@ -96,6 +96,19 @@ in
           pactl = "${pkgs.pulseaudioFull}/bin/pactl";
           playerctl = "${pkgs.playerctl}/bin/playerctl";
           light = "${pkgs.light}/bin/light";
+          grim = "${pkgs.grim}/bin/grim";
+          slurp = "${pkgs.slurp}/bin/slurp";
+          imv = "${pkgs.imv}/bin/imv";
+          wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
+          jq = "${pkgs.jq}/bin/jq";
+          currentoutput = "${pkgs.sway}/bin/swaymsg -t get_outputs | ${jq} -r '.[] | select(.focused) | .name'";
+          screenshot = pkgs.writeShellScript "screenshot"
+            ''
+              ${grim} -o "$(${currentoutput})" - | ${imv} -f - &
+              ID=$!
+              ${slurp} | ${grim} -g - - | ${wl-copy} -t image/png
+              kill $ID
+            '';
         in
         lib.mkOptionDefault rec {
           "${mod}+space" = "exec ${cfg.menu}";
@@ -104,12 +117,14 @@ in
           "${mod}+s" = "floating toggle";
           "${mod}+t" = "layout tabbed";
           "${mod}+d" = "layout stacking";
-          # screenshot to clipboard
-          "Print" = "exec slurp | grim -g - - | wl-copy -t image/png";
+          # screenshot to clipboard, freeze frame
+          "Print" = "exec ${screenshot}";
+          # screenshot to clipboard, no freeze frame
+          "Ctrl+Print" = "exec ${slurp} | ${grim} -g - - | ${wl-copy} -t image/png";
           # upload screenshot
-          "Shift+Print" = "exec slurp | grim -g - - | curl --form 'file=@-' http://0x0.st | wl-copy";
+          "Shift+Print" = "exec ${slurp} | ${grim} -g - - | curl --form 'file=@-' http://0x0.st | wl-copy";
           # color picker
-          "${mod}+p" = "exec slurp -p | grim -g - -t ppm - | ${imagemagick}/bin/convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy";
+          "${mod}+p" = "exec ${slurp} -p | ${grim} -g - -t ppm - | ${imagemagick}/bin/convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy";
           "ctrl+alt+l" = "exec ${lock}";
           "${mod}+ctrl+l" = "exec ${wlogout}";
           "XF86AudioRaiseVolume" = "exec ${pactl} set-sink-volume 0 +5%";

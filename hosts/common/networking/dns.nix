@@ -41,6 +41,7 @@
           };
         })
       (mkIf cfg.encryption.enable {
+        # systemd.services.dnscrypt-proxy2.after = mkIf config.services.mullvad-vpn.enable [ "mullvad-vpn.service" ];
         services.dnscrypt-proxy2 = {
           enable = true;
           settings = {
