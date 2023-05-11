@@ -8,6 +8,7 @@
   "hop.nvim": { "branch": "v2", "commit": "90db1b2c61b820e230599a04fedcd2679e64bd07" },
   "indent-blankline.nvim": { "branch": "master", "commit": "018bd04d80c9a73d399c1061fa0c3b14a7614399" },
   "lazy.nvim": { "branch": "main", "commit": "57cce98dfdb2f2dd05a0567d89811e6d0505e13b" },
+  "lsp_signature.nvim": { "branch": "master", "commit": "7a26ebaa7e36aa2aefa6c1994b2b866c96de32e6" },
   "nvim-autopairs": { "branch": "master", "commit": "7470af886ffb3df32800e5ef9c072a6cd825770d" },
   "nvim-cmp": { "branch": "main", "commit": "777450fd0ae289463a14481673e26246b5e38bf2" },
   "nvim-code-action-menu": { "branch": "main", "commit": "e4399dbaf6eabff998d3d5f1cbcd8d9933710027" },

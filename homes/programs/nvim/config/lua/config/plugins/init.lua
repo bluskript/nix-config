@@ -1,5 +1,9 @@
 return {
 	{
+		"ray-x/lsp_signature.nvim",
+		opts = {},
+	},
+	{
 		'weilbith/nvim-code-action-menu',
 		cmd = 'CodeActionMenu',
 		keys = {

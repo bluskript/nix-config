@@ -19,6 +19,7 @@
     ../programs/weechat.nix
     ../programs/virtualisation/virt-manager.nix
     ../programs/virtualisation/looking-glass-client
+    ../programs/ranger.nix
     # ../programs/nnn.nix
   ];
 
@@ -76,6 +77,7 @@
       yewtube
       element-desktop
       tmsu
+      reaper
     ];
     persistence."/persist/home/blusk" = {
       allowOther = true;
