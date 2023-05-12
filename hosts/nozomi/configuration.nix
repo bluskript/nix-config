@@ -13,6 +13,7 @@ in
     ./nginx.nix
     # ./containers.nix
     ./rss-bridge.nix
+    ./abletonzip.nix
   ];
 
   networking.hostName = "nozomi";

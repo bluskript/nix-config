@@ -22,7 +22,7 @@ in
     enable = true;
     settings.global = {
       server_name = "matrix.blusk.dev";
-      max_request_size = 1000 * 1000 * 1000 * 20;
+      max_request_size = 1000 * 1000 * 100 * 20;
       allow_registration = true;
       allow_federation = true;
       trusted_servers = [ "matrix.org" "nixos.dev" "conduit.rs" ];
