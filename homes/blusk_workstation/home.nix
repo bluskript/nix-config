@@ -58,6 +58,7 @@
       name = "capitaine-cursors";
     };
     packages = with pkgs; [
+      comma
       ncdu
       light
       pavucontrol
@@ -78,12 +79,14 @@
       element-desktop
       tmsu
       reaper
+      inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
     ];
     persistence."/persist/home/blusk" = {
       allowOther = true;
       directories = [
         ".tmsu"
         ".cache"
+        ".local/share/zoxide"
         # TODO make this declarative
         ".config/weechat"
         ".config/musikcube"
@@ -136,7 +139,12 @@
   xdg = {
     enable = true;
     mime.enable = true;
-    mimeApps.enable = true;
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "x-scheme-handler/magnet" = "transmission-gtk.desktop";
+      };
+    };
   };
 
   programs.home-manager.enable = true;

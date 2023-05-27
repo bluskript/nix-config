@@ -33,6 +33,7 @@
     nixos-vfio.url = "github:bluskript/nixos-vfio";
 
     swayfx.url = "github:WillPower3309/swayfx";
+    nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
   outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:

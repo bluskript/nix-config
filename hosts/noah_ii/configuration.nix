@@ -15,7 +15,8 @@
 
   networking.hostName = "NoAH-II";
   stylix.image = ./wallpaper.png;
-  stylix.base16Scheme = ../common/colors.yml;
+  # stylix.base16Scheme = ../common/colors.yml;
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -39,6 +40,7 @@
   programs.adb.enable = true;
   # for MTP
   services.gvfs.enable = true;
+  services.udev.packages = [ pkgs.heimdall ];
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; nixosConfig = config; };

@@ -3,6 +3,7 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    nix-direnv.enable = true;
+    # has cache problems
+    # nix-direnv.enable = true;
   };
 }

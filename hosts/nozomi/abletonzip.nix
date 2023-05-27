@@ -13,7 +13,8 @@ in
     locations."/" = {
       tryFiles = "${ableton} =404";
       extraConfig = ''
-        add_header Content-Disposition 'attachment; "filename=ableton.zip"';
+                add_header Content-Disposition 'attachment; filename="ableton.zip"';
+        				add_header Cache-Control 'public, max-age=604800';
       '';
     };
   };

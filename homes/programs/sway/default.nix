@@ -104,7 +104,7 @@ in
           currentoutput = "${pkgs.sway}/bin/swaymsg -t get_outputs | ${jq} -r '.[] | select(.focused) | .name'";
           screenshot = pkgs.writeShellScript "screenshot"
             ''
-              ${grim} -o "$(${currentoutput})" - | ${imv} -f - &
+              ${grim} -o "$(${currentoutput})" - | (${imv} -f - &)
               ID=$!
               ${slurp} | ${grim} -g - - | ${wl-copy} -t image/png
               kill $ID
