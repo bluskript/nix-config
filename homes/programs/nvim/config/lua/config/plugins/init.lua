@@ -1,10 +1,16 @@
 return {
 	{
+		"RRethy/vim-illuminate",
+		event = "VeryLazy",
+	},
+	{
 		"ray-x/lsp_signature.nvim",
+		event = "VeryLazy",
 		opts = {},
 	},
 	{
 		'weilbith/nvim-code-action-menu',
+		event = "VeryLazy",
 		cmd = 'CodeActionMenu',
 		keys = {
 			{ '<leader>c', '<cmd>CodeActionMenu<CR>' },
@@ -14,17 +20,7 @@ return {
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		opts = {
-			open_mapping = [[<C-\>]]
-		}
-	},
-	{
-		'gorbit99/codewindow.nvim',
-		opts = {
-			auto_enable = true,
-			exclude_filetypes = { 'alpha', 'Trouble', 'packer', 'neorg', 'norg', 'Telescope', 'NvimTree' }
-		},
-		keys = {
-			{ "<leader>mm", function() require('codewindow').toggle_minimap() end }
+			open_mapping = [[<A-\>]]
 		}
 	},
 	{
@@ -63,6 +59,7 @@ return {
 		keys = {
 			{ "<leader>ff", "<cmd>Telescope find_files<CR>" },
 			{ "<leader>fg", "<cmd>Telescope live_grep<CR>" },
+			{ "<leader>sk", "<cmd>Telescope keymaps<CR>" },
 		}
 	},
 	{
@@ -76,15 +73,12 @@ return {
 	},
 	{
 		"folke/which-key.nvim",
-		config = function()
+		event = "VeryLazy",
+		init = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
-			require("which-key").setup({})
 		end,
-	},
-	{
-		"tiagovla/tokyodark.nvim",
-		name = "tokyodark",
+		opts = {},
 	},
 	{
 		"phaazon/hop.nvim",
@@ -121,8 +115,7 @@ return {
 	},
 	{
 		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup {}
-		end
+		event = "VeryLazy",
+		opts = {},
 	},
 }
