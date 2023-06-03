@@ -1,0 +1,57 @@
+{ inputs, outputs, lib, config, pkgs, ... }:
+{
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+
+    inputs.hardware.nixosModules.common-pc-laptop-ssd
+
+    ../common/profiles/desktop.nix
+    ../noah_ii/users.nix
+    ../noah_ii/gpu-passthrough.nix
+    ../noah_ii/impermanence.nix
+    ../noah_ii/firejail.nix
+    ./disks.nix
+  ];
+
+  networking.hostName = "NoAH-II";
+  stylix.image = ../noah_ii/wallpaper.png;
+  # stylix.base16Scheme = ../common/colors.yml;
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+  time.timeZone = "America/New_York";
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  # vfio.enable = true;
+  # specialisation."NOVFIO".configuration = {
+  #   system.nixos.tags = [ "no-vfio" ];
+  #   vfio.enable = lib.mkForce false;
+  #   imports = [
+  #     inputs.hardware.nixosModules.common-cpu-intel
+  #     ../noah_ii/nvidia.nix
+  #   ];
+  # };
+
+  services.journald.extraConfig = "Storage=persistent";
+
+  services.mullvad-vpn.enable = true;
+
+  programs.wireshark.enable = true;
+  programs.wireshark.package = pkgs.wireshark;
+
+  programs.adb.enable = true;
+  # for MTP
+  services.gvfs.enable = true;
+  services.udev.packages = [ pkgs.heimdall ];
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs outputs; nixosConfig = config; };
+    # useGlobalPkgs = true;
+    # useUserPackages = true;
+    users = {
+      blusk = import ../../homes/blusk_workstation/home.nix;
+    };
+  };
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  system.stateVersion = "22.11";
+}

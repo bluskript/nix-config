@@ -83,6 +83,15 @@
             ./hosts/noah_ii/configuration.nix
           ];
         };
+        felys = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            inputs.stylix.nixosModules.stylix
+            inputs.nixos-vfio.nixosModules.kvmfr
+            disko.nixosModules.disko
+            (import ./hosts/felys/configuration.nix)
+          ];
+        };
         nozomi = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
