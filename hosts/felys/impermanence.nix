@@ -5,7 +5,7 @@
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
-      "/etc/nixos"
+      { directory = "/etc/nixos"; user = "blusk"; }
       "/etc/NetworkManager"
       "/var/log"
       "/etc/mullvad-vpn"

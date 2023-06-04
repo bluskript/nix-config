@@ -58,7 +58,6 @@
       name = "capitaine-cursors";
     };
     packages = with pkgs; [
-      comma
       ncdu
       light
       pavucontrol

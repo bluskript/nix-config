@@ -7,6 +7,8 @@
 
   users.users = {
     blusk = {
+      home = "/home/blusk";
+      createHome = true;
       shell = pkgs.zsh;
       description = "mia";
       initialHashedPassword = "$6$1l3TCl1ZMdmM.SQx$pmpbS5C37.XMxMihuhMzZO5gso5IZh47NP6Dg61C.Eu1jHrA.rx4xgkFSHud.d3mxV6cJxQ3GH1ZKS/nLoFHt1";

@@ -34,9 +34,14 @@
 
     swayfx.url = "github:WillPower3309/swayfx";
     nix-gaming.url = "github:fufexan/nix-gaming";
+
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    agenix.url = "github:ryantm/agenix";
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, nix-index-database, agenix, ... }@inputs:
     let
       inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
@@ -80,7 +85,8 @@
           modules = [
             inputs.stylix.nixosModules.stylix
             inputs.nixos-vfio.nixosModules.kvmfr
-            ./hosts/noah_ii/configuration.nix
+            agenix.nixosModules.default
+            (import ./hosts/noah_ii/configuration.nix)
           ];
         };
         felys = nixpkgs.lib.nixosSystem {
@@ -89,6 +95,7 @@
             inputs.stylix.nixosModules.stylix
             inputs.nixos-vfio.nixosModules.kvmfr
             disko.nixosModules.disko
+            agenix.nixosModules.default
             (import ./hosts/felys/configuration.nix)
           ];
         };

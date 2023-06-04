@@ -33,7 +33,7 @@ in
   environment.shellAliases =
     let
       ifSudo = string: mkIf config.security.sudo.enable string;
-      inherit (pkgs) git bat exa du-dust;
+      inherit (pkgs) git bat exa du-dust ranger;
     in
     {
       g = pkgBin git;
@@ -54,7 +54,7 @@ in
       nfs = "${nixBin} flake show";
       nsh = "${nixBin} shell";
       nix-store-refs = "nix-store -qR";
-      cfg = "ranger /etc/nixos";
+      cfg = "${pkgBin ranger} /etc/nixos";
       nosrs = ifSudo "sudo nixos-rebuild --fast switch";
       nosrb = ifSudo "sudo nixos-rebuild --fast boot";
       nosrt = ifSudo "sudo nixos-rebuild --fast test";

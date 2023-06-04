@@ -32,10 +32,11 @@ in
   programs.zsh.enable = true;
 
   users.users.blusk = {
+    home = "/home/blusk";
+    createHome = true;
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups = [ "wheel" ];
-    home = "/home/blusk";
     openssh.authorizedKeys.keys = [
       blusk.pubkey
     ];

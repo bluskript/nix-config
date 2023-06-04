@@ -6,14 +6,14 @@
     inputs.hardware.nixosModules.common-pc-laptop-ssd
 
     ../common/profiles/desktop.nix
-    ../noah_ii/users.nix
+    ../felys/impermanence.nix
+    ../felys/users.nix
     ../noah_ii/gpu-passthrough.nix
-    ../noah_ii/impermanence.nix
     ../noah_ii/firejail.nix
     ./disks.nix
   ];
 
-  networking.hostName = "NoAH-II";
+  networking.hostName = "felys";
   stylix.image = ../noah_ii/wallpaper.png;
   # stylix.base16Scheme = ../common/colors.yml;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
@@ -40,7 +40,6 @@
   programs.adb.enable = true;
   # for MTP
   services.gvfs.enable = true;
-  services.udev.packages = [ pkgs.heimdall ];
 
   home-manager = {
     extraSpecialArgs = { inherit inputs outputs; nixosConfig = config; };
