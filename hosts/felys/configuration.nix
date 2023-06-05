@@ -8,8 +8,8 @@
     ../common/profiles/desktop.nix
     ../felys/impermanence.nix
     ../felys/users.nix
-    ../noah_ii/gpu-passthrough.nix
     ../noah_ii/firejail.nix
+    ./passthrough.nix
     ./disks.nix
   ];
 
@@ -19,6 +19,9 @@
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
+
+  services.openssh.enable = true;
+  services.openssh.allowSFTP = true;
 
   # vfio.enable = true;
   # specialisation."NOVFIO".configuration = {

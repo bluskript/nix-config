@@ -9,15 +9,14 @@
 # 
 # Hmm... someone should make a common way to configure VFIO in nixos options or smth...
 # There's a lot of different setups so it seems difficult... but it should be possible.
-let
-  passthroughIDs = [
-    "10de:2520" # Graphics
-    "10de:228e" # Audio
-  ];
-in
 { pkgs, pkgsUnstable, lib, config, ... }: {
-  options.vfio.enable = with lib;
-    mkEnableOption "Configure the machine for VFIO";
+  options.vfio = with lib; {
+    enable = mkEnableOption "Configure the machine for VFIO";
+    ids = mkOption {
+      type = types.listOf types.string;
+      default = [ ];
+    };
+  };
 
   config =
     let cfg = config.vfio;

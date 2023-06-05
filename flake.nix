@@ -85,6 +85,7 @@
           modules = [
             inputs.stylix.nixosModules.stylix
             inputs.nixos-vfio.nixosModules.kvmfr
+            inputs.nixos-vfio.nixosModules.vfio
             agenix.nixosModules.default
             (import ./hosts/noah_ii/configuration.nix)
           ];
@@ -94,6 +95,7 @@
           modules = [
             inputs.stylix.nixosModules.stylix
             inputs.nixos-vfio.nixosModules.kvmfr
+            inputs.nixos-vfio.nixosModules.vfio
             disko.nixosModules.disko
             agenix.nixosModules.default
             (import ./hosts/felys/configuration.nix)
