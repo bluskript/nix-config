@@ -5,9 +5,15 @@
       enable = true;
       qemu = {
         ovmf.enable = true;
+        # runAsRoot = false;
         # Full is needed for TPM and secure boot emulation
         ovmf.packages = [ pkgs.OVMFFull.fd ];
         swtpm.enable = true;
+        verbatimConfig = ''
+          namespaces = []
+          user = "blusk"
+          group = "libvirtd"
+        '';
       };
     };
     vfio = {
@@ -20,7 +26,7 @@
       blacklistNvidia = true;
       ignoreMSRs = false;
       applyACSpatch = false;
-      disableEFIfb = true;
+      disableEFIfb = false;
     };
     kvmfr = {
       enable = true;
@@ -31,6 +37,7 @@
             height = 2160;
           };
           permissions = {
+            user = "blusk";
             group = "libvirtd";
             mode = "0660";
           };
