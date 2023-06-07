@@ -1,10 +1,10 @@
 { pkgs, ... }: {
   fonts.fonts = with pkgs; [
     poly
+    fira-code-symbols
+    fira-code
     noto-fonts
     noto-fonts-cjk
-    fira-code
-    fira-code-symbols
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
@@ -14,8 +14,8 @@
       "Noto Sans CJK SC"
     ];
     serif = [
-      "Poly"
       "Noto Serif CJK SC"
+      "Poly"
     ];
     monospace = [
       "FiraCode Nerd Font Mono"

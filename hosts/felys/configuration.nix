@@ -20,6 +20,11 @@
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  services.hardware.openrgb = {
+    enable = true;
+    motherboard = "amd";
+  };
+
   services.openssh.enable = true;
   services.openssh.allowSFTP = true;
 

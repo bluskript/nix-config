@@ -66,6 +66,8 @@
 
 ******/
 
+user_pref("widget.content.allow-gtk-dark-theme", true);
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("browser.eme.ui.enabled", false);
 
 /* START: internal custom pref to test for syntax errors

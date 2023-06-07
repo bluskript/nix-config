@@ -1,4 +1,19 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  startVM = pkgs.writeScriptBin "startVM" ''
+    systemctl set-property --runtime -- user.slice AllowedCPUs=0-23
+    systemctl set-property --runtime -- system.slice AllowedCPUs=0-23
+    systemctl set-property --runtime -- init.scope AllowedCPUs=0-23
+    virsh start win11
+  '';
+  stopVM = pkgs.writeScriptBin "stopVM" ''
+    systemctl set-property --runtime -- user.slice AllowedCPUs=0-31
+    systemctl set-property --runtime -- system.slice AllowedCPUs=0-31
+    systemctl set-property --runtime -- init.scope AllowedCPUs=0-31
+    virsh shutdown win11
+  '';
+in
+{
   virtualisation = {
     spiceUSBRedirection.enable = true;
     libvirtd = {
@@ -24,7 +39,7 @@
         "10de:1aef" # audio controller
       ];
       blacklistNvidia = true;
-      ignoreMSRs = false;
+      ignoreMSRs = true;
       applyACSpatch = false;
       disableEFIfb = false;
     };
@@ -47,8 +62,10 @@
   };
 
   hardware.opengl.enable = true;
-  environment.systemPackages = with pkgs; [
-    virt-manager
+  environment.systemPackages = [
+    pkgs.virt-manager
+    startVM
+    stopVM
   ];
   # virt-manager saves settings here
   programs.dconf.enable = true;
