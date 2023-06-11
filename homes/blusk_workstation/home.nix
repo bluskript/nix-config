@@ -11,6 +11,7 @@
     # inputs.nix-colors.homeManagerModules.default
 
     inputs.impermanence.nixosModules.home-manager.impermanence
+    outputs.homeManagerModules.symlinks
 
     ../common/profile-cli.nix
     ../programs/qt
@@ -102,6 +103,12 @@
       files = [
         ".bash_history"
       ];
+    };
+  };
+
+  symlinks = {
+    configFiles = {
+      "OpenRGB/main.orp" = ./main.orp;
     };
   };
 
