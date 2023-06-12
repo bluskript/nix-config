@@ -11,7 +11,6 @@
     # inputs.nix-colors.homeManagerModules.default
 
     inputs.impermanence.nixosModules.home-manager.impermanence
-    outputs.homeManagerModules.symlinks
 
     ../common/profile-cli.nix
     ../programs/qt
@@ -106,10 +105,8 @@
     };
   };
 
-  symlinks = {
-    configFiles = {
-      "OpenRGB/main.orp" = ./main.orp;
-    };
+  xdg.configFile = {
+    "OpenRGB/main.orp".source = ./main.orp;
   };
 
   services.gpg-agent = {
