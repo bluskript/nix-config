@@ -59,6 +59,7 @@
       name = "capitaine-cursors";
     };
     packages = with pkgs; [
+      ntfs3g
       ncdu
       light
       pavucontrol
