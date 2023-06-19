@@ -106,6 +106,10 @@
     };
   };
 
+  xdg.configFile = {
+    "OpenRGB/main.orp".source = ./main.orp;
+  };
+
   services.gpg-agent = {
     enable = true;
     enableZshIntegration = true;
