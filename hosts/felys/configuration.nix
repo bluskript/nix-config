@@ -14,9 +14,20 @@
   ];
 
   networking.hostName = "felys";
-  stylix.image = ../noah_ii/wallpaper.png;
-  # stylix.base16Scheme = ../common/colors.yml;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+  stylix = {
+    image = ../noah_ii/wallpaper.png;
+    fonts = {
+      serif = config.stylix.fonts.monospace;
+      sansSerif = config.stylix.fonts.monospace;
+      emoji = config.stylix.fonts.monospace;
+      monospace = {
+        package = pkgs.iosevka-bin;
+        name = "Iosevka Term";
+      };
+    };
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+    # stylix.base16Scheme = ../common/colors.yml;
+  };
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 

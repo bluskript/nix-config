@@ -37,6 +37,7 @@ in
       devices = [
         "10de:2203" # GPU
         "10de:1aef" # audio controller
+        "1912:0015" # USB controller
       ];
       blacklistNvidia = true;
       ignoreMSRs = true;
@@ -53,7 +54,7 @@ in
           };
           permissions = {
             user = "blusk";
-            group = "libvirtd";
+            group = "kvm";
             mode = "0660";
           };
         }

@@ -389,7 +389,9 @@
     },
     "nixinate": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1671116920,
@@ -446,7 +448,7 @@
         "flake-parts": "flake-parts_2",
         "nix-std": "nix-std",
         "nixfmt": "nixfmt",
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1685932564,
@@ -577,22 +579,6 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1653060744,
-        "narHash": "sha256-kfRusllRumpt33J1hPV+CeCCylCXEU7e0gn2/cIM7cY=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "dfd82985c273aac6eced03625f454b334daae2e8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_5": {
-      "locked": {
         "lastModified": 1684570954,
         "narHash": "sha256-FX5y4Sm87RWwfu9PI71XFvuRpZLowh00FQpIJ1WfXqE=",
         "owner": "nixos",
@@ -607,7 +593,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1685931219,
         "narHash": "sha256-8EWeOZ6LKQfgAjB/USffUSELPRjw88A+xTcXnOUvO5M=",
@@ -623,7 +609,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_7": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1679793451,
         "narHash": "sha256-JafTtgMDATE8dZOImBhWMA9RCn9AP8FVOpN+9K/tTlg=",
@@ -639,7 +625,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_8": {
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1684585791,
         "narHash": "sha256-lYPboblKrchmbkGMoAcAivomiOscZCjtGxxTSCY51SM=",
@@ -668,7 +654,7 @@
         "nixinate": "nixinate",
         "nixos-generators": "nixos-generators",
         "nixos-vfio": "nixos-vfio",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_5",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "stylix": "stylix",
         "swayfx": "swayfx"
@@ -679,7 +665,7 @@
         "base16": "base16",
         "flake-compat": "flake-compat_2",
         "home-manager": "home-manager_3",
-        "nixpkgs": "nixpkgs_7"
+        "nixpkgs": "nixpkgs_6"
       },
       "locked": {
         "lastModified": 1686044491,
@@ -698,7 +684,7 @@
     "swayfx": {
       "inputs": {
         "flake-compat": "flake-compat_3",
-        "nixpkgs": "nixpkgs_8"
+        "nixpkgs": "nixpkgs_7"
       },
       "locked": {
         "lastModified": 1686111766,

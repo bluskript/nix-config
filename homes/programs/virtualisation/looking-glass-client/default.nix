@@ -4,7 +4,7 @@
     settings = {
       app = {
         allowDMA = true;
-        shmFile = "/dev/kvmfr0";
+        shmFile = "/dev/shm/kvmfr0";
       };
       spice = {
         enable = false;
@@ -14,7 +14,7 @@
         size = "3840x2160";
         autoResize = "yes";
         quickSplash = "yes";
-        jitRender = true;
+        jitRender = false;
       };
       input = {
         escapeKey = 56;
