@@ -8,9 +8,9 @@
     ./hardware-configuration.nix
     ../common/profiles/desktop.nix
     ./users.nix
-    ./gpu-passthrough.nix
     ./impermanence.nix
     ./firejail.nix
+    ./nvidia.nix
   ];
 
   networking.hostName = "NoAH-II";
@@ -20,15 +20,15 @@
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  vfio.enable = true;
-  specialisation."NOVFIO".configuration = {
-    system.nixos.tags = [ "no-vfio" ];
-    vfio.enable = lib.mkForce false;
-    imports = [
-      inputs.hardware.nixosModules.common-cpu-intel
-      ./nvidia.nix
-    ];
-  };
+  # vfio.enable = true;
+  # specialisation."NOVFIO".configuration = {
+  #   system.nixos.tags = [ "no-vfio" ];
+  #   vfio.enable = lib.mkForce false;
+  #   imports = [
+  #     inputs.hardware.nixosModules.common-cpu-intel
+  #     ./nvidia.nix
+  #   ];
+  # };
 
   services.journald.extraConfig = "Storage=persistent";
 

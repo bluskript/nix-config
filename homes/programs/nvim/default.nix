@@ -20,14 +20,14 @@
       sumneko-lua-language-server
       nodePackages_latest.typescript-language-server
       nodePackages_latest.pyright
-      rnix-lsp
+      nil
       nixpkgs-fmt
       stylua
     ];
     defaultEditor = true;
     withNodeJs = false;
     withRuby = false;
-    withPython3 = false;
+    withPython3 = true;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;

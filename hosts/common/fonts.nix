@@ -1,21 +1,26 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   fonts = {
     enableDefaultFonts = false;
-
     fontconfig = {
       # this fixes emoji stuff
       enable = true;
 
       defaultFonts = {
-        monospace = [
-          "Iosevka Term"
-          "Iosevka Term Nerd Font Complete Mono"
-          "Iosevka Nerd Font"
-          "Noto Color Emoji"
+        sansSerif = [
+          "Fira Sans"
+          "Noto Sans CJK SC"
+          "Symbols Nerd Font"
         ];
-        sansSerif = [ "Lexend" "Noto Color Emoji" ];
-        serif = [ "Noto Serif" "Noto Color Emoji" ];
-        emoji = [ "Noto Color Emoji" ];
+        serif = [
+          "Noto Serif CJK SC"
+          "Poly"
+          "Symbols Nerd Font"
+        ];
+        monospace = [
+          "Symbols Nerd Font Mono"
+          "Iosevka Term"
+          "Noto Sans Mono CJK SC"
+        ];
       };
     };
 
@@ -29,24 +34,12 @@
       corefonts
       material-icons
       material-design-icons
-      roboto
-      work-sans
-      comic-neue
-      source-sans
-      twemoji-color-font
-      comfortaa
-      inter
-      lato
-      jost
-      lexend
-      dejavu_fonts
-      iosevka-bin
+      poly
+      fira-code
       noto-fonts
       noto-fonts-cjk
-      noto-fonts-emoji
-      emacs-all-the-icons-fonts
-
-      (nerdfonts.override { fonts = [ "Iosevka" "JetBrainsMono" ]; })
+      iosevka-bin
+      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
   };
 }

@@ -5,7 +5,7 @@ return {
 		local lspconfig = require('lspconfig')
 		local servers = {
 			"tsserver",
-			"rnix",
+			"nil_ls",
 			"yamlls",
 			"rust_analyzer",
 		}

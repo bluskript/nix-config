@@ -7,3 +7,4 @@ vim.o.autoindent = "smartindent"
 vim.o.clipboard = "unnamedplus"
 -- vim.o.autochdir = true
 vim.o.termguicolors = true
+vim.o.exrc = true
