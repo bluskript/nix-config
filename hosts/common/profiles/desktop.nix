@@ -19,6 +19,7 @@
   security.polkit.enable = true;
 
   systemd = {
+    services.NetworkManager-wait-online.enable = false;
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
       wantedBy = [ "graphical-session.target" ];

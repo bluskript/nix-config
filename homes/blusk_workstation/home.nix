@@ -13,7 +13,7 @@
     inputs.impermanence.nixosModules.home-manager.impermanence
 
     ../common/profile-cli.nix
-    ../programs/qt
+    ../programs/qt/gtk.nix
     ../programs/waybar
     ../programs/sway
     ../programs/firefox
