@@ -16,10 +16,13 @@
     extraPackages = with pkgs; [
       tree-sitter
       gcc
+
       rust-analyzer
       sumneko-lua-language-server
       nodePackages_latest.typescript-language-server
       nodePackages_latest.pyright
+			nodePackages_latest.prettier
+			nodePackages_latest.eslint
       nil
       nixpkgs-fmt
       stylua

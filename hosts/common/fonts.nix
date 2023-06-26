@@ -9,16 +9,19 @@
         sansSerif = [
           "Fira Sans"
           "Noto Sans CJK SC"
+					"Twitter Color Emoji"
           "Symbols Nerd Font"
         ];
         serif = [
           "Noto Serif CJK SC"
           "Poly"
+					"Twitter Color Emoji"
           "Symbols Nerd Font"
         ];
         monospace = [
           "Iosevka Term"
           "Noto Sans Mono CJK SC"
+					"Twitter Color Emoji"
           "Symbols Nerd Font Mono"
         ];
       };
@@ -39,6 +42,7 @@
       noto-fonts
       noto-fonts-cjk
       iosevka-bin
+			twitter-color-emoji
       (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
   };

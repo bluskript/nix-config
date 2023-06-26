@@ -45,7 +45,7 @@ in
   };
 
   wayland.windowManager.sway = {
-    package = pkgs.swayfx;
+    package = inputs.swayfx.packages.${pkgs.system}.default;
     enable = true;
     systemdIntegration = true;
     wrapperFeatures.gtk = true;

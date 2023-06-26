@@ -30,6 +30,8 @@
     nixos-vfio.url = "github:bluskript/nixos-vfio";
 
     swayfx.url = "github:WillPower3309/swayfx";
+		swayfx.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-gaming.url = "github:fufexan/nix-gaming";
 
     nix-index-database.url = "github:Mic92/nix-index-database";
