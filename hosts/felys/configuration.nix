@@ -1,5 +1,11 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
 {
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
 
@@ -11,7 +17,7 @@
     ../noah_ii/firejail.nix
     ./passthrough.nix
     ./disks.nix
-		./bluetooth.nix
+    ./bluetooth.nix
   ];
 
   networking.hostName = "felys";
@@ -62,7 +68,10 @@
   services.gvfs.enable = true;
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; nixosConfig = config; };
+    extraSpecialArgs = {
+      inherit inputs outputs;
+      nixosConfig = config;
+    };
     # useGlobalPkgs = true;
     # useUserPackages = true;
     users = {

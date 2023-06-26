@@ -1,9 +1,14 @@
-{ nixosConfig, config, lib, pkgs, ... }:
 {
+  nixosConfig,
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   # stylix.targets.vim.enable = false;
   home.sessionVariables.EDITOR = "nvim";
   home.activation = {
-    linkNvimConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    linkNvimConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
       mkdir -p ${config.home.homeDirectory}/.config/nvim
       ln -sfr /etc/nixos/homes/programs/nvim/config/* ${config.home.homeDirectory}/.config/nvim
     '';
@@ -22,11 +27,11 @@
       nodePackages_latest.typescript-language-server
       nodePackages_latest.pyright
 
-			nodePackages_latest.prettier
-			nodePackages_latest.eslint
+      nodePackages_latest.prettier
+      nodePackages_latest.eslint
       nil
       stylua
-			alejandra
+      alejandra
     ];
     defaultEditor = true;
     withNodeJs = false;

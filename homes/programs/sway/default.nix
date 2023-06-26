@@ -1,8 +1,12 @@
-{ config, lib, inputs, pkgs, ... }:
-let
-  lock = pkgs.writeShellScript "lock" "${pkgs.swaylock}/bin/swaylock -fF";
-in
 {
+  config,
+  lib,
+  inputs,
+  pkgs,
+  ...
+}: let
+  lock = pkgs.writeShellScript "lock" "${pkgs.swaylock}/bin/swaylock -fF";
+in {
   imports = [
     ../waybar
   ];
@@ -36,7 +40,10 @@ in
   services.swayidle = {
     enable = true;
     timeouts = [
-      { timeout = 60; command = "exec ${lock}"; }
+      {
+        timeout = 60;
+        command = "exec ${lock}";
+      }
     ];
   };
 
@@ -53,12 +60,12 @@ in
       modifier = "Mod4";
       terminal = "alacritty msg create-window || alacritty";
       menu = "wofi --show run";
-      bars = [ ];
+      bars = [];
       gaps = {
         inner = 8;
       };
       floating.criteria = [
-        { app_id = "virt-manager"; }
+        {app_id = "virt-manager";}
       ];
       input = {
         "type:keyboard" = {
@@ -87,29 +94,29 @@ in
           resolution = "3480x2160";
         };
       };
-      keybindings =
-        let
-          cfg = config.wayland.windowManager.sway.config;
-          mod = cfg.modifier;
-          wlogout = "${pkgs.wlogout}/bin/wlogout";
-          imagemagick = pkgs.imagemagick;
-          pactl = "${pkgs.pulseaudioFull}/bin/pactl";
-          playerctl = "${pkgs.playerctl}/bin/playerctl";
-          light = "${pkgs.light}/bin/light";
-          grim = "${pkgs.grim}/bin/grim";
-          slurp = "${pkgs.slurp}/bin/slurp";
-          imv = "${pkgs.imv}/bin/imv";
-          wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
-          jq = "${pkgs.jq}/bin/jq";
-          currentoutput = "${pkgs.sway}/bin/swaymsg -t get_outputs | ${jq} -r '.[] | select(.focused) | .name'";
-          screenshot = pkgs.writeShellScript "screenshot"
-            ''
-              ${grim} -o "$(${currentoutput})" - | (${imv} -f - &)
-              ID=$!
-              ${slurp} | ${grim} -g - - | ${wl-copy} -t image/png
-              kill $ID
-            '';
-        in
+      keybindings = let
+        cfg = config.wayland.windowManager.sway.config;
+        mod = cfg.modifier;
+        wlogout = "${pkgs.wlogout}/bin/wlogout";
+        imagemagick = pkgs.imagemagick;
+        pactl = "${pkgs.pulseaudioFull}/bin/pactl";
+        playerctl = "${pkgs.playerctl}/bin/playerctl";
+        light = "${pkgs.light}/bin/light";
+        grim = "${pkgs.grim}/bin/grim";
+        slurp = "${pkgs.slurp}/bin/slurp";
+        imv = "${pkgs.imv}/bin/imv";
+        wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
+        jq = "${pkgs.jq}/bin/jq";
+        currentoutput = "${pkgs.sway}/bin/swaymsg -t get_outputs | ${jq} -r '.[] | select(.focused) | .name'";
+        screenshot =
+          pkgs.writeShellScript "screenshot"
+          ''
+            ${grim} -o "$(${currentoutput})" - | (${imv} -f - &)
+            ID=$!
+            ${slurp} | ${grim} -g - - | ${wl-copy} -t image/png
+            kill $ID
+          '';
+      in
         lib.mkOptionDefault rec {
           "${mod}+space" = "exec ${cfg.menu}";
           #"${mod}+Return" = "exec $(cfg.terminal)";

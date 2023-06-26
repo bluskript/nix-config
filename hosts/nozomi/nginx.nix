@@ -1,8 +1,6 @@
-{ inputs, ... }:
-let
+{inputs, ...}: let
   blusk = import ../../identities/blusk.nix;
-in
-{
+in {
   services.nginx = {
     enable = true;
     recommendedTlsSettings = true;
@@ -12,8 +10,8 @@ in
   };
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 80 443 8448 ];
-    allowedUDPPortRanges = [ ];
+    allowedTCPPorts = [22 80 443 8448];
+    allowedUDPPortRanges = [];
   };
   security.acme = {
     acceptTerms = true;

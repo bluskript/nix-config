@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   home.file = {
     ".config/qt5ct/colors/oomox-current.conf".source = config.lib.stylix.colors {
       template = builtins.readFile ./oomox-current.conf.mustache;

@@ -1,4 +1,8 @@
-{ disko, modulesPath, ... }: {
+{
+  disko,
+  modulesPath,
+  ...
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -24,7 +28,7 @@
             name = "boot";
             start = "0";
             end = "1M";
-            flags = [ "bios_grub" ];
+            flags = ["bios_grub"];
           }
           {
             name = "ESP";

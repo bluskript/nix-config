@@ -1,8 +1,12 @@
-{ disko, modulesPath, ... }: {
+{
+  disko,
+  modulesPath,
+  ...
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usbhid"];
   fileSystems."/nix".neededForBoot = true;
   fileSystems."/persist".neededForBoot = true;
   boot.initrd.luks.devices.cryptroot.allowDiscards = true;
@@ -50,11 +54,11 @@
                 subvolumes = {
                   "@nix" = {
                     mountpoint = "/nix";
-                    mountOptions = [ "compress=zstd" "noatime" "discard=async" ];
+                    mountOptions = ["compress=zstd" "noatime" "discard=async"];
                   };
                   "@persist" = {
                     mountpoint = "/persist";
-                    mountOptions = [ "compress=zstd" "noatime" "discard=async" ];
+                    mountOptions = ["compress=zstd" "noatime" "discard=async"];
                   };
                 };
               };

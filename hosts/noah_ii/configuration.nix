@@ -1,5 +1,11 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
 {
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
 
@@ -40,17 +46,19 @@
   programs.adb.enable = true;
   # for MTP
   services.gvfs.enable = true;
-  services.udev.packages = [ pkgs.heimdall ];
+  services.udev.packages = [pkgs.heimdall];
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; nixosConfig = config; };
+    extraSpecialArgs = {
+      inherit inputs outputs;
+      nixosConfig = config;
+    };
     # useGlobalPkgs = true;
     # useUserPackages = true;
     users = {
       blusk = import ../../homes/blusk_workstation/home.nix;
     };
   };
-
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "22.11";

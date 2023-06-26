@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ../common/profile-cli.nix
   ];

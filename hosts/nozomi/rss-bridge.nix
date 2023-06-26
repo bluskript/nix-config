@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   services.nginx.virtualHosts."rss.blusk.dev" = {
     enableACME = true;
     forceSSL = true;
@@ -13,11 +13,11 @@
         hostPort = 1800;
       }
     ];
-    config = { ... }: {
+    config = {...}: {
       services.rss-bridge = {
         enable = true;
         virtualHost = "localhost";
-        whitelist = [ "Twitter" "YouTube" "Reddit" "Twitch" ];
+        whitelist = ["Twitter" "YouTube" "Reddit" "Twitch"];
       };
       services.nginx.virtualHosts."localhost".listen = [
         {
@@ -27,7 +27,7 @@
       ];
       networking.firewall = {
         enable = true;
-        allowedTCPPorts = [ 80 ];
+        allowedTCPPorts = [80];
       };
       environment.etc."resolv.conf".text = "nameserver 1.1.1.1";
       system.stateVersion = "23.05";

@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   startVM = pkgs.writeScriptBin "startVM" ''
     systemctl set-property --runtime -- user.slice AllowedCPUs=0-23
     systemctl set-property --runtime -- system.slice AllowedCPUs=0-23
@@ -12,8 +11,7 @@ let
     systemctl set-property --runtime -- init.scope AllowedCPUs=0-31
     virsh shutdown $1
   '';
-in
-{
+in {
   virtualisation = {
     spiceUSBRedirection.enable = true;
     libvirtd = {
@@ -22,7 +20,7 @@ in
         ovmf.enable = true;
         # runAsRoot = false;
         # Full is needed for TPM and secure boot emulation
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
+        ovmf.packages = [pkgs.OVMFFull.fd];
         swtpm.enable = true;
         verbatimConfig = ''
           namespaces = []

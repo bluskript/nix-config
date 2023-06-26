@@ -1,4 +1,11 @@
-{ pkgs, inputs, lib, config, ... }: with lib; {
+{
+  pkgs,
+  inputs,
+  lib,
+  config,
+  ...
+}:
+with lib; {
   services.xserver = {
     layout = "us";
     xkbVariant = "";
@@ -12,7 +19,7 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   programs.light.enable = true;

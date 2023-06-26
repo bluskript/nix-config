@@ -1,8 +1,14 @@
-{ config, pkgs, lib, inputs, outputs, disko, ... }:
-let
-  blusk = import ../../identities/blusk.nix;
-in
 {
+  config,
+  pkgs,
+  lib,
+  inputs,
+  outputs,
+  disko,
+  ...
+}: let
+  blusk = import ../../identities/blusk.nix;
+in {
   imports = [
     inputs.impermanence.nixosModules.impermanence
     inputs.home-manager.nixosModules.home-manager
@@ -36,14 +42,17 @@ in
     createHome = true;
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     openssh.authorizedKeys.keys = [
       blusk.pubkey
     ];
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs outputs; nixosConfig = config; };
+    extraSpecialArgs = {
+      inherit inputs outputs;
+      nixosConfig = config;
+    };
     # useGlobalPkgs = true;
     # useUserPackages = true;
     users = {

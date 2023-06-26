@@ -2,10 +2,13 @@
 #
 # Only to be used for headless servers, at home or abroad, with more
 # security/automation-minded configuration.
-
-{ config, lib, pkgs, modulesPath, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}: {
   imports = [
     (modulesPath + "/profiles/hardened.nix")
     ./base_cli.nix
@@ -35,8 +38,8 @@
       };
     };
     timers.clear-log = {
-      wantedBy = [ "timers.target" ];
-      partOf = [ "clear-log.service" ];
+      wantedBy = ["timers.target"];
+      partOf = ["clear-log.service"];
       timerConfig.OnCalendar = "weekly UTC";
     };
   };
