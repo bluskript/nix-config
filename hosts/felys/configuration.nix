@@ -11,6 +11,7 @@
     ../noah_ii/firejail.nix
     ./passthrough.nix
     ./disks.nix
+		./bluetooth.nix
   ];
 
   networking.hostName = "felys";
@@ -25,7 +26,7 @@
         name = "Iosevka Term";
       };
     };
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
     # stylix.base16Scheme = ../common/colors.yml;
   };
   time.timeZone = "America/New_York";

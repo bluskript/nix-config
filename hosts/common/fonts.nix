@@ -17,9 +17,9 @@
           "Symbols Nerd Font"
         ];
         monospace = [
-          "Symbols Nerd Font Mono"
           "Iosevka Term"
           "Noto Sans Mono CJK SC"
+          "Symbols Nerd Font Mono"
         ];
       };
     };
