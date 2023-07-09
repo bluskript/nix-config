@@ -1,19 +1,215 @@
+/*
+*
+* Catppuccin Macchiato palette
+* Maintainer: rubyowo
+*
+*/
+
 * {
-    border: none;
-    border-radius: 0;
-    font-family: Roboto;
-    min-height: 0;
+  /* border: none; */
+  border-radius: 0px;
+  font-family: "Symbols Nerd Font Mono", "Roboto Nerd Font Mono";
+  font-weight: 500;
+  font-size: 14px;
+  min-height: 20px;
 }
 
 window#waybar {
-    background-color: @base00;
-    color: @base04;
+  background: transparent;
+  color: @base05;
+  opacity: 1;
+}
+
+tooltip {
+  background: @base00;
+  border-radius: 7px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: @base01;
+}
+
+#workspaces button {
+  padding: 5px;
+  color: @base02;
+  margin-right: 5px;
+  /* margin-left: 10px; */
+}
+
+#workspaces button.active {
+  color: @base0B;
 }
 
 #workspaces button.focused {
-  background: @base01;
+  color: @base0B;
+  background: @base02;
+  border-radius: 7px;
 }
 
-label {
-    padding: 8px 8px
+#workspaces button.urgent {
+  color: @base00;
+  background: @base0F;
+  border-radius: 7px;
 }
+
+#workspaces button:hover {
+  background: @base00;
+  color: @base05;
+}
+
+/* #custom-power_profile, */
+/* #custom-weather, */
+
+#custom-logo,
+#custom-github,
+#backlight,
+#window,
+#clock,
+#battery,
+#mpris,
+#pulseaudio,
+#custom-pacman,
+#network,
+#bluetooth,
+#temperature,
+#workspaces,
+#tray,
+#mpd,
+#custom-pomodoro,
+#cpu,
+#memory,
+#custom-player,
+#modbackground {
+  background: @base01;
+  opacity: 1;
+  padding: 0px 7px;
+  margin-top: 5px;
+  margin-bottom: 6px;
+  /* border: 1px solid #b5b0a7; */
+}
+
+#custom-logo {
+  color: @base07;
+  border-radius: 7px 0px 0px 7px;
+  margin-left: 7px;
+}
+
+#backlight {
+  color: @base0C;
+  border-radius: 7px;
+  margin-right: 5px;
+}
+
+#pulseaudio {
+  color: @base0B;
+  border-radius: 7px 0px 0px 7px;
+}
+
+#pulseaudio.microphone {
+  color: @base0A;
+  border-left: 0px;
+  border-right: 0px;
+  border-radius: 0px 7px 7px 0px;
+  margin-right: 5px;
+}
+
+#cpu {
+  color: @base0F;
+  border-radius: 7px 0px 0px 7px;
+}
+
+#memory {
+  color: @base0D;
+  border-radius: 0px 7px 7px 0px;
+  margin-right: 5px;
+}
+
+#tray {
+  border-radius: 7px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+#workspaces {
+  border-radius: 0px 7px 7px 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+#window {
+  border-radius: 7px;
+  margin-left: 10px;
+  margin-right: 60px;
+}
+
+#clock {
+  color: @base08;
+  border-radius: 7px;
+  /* margin-left: 10px; */
+  margin-right: 5px;
+}
+
+#network {
+  color: @base0F;
+  border-radius: 7px;
+  margin-right: 5px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+#bluetooth {
+  color: @base0C;
+  border-radius: 7px;
+  margin-right: 5px;
+}
+
+#battery {
+  color: @base06;
+  border-radius: 7px;
+  margin-right: 5px;
+  border-left: 0px;
+}
+
+#custom-player {
+  border-radius: 7px;
+  margin-right: 5px;
+  border-right: 0px;
+}
+
+#custom-github {
+  color: @base0D;
+  border-radius: 7px;
+  margin-right: 5px;
+  border-left: 0px;
+}
+
+#mpris {
+  border-radius: 7px;
+  margin-right: 5px;
+  border-right: 0px;
+}
+
+#mpris.paused {
+  border-bottom: 2px solid @base0A;
+}
+
+#mpd {
+  border-radius: 7px;
+  margin-right: 5px;
+  border-right: 0px;
+}
+
+#custom-pomodoro {
+  color: @base06;
+  border-radius: 7px;
+  margin-right: 5px;
+}
+
+#custom-pomodoro.paused {
+  border-bottom: 2px solid @base0A;
+}
+/**/
+/* #custom-weather { */
+/*   border-radius: 0px 10px 10px 0px; */
+/*   border-right: 0px; */
+/*   margin-left: 0px; */
+/* } */

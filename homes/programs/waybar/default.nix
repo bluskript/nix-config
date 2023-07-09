@@ -10,9 +10,9 @@ in {
     enable = true;
     systemd.enable = true;
     systemd.target = "sway-session.target";
-    #style = ''
-    #  @import "${scheme}";
-    #  ${builtins.readFile (./style.css)}
-    #'';
+    style = ''
+      @import "${scheme}";
+      ${builtins.readFile ./style.css}
+    '';
   };
 }

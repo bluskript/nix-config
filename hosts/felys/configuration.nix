@@ -22,7 +22,7 @@
 
   networking.hostName = "felys";
   stylix = {
-    image = ../noah_ii/wallpaper.png;
+    image = ./wallpaper.png;
     fonts = {
       serif = config.stylix.fonts.monospace;
       sansSerif = config.stylix.fonts.monospace;
@@ -32,10 +32,10 @@
         name = "Iosevka Term";
       };
     };
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal.yaml";
     # stylix.base16Scheme = ../common/colors.yml;
   };
-  time.timeZone = "America/New_York";
+  time.timeZone = "America/Chicago";
   i18n.defaultLocale = "en_US.UTF-8";
 
   services.hardware.openrgb = {

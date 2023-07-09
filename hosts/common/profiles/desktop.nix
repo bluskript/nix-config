@@ -7,6 +7,7 @@
     ../audio.nix
     ../video.nix
     ../fonts.nix
+    ../flatpak.nix
     ../printing.nix
     ../networking/dns.nix
     ../networking/sshd.nix

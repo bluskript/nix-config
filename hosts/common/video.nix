@@ -1,11 +1,4 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  config,
-  ...
-}:
-with lib; {
+{pkgs, ...}: {
   services.xserver = {
     layout = "us";
     xkbVariant = "";

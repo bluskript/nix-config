@@ -12,7 +12,6 @@ in {
   ];
 
   home.packages = with pkgs; [
-    wofi
     wl-clipboard
   ];
 
@@ -59,7 +58,7 @@ in {
     config = {
       modifier = "Mod4";
       terminal = "alacritty msg create-window || alacritty";
-      menu = "wofi --show run";
+      menu = "${pkgs.wofi}/bin/wofi --show run";
       bars = [];
       gaps = {
         inner = 8;
@@ -118,7 +117,7 @@ in {
           '';
       in
         lib.mkOptionDefault rec {
-          "${mod}+space" = "exec ${cfg.menu}";
+          "ctrl+alt+space" = "exec ${cfg.menu}";
           #"${mod}+Return" = "exec $(cfg.terminal)";
           "${mod}+w" = "kill";
           "${mod}+s" = "floating toggle";

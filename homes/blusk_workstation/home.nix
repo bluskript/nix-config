@@ -3,8 +3,6 @@
 {
   inputs,
   outputs,
-  lib,
-  config,
   nixosConfig,
   pkgs,
   ...
@@ -27,7 +25,7 @@
     ../programs/weechat.nix
     ../programs/virtualisation/virt-manager.nix
     ../programs/virtualisation/looking-glass-client
-    ../programs/ranger.nix
+    ../programs/ranger
     # ../programs/nnn.nix
   ];
 
@@ -87,6 +85,9 @@
       element-desktop
       tmsu
       reaper
+      transmission-gtk
+      xdg_utils
+      inputs.llamacpp.packages.${pkgs.system}.default
       inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
     ];
     persistence."/persist/home/blusk" = {
@@ -104,6 +105,10 @@
         ".local/share/zsh"
         # note: clear this out every once in a while to make sure it still can install from scratch
         ".local/share/nvim"
+        ".local/share/direnv"
+        # to make me not go insane reconfiguring output devices all the time
+        ".local/state/wireplumber"
+        ".config/transmission"
         ".ssh"
         "projects"
       ];
@@ -149,10 +154,12 @@
 
   xdg = {
     enable = true;
-    mime.enable = true;
     mimeApps = {
       enable = true;
       defaultApplications = {
+        "x-scheme-handler/magnet" = ["transmission-gtk.desktop"];
+      };
+      associations.added = {
         "x-scheme-handler/magnet" = "transmission-gtk.desktop";
       };
     };
