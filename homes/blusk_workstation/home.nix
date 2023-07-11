@@ -88,7 +88,7 @@
       transmission-gtk
       xdg_utils
       inputs.llamacpp.packages.${pkgs.system}.default
-      inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
+      # inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
     ];
     persistence."/persist/home/blusk" = {
       allowOther = true;
