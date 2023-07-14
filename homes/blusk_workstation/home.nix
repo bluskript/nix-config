@@ -88,6 +88,7 @@
       transmission-gtk
       xdg_utils
       inputs.llamacpp.packages.${pkgs.system}.default
+      # pkgs.mutableai-cli
       # inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
     ];
     persistence."/persist/home/blusk" = {

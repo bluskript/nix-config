@@ -20,11 +20,24 @@
   ];
 
   networking.hostName = "NoAH-II";
-  stylix.image = ./wallpaper.png;
+  # dns.encryption.enable = lib.mkForce false;
+  stylix.image = ../felys/wallpaper.png;
   # stylix.base16Scheme = ../common/colors.yml;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal.yaml";
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
+
+  # services.snowflake-proxy = {
+  #   enable = true;
+  #   capacity = 100;
+  # };
+  #
+  # services.tor = {
+  #   enable = true;
+  #   settings = {
+  #     ServerTransportPlugin.transports = ["snowflake"];
+  #   };
+  # };
 
   # vfio.enable = true;
   # specialisation."NOVFIO".configuration = {
