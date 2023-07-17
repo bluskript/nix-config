@@ -680,8 +680,25 @@
         "nixos-vfio": "nixos-vfio",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "stable": "stable",
         "stylix": "stylix",
         "swayfx": "swayfx"
+      }
+    },
+    "stable": {
+      "locked": {
+        "lastModified": 1689326639,
+        "narHash": "sha256-79zi0t83Dcc2dE0NuYZ+2hqtKXZN1yWVq5mtx8D2d7Y=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "9fdfaeb7b96f05e869f838c73cde8d98c640c649",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-23.05",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "stylix": {
