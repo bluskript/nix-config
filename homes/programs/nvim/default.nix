@@ -21,6 +21,7 @@
     extraPackages = with pkgs; [
       tree-sitter
       gcc
+      xxd
 
       rust-analyzer
       sumneko-lua-language-server

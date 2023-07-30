@@ -2,8 +2,8 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	config = function()
-		require('nvim-treesitter.configs').setup({
-			ensure_installed = "all",
+		require("nvim-treesitter.configs").setup({
+			-- ensure_installed = "all",
 			highlight = {
 				enable = true,
 				-- disable = function(lang, buf)
@@ -23,14 +23,14 @@ return {
 				extended_mode = true,
 				max_file_lines = nil,
 				hlgroups = {
-					'TSRainbowYellow',
-					'TSRainbowBlue',
-					'TSRainbowOrange',
-					'TSRainbowGreen',
-					'TSRainbowViolet',
-					'TSRainbowCyan'
-				}
-			}
+					"TSRainbowYellow",
+					"TSRainbowBlue",
+					"TSRainbowOrange",
+					"TSRainbowGreen",
+					"TSRainbowViolet",
+					"TSRainbowCyan",
+				},
+			},
 		})
 	end,
 }

@@ -4,32 +4,49 @@ return {
 	config = function()
 		local lspconfig = require("lspconfig")
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+		-- common options that all LSPs should have
+		local common_options = { on_attach = require("virtualtypes").onattach, capabilities = capabilities }
+
 		local servers = {
 			"tsserver",
 			"nil_ls",
 			"yamlls",
-			"rust_analyzer",
 		}
 
-		for _, lsp in ipairs(servers) do
-			lspconfig[lsp].setup({ on_attach = require("virtualtypes").onattach, capabilities = capabilities })
+		---@generic T1: table
+		---@param tbl T1
+		---@return table
+		local extend_config = function(tbl)
+			return vim.tbl_deep_extend("force", tbl, common_options)
 		end
 
-		lspconfig.pyright.setup({
-			on_attach = require("virtualtypes").onattach,
-			capabilities = capabilities,
+		for _, lsp in ipairs(servers) do
+			lspconfig[lsp].setup(common_options)
+		end
+
+		lspconfig.rust_analyzer.setup(extend_config({
+			settings = {
+				["rust-analyzer"] = {
+					cargo = {
+						allFeatures = true,
+					},
+				},
+			},
+		}))
+
+		lspconfig.pyright.setup(extend_config({
 			settings = {
 				python = {
 					analysis = {
 						autoSearchPaths = true,
-						extraPaths = { vim.fn.getcwd() .. "/common/" },
+						extraPaths = { vim.fn.getcwd() .. "/common/", vim.fn.getcwd() .. "/ML/common/" },
 					},
 				},
 			},
-		})
+		}))
 
-		lspconfig.lua_ls.setup({
-			on_attach = require("virtualtypes").onattach,
+		lspconfig.lua_ls.setup(extend_config({
 			settings = {
 				Lua = {
 					runtime = {
@@ -50,7 +67,7 @@ return {
 					},
 				},
 			},
-		})
+		}))
 
 		vim.api.nvim_create_autocmd("TermOpen term://*", {
 			callback = function()

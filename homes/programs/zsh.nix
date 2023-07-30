@@ -31,6 +31,32 @@
       bindkey -e
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
+
+      # auto set window titles
+      preexec() { print -Pn "\e]0;$1%~\a" }
+
+      # shell gpt shortcut
+      _sgpt_zsh() {
+      if [[ -n "$BUFFER" ]]; then
+          _sgpt_prev_cmd=$BUFFER
+          BUFFER+="⌛"
+          zle -I && zle redisplay
+          BUFFER=$(sgpt --shell <<< "$_sgpt_prev_cmd")
+          zle end-of-line
+      fi
+      }
+      zle -N _sgpt_zsh
+      # Ctrl+L
+      bindkey ^l _sgpt_zsh
+
+      _sgpt_repl() {
+        BUFFER="sgpt --repl temp"
+        zle accept-line
+      }
+
+      zle -N _sgpt_repl
+
+      bindkey \^K _sgpt_repl
     '';
   };
 }

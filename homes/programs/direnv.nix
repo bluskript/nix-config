@@ -4,6 +4,6 @@
     enableBashIntegration = true;
     enableZshIntegration = true;
     # has cache problems
-    # nix-direnv.enable = true;
+    nix-direnv.enable = true;
   };
 }

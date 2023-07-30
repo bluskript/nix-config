@@ -36,15 +36,15 @@ in {
     enable = true;
   };
 
-  services.swayidle = {
-    enable = true;
-    timeouts = [
-      {
-        timeout = 60;
-        command = "exec ${lock}";
-      }
-    ];
-  };
+  # services.swayidle = {
+  #   enable = true;
+  #   timeouts = [
+  #     {
+  #       timeout = 60;
+  #       command = "exec ${lock}";
+  #     }
+  #   ];
+  # };
 
   programs.wlogout = {
     enable = true;

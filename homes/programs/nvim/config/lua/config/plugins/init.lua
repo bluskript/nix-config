@@ -1,4 +1,32 @@
+local home = vim.fn.expand("$HOME")
+
 return {
+	{
+		"jackMort/ChatGPT.nvim",
+		event = "VeryLazy",
+		keys = {
+			{ "<leader>p", "<cmd>ChatGPTCompleteCode<CR>" },
+		},
+		opts = {
+			api_key_cmd = "cat " .. home .. "/.config/shell_gpt/woozy",
+		},
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+	},
+	{
+		"RaafatTurki/hex.nvim",
+		opts = {},
+	},
+	{
+		"cbochs/portal.nvim",
+		keys = {
+			{ "<leader>o", "<cmd>Portal jumplist backward<cr>" },
+			{ "<leader>i", "<cmd>Portal jumplist forward<cr>" },
+		},
+	},
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },

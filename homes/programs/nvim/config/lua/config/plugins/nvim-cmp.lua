@@ -7,29 +7,30 @@ return {
 		"hrsh7th/cmp-path",
 		"onsails/lspkind.nvim",
 		"L3MON4D3/LuaSnip",
-		"saadparwaiz1/cmp_luasnip"
+		"saadparwaiz1/cmp_luasnip",
+		"hrsh7th/cmp-cmdline",
 	},
 	config = function()
-		local cmp = require('cmp')
+		local cmp = require("cmp")
 		cmp.setup({
 			snippet = {
 				expand = function(args)
-					require('luasnip').lsp_expand(args.body)
+					require("luasnip").lsp_expand(args.body)
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
-				['<C-Space>'] = cmp.mapping.complete(),
-				["<CR>"] = cmp.mapping({
-					i = function(fallback)
-						if cmp.visible() and cmp.get_active_entry() then
-							cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-						else
-							fallback()
-						end
-					end,
-					s = cmp.mapping.confirm({ select = true }),
-					c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-				}),
+				["<C-Space>"] = cmp.mapping.complete(),
+				-- ["<CR>"] = cmp.mapping({
+				-- 	i = function(fallback)
+				-- 		if cmp.visible() and cmp.get_active_entry() then
+				-- 			cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+				-- 		else
+				-- 			fallback()
+				-- 		end
+				-- 	end,
+				-- 	s = cmp.mapping.confirm({ select = true }),
+				-- 	c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+				-- }),
 				["<Tab>"] = cmp.mapping(function(fallback)
 					-- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
 					if cmp.visible() then
@@ -42,10 +43,10 @@ return {
 					else
 						fallback()
 					end
-				end, { "i", "s", "c", }),
-				['<S-Tab>'] = function(fallback)
+				end, { "i", "s", "c" }),
+				["<S-Tab>"] = function(fallback)
 					if not cmp.select_prev_item() then
-						if vim.bo.buftype ~= 'prompt' and has_words_before() then
+						if vim.bo.buftype ~= "prompt" and has_words_before() then
 							cmp.complete()
 						else
 							fallback()
@@ -54,9 +55,9 @@ return {
 				end,
 			}),
 			sources = cmp.config.sources({
-				{ name = 'nvim_lsp' },
-				{ name = 'path' },
-				{ name = 'cmp_luasnip' }
+				{ name = "nvim_lsp" },
+				{ name = "path" },
+				{ name = "cmp_luasnip" },
 			}),
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
@@ -77,13 +78,29 @@ return {
 				},
 			},
 		}, {
-			{ name = 'buffer' }
+			{ name = "buffer" },
 		})
-		local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-		cmp.event:on(
-			'confirm_done',
-			cmp_autopairs.on_confirm_done()
-		)
+
+		-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+		cmp.setup.cmdline({ "/", "?" }, {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = "buffer" },
+			},
+		})
+
+		-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{ name = "cmdline" },
+			}),
+		})
+
+		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 		-- guh dum color settings
 

@@ -64,6 +64,7 @@
       name = "capitaine-cursors";
     };
     packages = with pkgs; [
+      distrobox
       ntfs3g
       ncdu
       light
@@ -87,6 +88,7 @@
       reaper
       transmission-gtk
       xdg_utils
+      shell_gpt
       inputs.llamacpp.packages.${pkgs.system}.default
       # pkgs.mutableai-cli
       # inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
@@ -101,6 +103,7 @@
         ".config/weechat"
         ".config/musikcube"
         ".config/Element"
+        ".config/shell_gpt"
         ".mozilla/firefox/Default"
         ".config/Yubico"
         ".local/share/zsh"
@@ -110,6 +113,10 @@
         # to make me not go insane reconfiguring output devices all the time
         ".local/state/wireplumber"
         ".config/transmission"
+        {
+          directory = ".local/share/containers";
+          method = "symlink";
+        }
         ".ssh"
         "projects"
       ];
