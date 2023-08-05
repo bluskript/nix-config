@@ -53,7 +53,7 @@ in {
   wayland.windowManager.sway = {
     package = inputs.swayfx.packages.${pkgs.system}.default;
     enable = true;
-    systemdIntegration = true;
+    systemd.enable = true;
     wrapperFeatures.gtk = true;
     config = {
       modifier = "Mod4";

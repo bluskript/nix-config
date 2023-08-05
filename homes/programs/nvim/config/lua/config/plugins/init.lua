@@ -2,6 +2,48 @@ local home = vim.fn.expand("$HOME")
 
 return {
 	{
+		"nvim-lualine/lualine.nvim",
+		opts = {},
+	},
+	{
+		"sindrets/winshift.nvim",
+		keys = {
+			{ "<C-W><C-M>", "<cmd>WinShift<CR>" },
+			{ "<C-W>m",     "<cmd>WinShift<CR>" },
+			{ "<C-W>X",     "<cmd>WinShift swap<CR>" },
+		},
+	},
+	{
+		"sindrets/diffview.nvim",
+		event = "VeryLazy",
+		keys = {
+			{ "<leader>dp", "<cmd>DiffviewOpen<CR>" },
+			{ "<leader>dx", "<cmd>DiffviewClose<CR>" },
+		},
+		config = function()
+			local actions = require("diffview.actions")
+			require("diffview").setup({
+				enhanced_diff_hl = true,
+				keymaps = {
+					file_panel = {
+						{
+							"n",
+							"j",
+							actions.select_next_entry,
+							{ desc = "alias for tab" },
+						},
+						{
+							"n",
+							"k",
+							actions.select_prev_entry,
+							{ desc = "alias for shift-tab" },
+						},
+					},
+				},
+			})
+		end,
+	},
+	{
 		"jackMort/ChatGPT.nvim",
 		event = "VeryLazy",
 		keys = {
@@ -129,8 +171,8 @@ return {
 		"phaazon/hop.nvim",
 		branch = "v2",
 		keys = {
-			{ "f", "<cmd>HopWord<cr>" },
-			{ "F", "<cmd>HopLineStart<cr>" },
+			{ ";", "<cmd>HopWord<cr>" },
+			{ "'", "<cmd>HopLineStart<cr>" },
 		},
 		config = function()
 			require("hop").setup()

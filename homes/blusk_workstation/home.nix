@@ -1,5 +1,3 @@
-# This is your home-manager configuration file
-# Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
   outputs,
@@ -171,6 +169,11 @@
         "x-scheme-handler/magnet" = "transmission-gtk.desktop";
       };
     };
+  };
+
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
   };
 
   programs.home-manager.enable = true;

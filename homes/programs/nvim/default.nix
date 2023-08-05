@@ -34,6 +34,10 @@
       stylua
       alejandra
     ];
+    plugins = with pkgs.vimPlugins; [
+      # this does yucky yarn stuff
+      markdown-preview-nvim
+    ];
     defaultEditor = true;
     withNodeJs = false;
     withRuby = false;

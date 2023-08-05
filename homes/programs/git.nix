@@ -1,4 +1,10 @@
-{...}: {
+{pkgs, ...}: let
+  globalGitignore =
+    pkgs.writeText ".gitignore"
+    ''
+      .direnv
+    '';
+in {
   programs.git = {
     enable = true;
     userName = "Blusk";
@@ -7,6 +13,7 @@
       push = {
         autoSetupRemote = true;
       };
+      core.excludesfile = "${globalGitignore}";
       # gpg.format = "ssh";
     };
     aliases = {
