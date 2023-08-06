@@ -81,7 +81,6 @@ return {
 	},
 	{
 		"NvChad/nvim-colorizer.lua",
-		opts = {},
 		init = function()
 			require("colorizer").setup()
 		end,

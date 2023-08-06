@@ -16,7 +16,6 @@
     inputs.impermanence.nixosModules.home-manager.impermanence
 
     ../common/profile-cli.nix
-    ../programs/qt/gtk.nix
     ../programs/waybar
     ../programs/sway
     ../programs/firefox
@@ -88,6 +87,8 @@
       xdg_utils
       shell_gpt
       inputs.llamacpp.packages.${pkgs.system}.default
+
+      papirus-icon-theme
       # pkgs.mutableai-cli
       # inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
     ];

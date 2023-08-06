@@ -1,33 +1,26 @@
 {
   config,
   pkgs,
+  stdenvNoCC,
   ...
 }: {
-  home.file = {
-    ".config/qt5ct/colors/oomox-current.conf".source = config.lib.stylix.colors {
-      template = builtins.readFile ./oomox-current.conf.mustache;
-      extension = ".conf";
-    };
-    ".config/Trolltech.conf".source = config.lib.stylix.colors {
-      template = builtins.readFile ./Trolltech.conf.mustache;
-      extension = ".conf";
-    };
-    ".config/kdeglobals".source = config.lib.stylix.colors {
-      template = builtins.readFile ./Trolltech.conf.mustache;
-      extension = "";
-    };
-    ".config/qt5ct/qt5ct.conf".text = pkgs.lib.mkBefore (builtins.readFile ./qt5ct.conf);
-  };
   home.packages = with pkgs; [
     qt5ct
     pkgs.libsForQt5.breeze-qt5
+    (catppuccin-kvantum.override {
+      accent = "Mauve";
+      variant = "Mocha";
+    })
   ];
   home.sessionVariables = {
     QT_QPA_PLATFORMTHEME = "qt5ct";
   };
+  xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
+    General.theme = "Catppuccin-Mocha-Mauve";
+  };
   qt = {
     enable = true;
-    style.package = pkgs.libsForQt5.breeze-qt5;
-    style.name = "breeze-dark";
+    platformTheme = "qtct";
+    style.name = "kvantum";
   };
 }
