@@ -89,6 +89,8 @@
       inputs.llamacpp.packages.${pkgs.system}.default
 
       papirus-icon-theme
+
+      strawberry
       # pkgs.mutableai-cli
       # inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
     ];

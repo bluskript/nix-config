@@ -112,6 +112,9 @@
           disko.nixosModules.disko
           agenix.nixosModules.default
           (import ./hosts/felys/configuration.nix)
+          {
+            environment.systemPackages = [agenix.packages.x86_64-linux.default];
+          }
         ];
       };
       nozomi = nixpkgs.lib.nixosSystem {
