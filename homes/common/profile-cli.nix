@@ -4,6 +4,7 @@
     ../programs/nvim
     ../programs/starship.nix
     ../programs/git.nix
+    ../programs/gpg.nix
     ../programs/skim.nix
     ../programs/zoxide.nix
     ../programs/zsh.nix
