@@ -122,6 +122,11 @@ return {
 	{
 		"RRethy/vim-illuminate",
 		event = "VeryLazy",
+		init = function()
+			vim.cmd("highlight! link IlluminatedWordText Visual")
+			vim.cmd("highlight! link IlluminatedWordRead Visual")
+			vim.cmd("highlight! link IlluminatedWordWrite Visual")
+		end,
 	},
 	{
 		"ray-x/lsp_signature.nvim",

@@ -18,6 +18,8 @@
     ./passthrough.nix
     ./disks.nix
     ./bluetooth.nix
+
+    ./hidden.nix
   ];
 
   networking.hostName = "felys";
