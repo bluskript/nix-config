@@ -9,6 +9,10 @@ in {
     enable = true;
     userName = "Blusk";
     userEmail = "bluskript@gmail.com";
+    signing = {
+      signByDefault = true;
+      key = "0x5F7286501D9A677D";
+    };
     extraConfig = {
       push = {
         autoSetupRemote = true;
