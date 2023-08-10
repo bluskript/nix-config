@@ -72,7 +72,6 @@ return {
 			},
 			window = {
 				completion = {
-					winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
 					col_offset = -3,
 					side_padding = 0,
 				},
@@ -105,7 +104,7 @@ return {
 		-- guh dum color settings
 
 		-- Customization for Pmenu
-		vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#a37ff0", fg = "NONE" })
+		vim.cmd("highlight! link PMenuSel Visual")
 		-- vim.api.nvim_set_hl(0, "Pmenu", { fg = "#C5CDD9", bg = "#22252A" })
 
 		vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", bg = "NONE", strikethrough = true })

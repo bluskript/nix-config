@@ -34,7 +34,6 @@ in {
   services.nginx.virtualHosts."matrix.blusk.dev" = {
     enableACME = true;
     forceSSL = true;
-    clientMaxBodySize = "200m";
     locations."/".proxyPass = "http://localhost:${toString config.services.matrix-conduit.settings.global.port}";
     locations."/.well-known/matrix/".extraConfig = ''
       add_header content-type application/json;

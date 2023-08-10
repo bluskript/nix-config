@@ -721,8 +721,8 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1691282275,
-        "narHash": "sha256-0pTZNfDBV1o/pBqKJNgyEr34kBEjZFx4PJajtuWAn+c=",
+        "lastModified": 1691283770,
+        "narHash": "sha256-ZS85EnKU/2kQXtv7EbKBbvQUMM2+qIPaKpL5/RdTHBU=",
         "type": "git",
         "url": "file:///home/blusk/projects/contrib/stylix"
       },

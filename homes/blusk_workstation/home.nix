@@ -16,6 +16,7 @@
     inputs.impermanence.nixosModules.home-manager.impermanence
 
     ../common/profile-cli.nix
+    ../programs/qt
     ../programs/waybar
     ../programs/sway
     ../programs/firefox
@@ -113,6 +114,8 @@
         ".local/share/direnv"
         # to make me not go insane reconfiguring output devices all the time
         ".local/state/wireplumber"
+        ".local/share/strawberry"
+        ".local/share/keyrings"
         ".config/transmission"
         {
           directory = ".local/share/containers";
@@ -136,6 +139,8 @@
     enableZshIntegration = true;
     enableBashIntegration = true;
   };
+
+  services.gnome-keyring.enable = true;
 
   programs.bash.enable = true;
 
