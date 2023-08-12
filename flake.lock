@@ -721,14 +721,17 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1691283770,
+        "lastModified": 1691615589,
         "narHash": "sha256-ZS85EnKU/2kQXtv7EbKBbvQUMM2+qIPaKpL5/RdTHBU=",
-        "type": "git",
-        "url": "file:///home/blusk/projects/contrib/stylix"
+        "owner": "bluskript",
+        "repo": "stylix",
+        "rev": "1213a23642f33cc15e2b78db195729e1c2afe10a",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/blusk/projects/contrib/stylix"
+        "owner": "bluskript",
+        "repo": "stylix",
+        "type": "github"
       }
     },
     "swayfx": {

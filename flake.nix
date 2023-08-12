@@ -21,7 +21,7 @@
     hardware.url = "github:nixos/nixos-hardware";
     impermanence.url = "github:nix-community/impermanence";
 
-    stylix.url = "/home/blusk/projects/contrib/stylix";
+    stylix.url = "github:bluskript/stylix";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
