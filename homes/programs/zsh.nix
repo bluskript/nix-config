@@ -23,6 +23,9 @@
         };
       }
     ];
+    shellAliases = {
+      "nvcfg" = "ranger ~/.config/nvim/";
+    };
     initExtra = ''
       # zsh must answer for its sins
       source ~/.profile

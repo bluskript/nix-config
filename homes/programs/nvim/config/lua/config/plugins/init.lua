@@ -212,9 +212,11 @@ return {
 	},
 	{
 		"dccsillag/magma-nvim",
+		event = "VeryLazy",
 	},
 	{
 		"meatballs/notebook.nvim",
 		opts = {},
+		event = "VeryLazy",
 	},
 }
