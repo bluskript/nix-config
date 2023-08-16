@@ -6,7 +6,7 @@
     };
     sansSerif = {
       package = pkgs.inter;
-      name = "Inter Light";
+      name = "Inter";
     };
     emoji = {
       package = pkgs.twitter-color-emoji;
@@ -14,7 +14,7 @@
     };
     monospace = {
       package = pkgs.jetbrains-mono;
-      name = "Jetbrains Mono Light";
+      name = "Jetbrains Mono";
     };
   };
 
@@ -26,20 +26,19 @@
 
       defaultFonts = {
         sansSerif = [
-          "Inter Light"
+          "Inter"
           "Noto Sans CJK SC"
           "Twitter Color Emoji"
           "Symbols Nerd Font"
         ];
         serif = [
-          "Inter"
+          "EB Garamond"
           "Noto Serif CJK SC"
-          "Poly"
           "Twitter Color Emoji"
           "Symbols Nerd Font"
         ];
         monospace = [
-          "Jetbrains Mono Light"
+          "Jetbrains Mono"
           "Noto Sans Mono CJK SC"
           "Twitter Color Emoji"
           "Symbols Nerd Font Mono"
@@ -55,15 +54,45 @@
     # font packages that should be installed
     packages = with pkgs; [
       corefonts
-      material-icons
-      material-design-icons
-      poly
       noto-fonts
       noto-fonts-cjk
       iosevka-bin
       twitter-color-emoji
       inter
+      eb-garamond
       (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
   };
+  environment.systemPackages = with pkgs; let
+    FontFreeType = perlPackages.buildPerlPackage {
+      pname = "Font-FreeType";
+      version = "0.16";
+      src = fetchurl {
+        url = "mirror://cpan/authors/id/D/DM/DMOL/Font-FreeType-0.16.tar.gz";
+        hash = "sha256-ton+L6jIkKvP4aJXkWqL7dCAa3wpXxrHC+eyhOMVmPM=";
+      };
+      outputs = ["out" "dev"];
+      buildInputs = with pkgs.perlPackages; [freetype DevelChecklib FileWhich TestWarnings];
+      meta = {
+        license = with lib.licenses; [artistic1 gpl1Plus];
+      };
+    };
+    test-font = pkgs.writeScriptBin "test-font" ''
+      #!${pkgs.perl.withPackages (p: [FontFreeType])}/bin/perl
+      use strict;
+      use warnings;
+      use Font::FreeType;
+      my ($char) = @ARGV;
+      foreach my $font_def (`fc-list`) {
+          my ($file, $name) = split(/: /, $font_def);
+          my $face = Font::FreeType->new->face($file);
+          my $glyph = $face->glyph_from_char($char);
+          if ($glyph) {
+              print $font_def;
+          }
+      }
+    '';
+  in [
+    test-font
+  ];
 }

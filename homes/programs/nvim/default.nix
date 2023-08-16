@@ -30,9 +30,9 @@
 
       nodePackages_latest.prettier
       nodePackages_latest.eslint
-      nil
       stylua
       alejandra
+      nixd
     ];
     plugins = with pkgs.vimPlugins; [
       # this does yucky yarn stuff

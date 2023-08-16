@@ -19,6 +19,9 @@
     ./nvidia.nix
   ];
 
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
   networking.hostName = "NoAH-II";
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";

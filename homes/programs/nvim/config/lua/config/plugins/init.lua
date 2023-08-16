@@ -6,14 +6,6 @@ return {
 		opts = {},
 	},
 	{
-		"sindrets/winshift.nvim",
-		keys = {
-			{ "<C-W><C-M>", "<cmd>WinShift<CR>" },
-			{ "<C-W>m",     "<cmd>WinShift<CR>" },
-			{ "<C-W>X",     "<cmd>WinShift swap<CR>" },
-		},
-	},
-	{
 		"sindrets/diffview.nvim",
 		event = "VeryLazy",
 		keys = {
@@ -43,21 +35,21 @@ return {
 			})
 		end,
 	},
-	{
-		"jackMort/ChatGPT.nvim",
-		event = "VeryLazy",
-		keys = {
-			{ "<leader>p", "<cmd>ChatGPTCompleteCode<CR>" },
-		},
-		opts = {
-			api_key_cmd = "cat " .. home .. "/.config/shell_gpt/woozy",
-		},
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
-	},
+	-- {
+	-- 	"jackMort/ChatGPT.nvim",
+	-- 	event = "VeryLazy",
+	-- 	keys = {
+	-- 		{ "<leader>p", "<cmd>ChatGPTCompleteCode<CR>" },
+	-- 	},
+	-- 	opts = {
+	-- 		api_key_cmd = "cat " .. home .. "/.config/shell_gpt/woozy",
+	-- 	},
+	-- 	dependencies = {
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 	},
+	-- },
 	{
 		"RaafatTurki/hex.nvim",
 		opts = {},
@@ -97,23 +89,23 @@ return {
 			},
 		},
 	},
-	{
-		"ThePrimeagen/harpoon",
-		keys = {
-			{
-				"<S-m>",
-				function()
-					require("harpoon.mark").add_file()
-				end,
-			},
-			{
-				"<C-m>",
-				function()
-					require("harpoon.ui").toggle_quick_menu()
-				end,
-			},
-		},
-	},
+	-- {
+	-- 	"ThePrimeagen/harpoon",
+	-- 	keys = {
+	-- 		{
+	-- 			"<S-m>",
+	-- 			function()
+	-- 				require("harpoon.mark").add_file()
+	-- 			end,
+	-- 		},
+	-- 		{
+	-- 			"<C-m>",
+	-- 			function()
+	-- 				require("harpoon.ui").toggle_quick_menu()
+	-- 			end,
+	-- 		},
+	-- 	},
+	-- },
 	{
 		"kylechui/nvim-surround",
 		event = "VeryLazy",

@@ -44,6 +44,12 @@
       url = "github:ggerganov/llama.cpp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # use this fork for git repository
+    flake-compat = {
+      url = "github:inclyc/flake-compat";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -132,16 +138,6 @@
             };
           }
         ];
-      };
-    };
-
-    packages.x86_64-linux = {
-      nozomi-iso = inputs.nixos-generators.nixosGenerate {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/nozomi/configuration.nix
-        ];
-        format = "iso";
       };
     };
   };

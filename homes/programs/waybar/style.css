@@ -8,10 +8,8 @@
 * {
   /* border: none; */
   border-radius: 0px;
-  font-family: "Symbols Nerd Font Mono", "Roboto Nerd Font Mono";
-  font-weight: 500;
+  font-family: sans-serif, "Material Design Icons";
   font-size: 14px;
-  min-height: 20px;
 }
 
 window#waybar {

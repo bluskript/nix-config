@@ -4,6 +4,8 @@
     enableSSHSupport = true;
   };
 
+  services.gnome.gnome-keyring.enable = true;
+
   services.udev.packages = [pkgs.yubikey-personalization];
   security.pam.u2f = {
     control = "sufficient";
