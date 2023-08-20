@@ -18,6 +18,7 @@
     ../common/profile-cli.nix
     ../programs/qt
     ../programs/waybar
+    # ../programs/eww
     ../programs/sway
     ../programs/firefox
     ../programs/weechat.nix

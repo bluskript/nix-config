@@ -7,10 +7,6 @@
 }: let
   lock = pkgs.writeShellScript "lock" "${pkgs.swaylock}/bin/swaylock -fF";
 in {
-  imports = [
-    ../waybar
-  ];
-
   home.packages = with pkgs; [
     wl-clipboard
   ];

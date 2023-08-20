@@ -6,6 +6,9 @@ return {
 			"rmagatti/goto-preview",
 			opts = {},
 		},
+		{
+			"b0o/schemastore.nvim",
+		},
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
@@ -16,8 +19,10 @@ return {
 
 		local servers = {
 			"tsserver",
-			"nixd",
+			"nil_ls",
 			"yamlls",
+			"terraform_lsp",
+			"dockerls",
 		}
 
 		---@generic T1: table
@@ -71,6 +76,30 @@ return {
 					telemetry = {
 						enable = false,
 					},
+				},
+			},
+		}))
+
+		lspconfig.jsonls.setup(extend_config({
+			settings = {
+				json = {
+					schemas = require("schemastore").json.schemas(),
+					validate = { enable = true },
+				},
+			},
+		}))
+
+		lspconfig.yamlls.setup(extend_config({
+			settings = {
+				yaml = {
+					schemaStore = {
+						-- You must disable built-in schemaStore support if you want to use
+						-- this plugin and its advanced options like `ignore`.
+						enable = false,
+						-- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+						url = "",
+					},
+					schemas = require("schemastore").yaml.schemas(),
 				},
 			},
 		}))

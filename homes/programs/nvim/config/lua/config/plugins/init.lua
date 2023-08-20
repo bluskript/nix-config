@@ -2,6 +2,13 @@ local home = vim.fn.expand("$HOME")
 
 return {
 	{
+		"mg979/vim-visual-multi",
+		event = "VeryLazy"
+	},
+	{
+		"elkowar/yuck.vim",
+	},
+	{
 		"nvim-lualine/lualine.nvim",
 		opts = {},
 	},

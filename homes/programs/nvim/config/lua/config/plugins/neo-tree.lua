@@ -7,7 +7,7 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	keys = {
-		{ "<C-n>", "<cmd>Neotree float toggle reveal<CR>" },
+		{ "<C-l>", "<cmd>Neotree float toggle reveal<CR>" },
 	},
 	opts = {
 		window = {

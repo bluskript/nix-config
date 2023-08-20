@@ -14,6 +14,7 @@ in {
       key = "0x5F7286501D9A677D";
     };
     extraConfig = {
+      init.defaultBranch = "main";
       push = {
         autoSetupRemote = true;
       };

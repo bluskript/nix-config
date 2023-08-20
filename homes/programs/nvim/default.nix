@@ -1,5 +1,4 @@
 {
-  nixosConfig,
   config,
   lib,
   pkgs,
@@ -23,27 +22,32 @@
       gcc
       xxd
 
+      nil
       rust-analyzer
-      sumneko-lua-language-server
-      nodePackages_latest.typescript-language-server
+      terraform-lsp
       nodePackages_latest.pyright
+      sumneko-lua-language-server
+      vscode-langservers-extracted
+      nodePackages_latest.yaml-language-server
+      nodePackages_latest.typescript-language-server
+      nodePackages_latest.dockerfile-language-server-nodejs
 
       nodePackages_latest.prettier
       nodePackages_latest.eslint
       stylua
       alejandra
-      nixd
     ];
     plugins = with pkgs.vimPlugins; [
       # this does yucky yarn stuff
       markdown-preview-nvim
     ];
-    defaultEditor = true;
-    withNodeJs = false;
-    withRuby = false;
-    withPython3 = true;
+
     viAlias = true;
     vimAlias = true;
+    withRuby = false;
+    withNodeJs = false;
+    withPython3 = true;
     vimdiffAlias = true;
+    defaultEditor = true;
   };
 }

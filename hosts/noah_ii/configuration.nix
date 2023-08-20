@@ -1,7 +1,6 @@
 {
   inputs,
   outputs,
-  lib,
   config,
   pkgs,
   ...
@@ -10,6 +9,8 @@
     inputs.home-manager.nixosModules.home-manager
 
     inputs.hardware.nixosModules.common-pc-laptop-ssd
+    inputs.hardware.nixosModules.common-pc-laptop
+    inputs.hardware.nixosModules.common-pc-laptop-acpi_call
 
     ./hardware-configuration.nix
     ../common/profiles/desktop.nix
@@ -23,7 +24,7 @@
   services.blueman.enable = true;
 
   networking.hostName = "NoAH-II";
-  time.timeZone = "America/New_York";
+  time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
 
   stylix = let
