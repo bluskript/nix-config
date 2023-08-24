@@ -9,6 +9,7 @@
     ../fonts.nix
     ../flatpak.nix
     ../printing.nix
+    ../work.nix
     ../networking/dns.nix
     ../networking/sshd.nix
     ../networking/podman.nix

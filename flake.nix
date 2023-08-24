@@ -50,6 +50,8 @@
       url = "github:inclyc/flake-compat";
       flake = false;
     };
+
+    nix-std.url = "github:chessai/nix-std";
   };
 
   outputs = {
@@ -69,7 +71,7 @@
       "aarch64-darwin"
       "x86_64-darwin"
     ];
-  in rec {
+  in {
     # Your custom packages
     # Acessible through 'nix build', 'nix shell', etc
     # packages = forAllSystems (system:
@@ -126,6 +128,7 @@
       nozomi = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+          agenix.nixosModules.default
           (import ./hosts/nozomi/configuration.nix)
           disko.nixosModules.disko
           {

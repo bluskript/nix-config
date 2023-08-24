@@ -14,6 +14,7 @@
     ../common/profiles/desktop.nix
     ../felys/impermanence.nix
     ../felys/users.nix
+    ../nozomi/stalwart-mail.nix
     ../noah_ii/firejail.nix
     ./passthrough.nix
     ./disks.nix
@@ -21,6 +22,13 @@
 
     ./hidden.nix
   ];
+
+  work-mode.enable = false;
+  
+  # services.stalwart-mail = {
+  #   enable = true;
+  #   configFile = ../nozomi/mail.toml;
+  # };
 
   networking.hostName = "felys";
   time.timeZone = "America/Chicago";

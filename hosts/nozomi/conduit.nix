@@ -48,6 +48,4 @@ in {
   #    alias ${wellKnownFiles}/;
   #  '';
   # };
-
-  services.nginx.enable = true;
 }

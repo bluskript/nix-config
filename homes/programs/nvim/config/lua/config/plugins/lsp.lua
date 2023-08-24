@@ -2,10 +2,10 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		{
-			"rmagatti/goto-preview",
-			opts = {},
-		},
+		-- {
+		-- 	"rmagatti/goto-preview",
+		-- 	opts = {},
+		-- },
 		{
 			"b0o/schemastore.nvim",
 		},
@@ -123,7 +123,7 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
-				local gotopreview = require("goto-preview")
+				-- local gotopreview = require("goto-preview")
 				-- Enable completion triggered by <c-x><c-o>
 				vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
@@ -135,8 +135,20 @@ return {
 				vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 				vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
 
-				vim.keymap.set("n", "gD", gotopreview.goto_preview_type_definition, opts)
-				vim.keymap.set("n", "gd", gotopreview.goto_preview_definition, opts)
+				-- vim.keymap.set("n", "gD", gotopreview.goto_preview_type_definition, opts)
+				-- vim.keymap.set("n", "gd", gotopreview.goto_preview_definition, opts)
+				vim.api.nvim_set_keymap(
+					"n",
+					"gD",
+					"<cmd>lua vim.lsp.buf.declaration()<CR>",
+					{ noremap = true, silent = true }
+				)
+				vim.api.nvim_set_keymap(
+					"n",
+					"gd",
+					"<cmd>lua vim.lsp.buf.definition()<CR>",
+					{ noremap = true, silent = true }
+				)
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 				vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)

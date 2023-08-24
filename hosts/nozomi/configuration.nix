@@ -4,7 +4,6 @@
   lib,
   inputs,
   outputs,
-  disko,
   ...
 }: let
   blusk = import ../../identities/blusk.nix;
@@ -19,7 +18,9 @@ in {
     ./nginx.nix
     # ./containers.nix
     ./rss-bridge.nix
+    ./ff-sync.nix
     ./abletonzip.nix
+    ./stalwart-mail.nix
   ];
 
   networking.hostName = "nozomi";
@@ -28,6 +29,11 @@ in {
   services.openssh.allowSFTP = true;
 
   security.sudo.wheelNeedsPassword = false;
+
+  services.stalwart-mail = {
+    enable = true;
+    configFile = ./mail.toml;
+  };
 
   users.mutableUsers = false;
   users.users.root = {

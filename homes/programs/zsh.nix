@@ -9,6 +9,9 @@
     enableVteIntegration = true;
     enableAutosuggestions = true;
     enableCompletion = true;
+    syntaxHighlighting = {
+      enable = true;
+    };
     dotDir = ".config/zsh";
     history.path = "${config.home.homeDirectory}/.local/share/zsh/history";
     plugins = [
@@ -24,7 +27,7 @@
       }
     ];
     shellAliases = {
-      "nvcfg" = "ranger ~/.config/nvim/";
+      "nvcfg" = "ranger /etc/nixos/homes/programs/nvim/config/lua/config";
     };
     initExtra = ''
       # zsh must answer for its sins
