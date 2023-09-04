@@ -1,6 +1,8 @@
 local home = vim.fn.expand("$HOME")
 
 return {
+	{ "RRethy/nvim-base16" },
+	{ "xiyaowong/transparent.nvim", opts = {} },
 	{
 		"mg979/vim-visual-multi",
 		event = "VeryLazy"

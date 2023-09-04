@@ -6,7 +6,15 @@ in {
     systemd.enable = true;
     systemd.target = "sway-session.target";
     settings = {
-      mainBar = {
+      mainBar = let
+        offsetY = {
+          offset ? "1",
+          size ? "medium",
+          icon,
+        }: "<span font_family='Symbols Nerd Font' rise='${offset}pt' size='${size}'>${icon}</span>";
+        offsetNerdIcon = icon:
+          offsetY {icon = icon;};
+      in {
         modules-left = ["sway/workspaces" "sway/mode"];
         modules-center = ["sway/window"];
         modules-right = [
@@ -24,11 +32,17 @@ in {
           interval = 1;
           format = "{:%H:%M:%S}";
         };
-        network = {
-          interval = 5;
-          formatWifi = "  {essid} ({signalStrength}%)";
-          formatEthernet = "  {ifname}: {ipaddr}/{cidr}";
-          formatDisconnected = "⚠  Disconnected";
+        cpu = {
+          format = "${offsetY { icon = ""; offset = "1"; }}  {}%";
+        };
+        network = let
+          upDownFormat = "${offsetY { icon = ""; offset = "1"; }} {bandwidthUpBits} / ${offsetY { icon = ""; offset = "1"; }} {bandwidthDownBits}";
+        in {
+          interval = 1;
+          formatWifi = "${""}  {essid} ({signalStrength}%) :: ${upDownFormat}";
+          formatEthernet = "${"󰈀"}  {ifname}: {ipaddr}/{cidr} :: ${upDownFormat}";
+          format = "{ifname} :: ${upDownFormat}";
+          formatDisconnected = "${"⚠"}  Disconnected";
           tooltipFormat = "{ifname}: {ipaddr}";
         };
         sway = {
@@ -41,13 +55,13 @@ in {
           format-bluetooth = "{icon}  {volume}%";
           format-muted = "";
           format-icons = {
-            headphones = "";
-            handsfree = "";
-            headset = "";
-            phone = "";
-            portable = "";
-            car = "";
-            default = ["" ""];
+            headphones = offsetNerdIcon "";
+            handsfree = offsetNerdIcon "";
+            headset = offsetNerdIcon "";
+            phone = offsetNerdIcon "";
+            portable = offsetNerdIcon "";
+            car = offsetNerdIcon "";
+            default = [(offsetY { icon = ""; offset = "0.82"; }) (offsetY { icon = ""; offset = "0.82"; })];
           };
           on-click = "pavucontrol";
         };
@@ -56,7 +70,7 @@ in {
           criticalThreshold = 80;
           interval = 5;
           format = "{icon}  {temperatureC}°C";
-          formatIcons = [
+          formatIcons = builtins.map (x: offsetNerdIcon x) [
             "" # Icon: temperature-empty
             "" # Icon: temperature-quarter
             "" # Icon: temperature-half
@@ -71,9 +85,9 @@ in {
             warning = 30;
             critical = 15;
           };
-          format = "  {icon}  {capacity}%";
+          format = "${offsetNerdIcon ""}  {icon}  {capacity}%";
           formatDischarging = "{icon}  {capacity}%";
-          formatIcons = [
+          formatIcons = builtins.map (x: offsetNerdIcon x) [
             "" # Icon: battery-full
             "" # Icon: battery-three-quarters
             "" # Icon: battery-half

@@ -16,6 +16,7 @@
     inputs.impermanence.nixosModules.home-manager.impermanence
 
     ../common/profile-cli.nix
+    ../programs/nvim/neovide.nix
     ../programs/qt
     ../programs/waybar
     # ../programs/eww
@@ -93,6 +94,7 @@
       papirus-icon-theme
 
       strawberry
+      signal-desktop
       # pkgs.mutableai-cli
       # inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
     ];
@@ -101,6 +103,7 @@
       directories = [
         ".tmsu"
         ".cache"
+        ".gradle"
         ".local/share/zoxide"
         # TODO make this declarative
         ".config/weechat"
@@ -173,6 +176,10 @@
       enable = true;
       defaultApplications = {
         "x-scheme-handler/magnet" = ["transmission-gtk.desktop"];
+        "x-scheme-handler/element" = "element-desktop.desktop";
+        "x-scheme-handler/sgnl" = "signal-desktop.desktop";
+        "x-scheme-handler/signalcaptcha" = "signal-desktop.desktop";
+        "x-scheme-handler/slack" = "slack.desktop";
       };
       associations.added = {
         "x-scheme-handler/magnet" = "transmission-gtk.desktop";

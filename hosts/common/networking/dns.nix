@@ -8,7 +8,7 @@ with lib; {
     dns = {
       nameservers = mkOption {
         type = types.listOf types.string;
-        default = ["1.1.1.1"];
+        default = ["9.9.9.11:53"];
       };
       # bad technology pls dont use
       dhcp = {
@@ -22,7 +22,7 @@ with lib; {
           };
         serverNames = mkOption {
           type = types.listOf types.string;
-          default = ["cloudflare" "cloudflare-ipv6"];
+          default = ["quad9-dnscrypt-ip4-nofilter-pri" "quad9-doh-ip6-port443-nofilter-pri"];
         };
       };
     };
@@ -38,6 +38,10 @@ with lib; {
             if cfg.encryption.enable
             then ["127.0.0.1" "::1"]
             else cfg.nameservers;
+          networkmanager = {
+            wifi.macAddress = "random";
+            ethernet.macAddress = "random";
+          };
         };
       }
       (mkIf (!cfg.dhcp.enable)
@@ -54,18 +58,39 @@ with lib; {
         services.dnscrypt-proxy2 = {
           enable = true;
           settings = {
+            bootstrap_resolvers = cfg.nameservers;
             ipv6_servers = true;
             require_dnssec = true;
-
-            sources.public-resolvers = {
-              urls = [
-                "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
-                "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
-              ];
-              cache_file = "/var/lib/dnscrypt-proxy2/public-resolvers.md";
-              minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
-            };
+            require_nolog = true;
+            require_nofilter = true;
+            odoh_servers = true;
             server_names = cfg.encryption.serverNames;
+            sources = {
+              # odoh-relays = {
+              #   urls = [
+              #     "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/odoh-relays.md"
+              #     "https://download.dnscrypt.info/resolvers-list/v3/odoh-relays.md"
+              #   ];
+              #   minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
+              #   cache_file = "odoh-relays.md";
+              # };
+              # odoh-servers = {
+              #   urls = [
+              #     "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/odoh-servers.md"
+              #     "https://download.dnscrypt.info/resolvers-list/v3/odoh-servers.md"
+              #   ];
+              #   minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
+              #   cache_file = "odoh-servers.md";
+              # };
+              public-resolvers = {
+                urls = [
+                  "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
+                  "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
+                ];
+                cache_file = "/var/lib/dnscrypt-proxy2/public-resolvers.md";
+                minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
+              };
+            };
           };
         };
 
