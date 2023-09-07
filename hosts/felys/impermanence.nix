@@ -17,6 +17,7 @@
     ];
     files = [
       "/etc/machine-id"
+      "/var/lib/OpenRGB/sizes.ors"
     ];
   };
 
