@@ -14,7 +14,6 @@
     ../common/profiles/desktop.nix
     ../felys/impermanence.nix
     ../felys/users.nix
-    ../nozomi/stalwart-mail.nix
     ../noah_ii/firejail.nix
     ./passthrough.nix
     ./disks.nix

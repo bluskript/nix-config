@@ -45,13 +45,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # use this fork for git repository
     flake-compat = {
       url = "github:inclyc/flake-compat";
       flake = false;
     };
-
-    nix-std.url = "github:chessai/nix-std";
   };
 
   outputs = {

@@ -20,7 +20,6 @@ in {
     ./rss-bridge.nix
     ./ff-sync.nix
     ./abletonzip.nix
-    ./stalwart-mail.nix
   ];
 
   networking.hostName = "nozomi";
