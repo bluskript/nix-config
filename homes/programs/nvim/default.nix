@@ -49,6 +49,7 @@ in {
       nodePackages_latest.pyright
       sumneko-lua-language-server
       vscode-langservers-extracted
+      haskell-language-server
       nodePackages_latest.yaml-language-server
       nodePackages_latest.typescript-language-server
       nodePackages_latest.dockerfile-language-server-nodejs

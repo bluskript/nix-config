@@ -43,6 +43,9 @@
       desktop = 0.8;
       terminal = 0.8;
     };
+    fonts.sizes = {
+      terminal = 11;
+    };
   };
 
   services.hardware.openrgb = {

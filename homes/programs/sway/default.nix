@@ -62,9 +62,9 @@ in {
       terminal = "alacritty msg create-window || alacritty";
       menu = "${pkgs.wofi}/bin/wofi --show run";
       bars = [];
-      gaps = {
-        inner = 8;
-      };
+      # gaps = {
+      #   inner = 8;
+      # };
       floating.criteria = [
         {app_id = "virt-manager";}
       ];

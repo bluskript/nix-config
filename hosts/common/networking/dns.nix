@@ -38,10 +38,6 @@ with lib; {
             if cfg.encryption.enable
             then ["127.0.0.1" "::1"]
             else cfg.nameservers;
-          networkmanager = {
-            wifi.macAddress = "random";
-            ethernet.macAddress = "random";
-          };
         };
       }
       (mkIf (!cfg.dhcp.enable)

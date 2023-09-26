@@ -18,6 +18,7 @@ in {
       push = {
         autoSetupRemote = true;
       };
+      pull.rebase = false;
       core.excludesfile = "${globalGitignore}";
       # gpg.format = "ssh";
     };

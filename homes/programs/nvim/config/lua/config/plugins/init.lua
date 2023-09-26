@@ -4,6 +4,12 @@ return {
 	{ "RRethy/nvim-base16" },
 	{ "xiyaowong/transparent.nvim", opts = {} },
 	{
+		"j-hui/fidget.nvim",
+		tag = "legacy",
+		event = "LspAttach",
+		opts = {},
+	},
+	{
 		"mg979/vim-visual-multi",
 		event = "VeryLazy"
 	},
@@ -83,7 +89,7 @@ return {
 	{
 		"NvChad/nvim-colorizer.lua",
 		init = function()
-			require("colorizer").setup()
+			require("colorizer").setup({})
 		end,
 	},
 	{

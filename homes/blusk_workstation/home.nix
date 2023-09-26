@@ -18,6 +18,7 @@
     ../common/profile-cli.nix
     ../programs/nvim/neovide.nix
     ../programs/qt
+    ../programs/gtk.nix
     ../programs/waybar
     # ../programs/eww
     ../programs/sway
@@ -26,6 +27,8 @@
     ../programs/virtualisation/virt-manager.nix
     ../programs/virtualisation/looking-glass-client
     ../programs/ranger
+    ../programs/tmux.nix
+    ../programs/pidgin.nix
     # ../programs/nnn.nix
   ];
 
@@ -89,12 +92,15 @@
       transmission-gtk
       xdg_utils
       shell_gpt
+      entr
       inputs.llamacpp.packages.${pkgs.system}.default
 
       papirus-icon-theme
 
       strawberry
       signal-desktop
+
+      vscode
       # pkgs.mutableai-cli
       # inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
     ];
