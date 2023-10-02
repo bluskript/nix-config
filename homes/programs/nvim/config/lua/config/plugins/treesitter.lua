@@ -3,7 +3,10 @@ return {
 	build = ":TSUpdate",
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			-- ensure_installed = "all",
+			auto_install = true,
+			ensure_installed = "all",
+			sync_install = true,
+			ignore_install = {},
 			highlight = {
 				enable = true,
 				-- disable = function(lang, buf)
@@ -17,19 +20,6 @@ return {
 			indent = { enable = true },
 			autotag = {
 				enable = true,
-			},
-			rainbow = {
-				enable = true,
-				extended_mode = true,
-				max_file_lines = nil,
-				hlgroups = {
-					"TSRainbowYellow",
-					"TSRainbowBlue",
-					"TSRainbowOrange",
-					"TSRainbowGreen",
-					"TSRainbowViolet",
-					"TSRainbowCyan",
-				},
 			},
 		})
 	end,

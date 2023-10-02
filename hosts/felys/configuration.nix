@@ -38,14 +38,6 @@
   in {
     base16Scheme = palette;
     image = (import ../common/stylix.nix {inherit pkgs;}).processWallpaper palette ../felys/wallpaper.png;
-    opacity = {
-      applications = 0.8;
-      desktop = 0.8;
-      terminal = 0.8;
-    };
-    fonts.sizes = {
-      terminal = 11;
-    };
   };
 
   services.hardware.openrgb = {

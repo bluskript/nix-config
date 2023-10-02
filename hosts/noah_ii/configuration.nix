@@ -20,8 +20,10 @@
     ./nvidia.nix
   ];
 
-  wifi.macAddress = "random";
-  ethernet.macAddress = "random";
+  networking.networkmanager = {
+    wifi.macAddress = "random";
+    ethernet.macAddress = "random";
+  };
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 

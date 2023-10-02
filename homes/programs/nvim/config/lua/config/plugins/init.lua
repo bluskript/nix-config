@@ -4,6 +4,31 @@ return {
 	{ "RRethy/nvim-base16" },
 	{ "xiyaowong/transparent.nvim", opts = {} },
 	{
+		"HiPhish/rainbow-delimiters.nvim",
+		config = function()
+			local rainbow_delimiters = require("rainbow-delimiters")
+			require("rainbow-delimiters.setup")({
+				strategy = {
+					[""] = rainbow_delimiters.strategy["global"],
+					vim = rainbow_delimiters.strategy["local"],
+				},
+				query = {
+					[""] = "rainbow-delimiters",
+					lua = "rainbow-blocks",
+				},
+				highlight = {
+					"RainbowDelimiterRed",
+					"RainbowDelimiterYellow",
+					"RainbowDelimiterBlue",
+					"RainbowDelimiterOrange",
+					"RainbowDelimiterGreen",
+					"RainbowDelimiterViolet",
+					"RainbowDelimiterCyan",
+				},
+			})
+		end,
+	},
+	{
 		"j-hui/fidget.nvim",
 		tag = "legacy",
 		event = "LspAttach",
@@ -11,7 +36,7 @@ return {
 	},
 	{
 		"mg979/vim-visual-multi",
-		event = "VeryLazy"
+		event = "VeryLazy",
 	},
 	{
 		"elkowar/yuck.vim",

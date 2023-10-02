@@ -13,6 +13,7 @@
     ../networking/dns.nix
     ../networking/sshd.nix
     ../networking/podman.nix
+    ../stylix-prefs.nix
   ];
 
   dns.encryption.enable = true;

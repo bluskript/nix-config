@@ -35,7 +35,7 @@ in {
 
   environment.shellAliases = let
     ifSudo = string: mkIf config.security.sudo.enable string;
-    inherit (pkgs) git bat exa du-dust ranger;
+    inherit (pkgs) git bat eza du-dust ranger;
   in {
     g = pkgBin git;
     git-optimize = "${pkgBin git} gc --aggressive --prune=now";
@@ -43,11 +43,11 @@ in {
     c = "cat";
     du = "${pkgBin du-dust}";
     free = "${pkgs.procps}/bin/free -h";
-    ls = pkgBin exa;
-    l = "${pkgBin exa} -lhg";
-    la = "${pkgBin exa} -lhg -a";
-    t = "${pkgBin exa} -lhg -T";
-    ta = "${pkgBin exa} -lhg -a -T";
+    ls = pkgBin eza;
+    l = "${pkgBin eza} -lhg";
+    la = "${pkgBin eza} -lhg -a";
+    t = "${pkgBin eza} -lhg -T";
+    ta = "${pkgBin eza} -lhg -a -T";
     n = nixBin;
     nf = "${nixBin} flake";
     nfu = "${nixBin} flake update";

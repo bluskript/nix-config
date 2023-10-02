@@ -15,7 +15,11 @@ return {
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		-- common options that all LSPs should have
-		local common_options = { on_attach = require("virtualtypes").onattach, capabilities = capabilities }
+		local common_options = {
+			on_attach = require("virtualtypes").onattach,
+			-- on_list = on_list,
+			capabilities = capabilities,
+		}
 
 		-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 		local servers = {
@@ -24,7 +28,7 @@ return {
 			"yamlls",
 			"terraform_lsp",
 			"dockerls",
-			"zls"
+			"zls",
 		}
 
 		---@generic T1: table
@@ -39,7 +43,7 @@ return {
 		end
 
 		lspconfig.hls.setup(extend_config({
-			filetypes = { 'haskell', 'lhaskell', 'cabal' },
+			filetypes = { "haskell", "lhaskell", "cabal" },
 		}))
 
 		lspconfig.rust_analyzer.setup(extend_config({
