@@ -20,6 +20,10 @@ in {
       };
       pull.rebase = false;
       core.excludesfile = "${globalGitignore}";
+      merge.tool = "vimdiff";
+      mergetool = {
+        keepBackup = false;
+      };
       # gpg.format = "ssh";
     };
     aliases = {

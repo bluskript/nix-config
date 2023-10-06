@@ -103,36 +103,19 @@ in {
         pactl = "${pkgs.pulseaudioFull}/bin/pactl";
         playerctl = "${pkgs.playerctl}/bin/playerctl";
         light = "${pkgs.light}/bin/light";
-        grim = "${pkgs.grim}/bin/grim";
-        slurp = "${pkgs.slurp}/bin/slurp";
-        imv = "${pkgs.imv}/bin/imv";
-        wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
-        jq = "${pkgs.jq}/bin/jq";
-        currentoutput = "${pkgs.sway}/bin/swaymsg -t get_outputs | ${jq} -r '.[] | select(.focused) | .name'";
-        screenshot =
-          pkgs.writeShellScript "screenshot"
-          ''
-            ${grim} -o "$(${currentoutput})" - | (${imv} -f - &)
-            ID=$!
-            ${slurp} | ${grim} -g - - | ${wl-copy} -t image/png
-            kill $ID
-          '';
+        grimblast = "${inputs.hyprland-contrib.packages.${pkgs.system}.grimblast}/bin/grimblast";
       in
         lib.mkOptionDefault rec {
-          "ctrl+alt+space" = "exec ${cfg.menu}";
+          "${mod}+space" = "exec ${cfg.menu}";
           #"${mod}+Return" = "exec $(cfg.terminal)";
           "${mod}+w" = "kill";
           "${mod}+s" = "floating toggle";
           "${mod}+t" = "layout tabbed";
           "${mod}+d" = "layout stacking";
           # screenshot to clipboard, freeze frame
-          "Print" = "exec ${screenshot}";
+          "Print" = "${grimblast} -f copy area";
           # screenshot to clipboard, no freeze frame
-          "Ctrl+Print" = "exec ${slurp} | ${grim} -g - - | ${wl-copy} -t image/png";
-          # upload screenshot
-          "Shift+Print" = "exec ${slurp} | ${grim} -g - - | curl --form 'file=@-' http://0x0.st | wl-copy";
-          # color picker
-          "${mod}+p" = "exec ${slurp} -p | ${grim} -g - -t ppm - | ${imagemagick}/bin/convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy";
+          "Ctrl+Print" = "${grimblast} copy area";
           "ctrl+alt+l" = "exec ${lock}";
           "${mod}+ctrl+l" = "exec ${wlogout}";
           "XF86AudioRaiseVolume" = "exec ${pactl} set-sink-volume 0 +5%";

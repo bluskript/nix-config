@@ -2,7 +2,6 @@
   description = "Mia's nix config";
 
   inputs = {
-
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     stable.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -49,6 +48,11 @@
     flake-compat = {
       url = "github:inclyc/flake-compat";
       flake = false;
+    };
+
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
