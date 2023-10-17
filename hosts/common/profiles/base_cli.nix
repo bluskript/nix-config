@@ -11,6 +11,19 @@
     then "${pkg}/bin/${pkg.meta.mainProgram}"
     else "${pkg}/bin/${pkg.pname}";
 in {
+  users.mutableUsers = false;
+
+  services.xornet-reporter = {
+    enable = true;
+    configFile = config.age.secrets.xornet.path;
+  };
+
+  age.secrets.xornet = {
+    mode = "770";
+    owner = "xornet";
+    group = "xornet";
+  };
+
   environment.systemPackages = with pkgs; [
     pciutils
     ripgrep
@@ -62,7 +75,6 @@ in {
     ngc = ifSudo "sudo nix-collect-garbage";
     ngcdo = ifSudo "sudo nix-collect-garbage --delete-old";
     top = "${pkgs.bottom}/bin/btm";
-    myip = "${pkgs.dnsutils}/bin/dig +short myip.opendns.com @208.67.222.222 2>&1";
     # systemd
     ctl = "systemctl";
     stl = ifSudo "s systemctl";

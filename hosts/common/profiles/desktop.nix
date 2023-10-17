@@ -16,6 +16,10 @@
     ../stylix-prefs.nix
   ];
 
+  environment.systemPackages = with pkgs; [ xornet-reporter ];
+
+  hardware.keyboard.qmk.enable = true;
+
   dns.encryption.enable = true;
   networking.networkmanager.enable = true;
 

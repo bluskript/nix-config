@@ -29,6 +29,7 @@
         enable = true;
         allowedTCPPorts = [80];
       };
+      services.logrotate.checkConfig = false;
       environment.etc."resolv.conf".text = "nameserver 1.1.1.1";
       system.stateVersion = "23.05";
     };

@@ -16,7 +16,9 @@
     inputs.impermanence.nixosModules.home-manager.impermanence
 
     ../common/profile-cli.nix
+    ../programs/nvim
     ../programs/nvim/neovide.nix
+    ../programs/nvim/stylix.nix
     ../programs/qt
     ../programs/gtk.nix
     ../programs/waybar
@@ -136,6 +138,7 @@
       ];
       files = [
         ".bash_history"
+        ".config/nushell/history.txt"
       ];
     };
   };
@@ -166,6 +169,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
+      shell.program = "${pkgs.nushell}/bin/nu";
       window = {
         dynamic_padding = false;
         padding = {

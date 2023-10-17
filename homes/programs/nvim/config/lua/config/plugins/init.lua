@@ -1,6 +1,7 @@
 local home = vim.fn.expand("$HOME")
 
 return {
+	{ "LhKipp/nvim-nu", opts = {} },
 	{ "RRethy/nvim-base16" },
 	{ "xiyaowong/transparent.nvim", opts = {} },
 	{

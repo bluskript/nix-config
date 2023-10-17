@@ -106,6 +106,7 @@
       NoAH-II = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+          outputs.nixosModules.xornet-reporter
           inputs.stylix.nixosModules.stylix
           inputs.nixos-vfio.nixosModules.kvmfr
           inputs.nixos-vfio.nixosModules.vfio
@@ -116,6 +117,7 @@
       felys = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+          outputs.nixosModules.xornet-reporter
           inputs.stylix.nixosModules.stylix
           inputs.nixos-vfio.nixosModules.kvmfr
           inputs.nixos-vfio.nixosModules.vfio
@@ -127,9 +129,21 @@
           }
         ];
       };
+      lapis = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          disko.nixosModules.disko
+          agenix.nixosModules.default
+          (import ./hosts/lapis/configuration.nix)
+          {
+            environment.systemPackages = [agenix.packages.x86_64-linux.default];
+          }
+        ];
+      };
       nozomi = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
+          outputs.nixosModules.xornet-reporter
           agenix.nixosModules.default
           (import ./hosts/nozomi/configuration.nix)
           disko.nixosModules.disko
@@ -137,7 +151,7 @@
             _module.args.nixinate = {
               host = "5.161.75.53";
               sshUser = "blusk";
-              buildOn = "remote";
+              buildOn = "local";
               substituteOnTarget = true;
               hermetic = false;
             };

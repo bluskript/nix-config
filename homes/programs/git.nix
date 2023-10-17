@@ -3,6 +3,9 @@
     pkgs.writeText ".gitignore"
     ''
       .direnv
+      flake.nix
+      flake.lock
+      .envrc
     '';
 in {
   programs.git = {

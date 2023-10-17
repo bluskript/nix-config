@@ -20,7 +20,14 @@ in {
     ./rss-bridge.nix
     ./ff-sync.nix
     ./abletonzip.nix
+    ./owncast.nix
   ];
+
+  nix.settings.trusted-users = [ "blusk" ];
+
+  age.secrets.xornet.file = ../../secrets/nozomi-xornet.age;
+
+  services.logrotate.checkConfig = false;
 
   networking.hostName = "nozomi";
 
@@ -29,10 +36,10 @@ in {
 
   security.sudo.wheelNeedsPassword = false;
 
-  services.stalwart-mail = {
-    enable = true;
-    configFile = ./mail.toml;
-  };
+  # services.stalwart-mail = {
+  #   enable = true;
+  #   configFile = ./mail.toml;
+  # };
 
   users.mutableUsers = false;
   users.users.root = {
@@ -84,6 +91,7 @@ in {
       "/var/lib/systemd/coredump"
       "/var/lib/private/matrix-conduit"
       "/var/lib/rss-bridge"
+      "/var/lib/owncast"
     ];
   };
 

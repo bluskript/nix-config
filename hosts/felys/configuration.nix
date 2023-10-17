@@ -22,6 +22,9 @@
     ./hidden.nix
   ];
 
+  age.secrets.xornet.file = ../../secrets/felys-xornet.age;
+  age.identityPaths = ["/home/blusk/.ssh/id_ed25519"];
+
   work-mode.enable = false;
 
   # services.stalwart-mail = {
@@ -32,6 +35,9 @@
   networking.hostName = "felys";
   time.timeZone = "America/Chicago";
   i18n.defaultLocale = "en_US.UTF-8";
+
+  services.xserver.desktopManager.pantheon.enable = true;
+  hardware.pulseaudio.enable = false;
 
   stylix = let
     palette = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";

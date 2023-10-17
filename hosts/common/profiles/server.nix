@@ -3,8 +3,6 @@
 # Only to be used for headless servers, at home or abroad, with more
 # security/automation-minded configuration.
 {
-  config,
-  lib,
   pkgs,
   modulesPath,
   ...
@@ -18,6 +16,7 @@
   ];
 
   dns.encryption.enable = false;
+  dns.nameservers = [ "1.1.1.1" ];
   services.openssh.enable = true;
   environment.noXlibs = true;
 

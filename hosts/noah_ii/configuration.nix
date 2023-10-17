@@ -20,6 +20,8 @@
     ./nvidia.nix
   ];
 
+  age.secrets.xornet.file = ../../secrets/felys-xornet.age;
+
   networking.networkmanager = {
     wifi.macAddress = "random";
     ethernet.macAddress = "random";
