@@ -82,26 +82,13 @@ let dark_theme = {
 }
 
 
+
 export def gpt [...query: string] = {
 	sgpt --model=gpt-4 --cache --chat=default ($query | str join " ")
 }
 
 export def howdoi [...query: string] = {
 	sgpt --model=gpt-4 --cache --shell ($query | str join " ")
-}
-
-export def hosts [--exclude-localhost (-e)] = {
-	mut res = open /etc/hosts | lines | filter {|x| not ($x | str starts-with '#')} | parse "{ip} {hostname}" | update hostname {|h| ($h.hostname | str trim)}
-
-	if ($exclude_localhost) {
-		$res = ($res
-			| filter {|x| not ($x.hostname == 'localhost')}
-			| filter {|x| not ($x.hostname == 'broadcasthost')}
-			| filter {|x| not ($x.hostname | str ends-with 'docker.internal')}
-		)
-	}
-
-	return $res
 }
 
 $env.config = {

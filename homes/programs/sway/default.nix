@@ -9,6 +9,9 @@
 in {
   home.packages = with pkgs; [
     wl-clipboard
+    wtype
+    wofi-emoji
+    wofi
   ];
 
   home.sessionVariables = {
@@ -118,14 +121,19 @@ in {
             ${slurp} | ${grim} -g - - | ${wl-copy} -t image/png
             kill $ID
           '';
+        forceKill = pkgs.writeShellScript "forcekill" ''
+          kill -9 $(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true).pid')
+        '';
       in
         lib.mkOptionDefault {
           "${mod}+space" = "exec ${cfg.menu}";
           #"${mod}+Return" = "exec $(cfg.terminal)";
           "${mod}+w" = "kill";
+          "${mod}+shift+w" = "exec ${forceKill}";
           "${mod}+s" = "floating toggle";
           "${mod}+t" = "layout tabbed";
           "${mod}+d" = "layout stacking";
+          "${mod}+e" = "exec wofi-emoji";
           # screenshot to clipboard, freeze frame
           "Print" = "exec ${screenshot}";
           # screenshot to clipboard, no freeze frame

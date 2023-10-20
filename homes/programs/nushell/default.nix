@@ -28,7 +28,47 @@
     extraConfig = let
       nu_scripts = "${pkgs.nu_scripts}/share/nu_scripts";
     in ''
-			${builtins.readFile ./config.nu}
+      # Translate text using Google Translate
+      export def tl [
+        text: string, # The text to translate
+        --source(-s): string = "auto", # The source language
+        --destination(-d): string = "fr", # The destination language
+        --list(-l)  # Select destination language from list
+      ] {
+
+        mut dest = ""
+
+        if $list {
+          let languages = open ${./languages.json}
+          let selection = (
+            $languages
+            | columns
+            | input list -f (echo "Select destination language:")
+          )
+
+          $dest = ($languages | get $selection)
+
+        } else {
+            $dest = $destination
+        }
+
+        {
+          scheme: "https",
+          host: "translate.googleapis.com",
+          path: "/translate_a/single",
+          params: {
+              client: gtx,
+              sl: $source,
+              tl: $dest,
+              dt: t,
+              q: ($text | url encode),
+          }
+        }
+        | url join
+        | http get $in
+        | get 0.0.0
+      }
+      ${builtins.readFile ./config.nu}
       use ${nu_scripts}/custom-completions/bitwarden-cli/bitwarden-cli-completions.nu *
       use ${nu_scripts}/custom-completions/btm/btm-completions.nu *
       use ${nu_scripts}/custom-completions/cargo/cargo-completions.nu *
