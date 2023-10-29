@@ -10,6 +10,7 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.stable-packages
+      inputs.nixpkgs-mozilla.overlays.firefox
     ];
     config = {
       allowUnfree = true;

@@ -1,6 +1,7 @@
-{...}: {
+{pkgs, ...}: {
   programs.firefox = {
     enable = true;
+    package = pkgs.latest.firefox-nightly-bin;
     profiles = {
       Default = {
         id = 0;

@@ -12,6 +12,7 @@
     inputs.hardware.nixosModules.common-pc-laptop-ssd
 
     ../common/profiles/desktop.nix
+    ../common/wayfire.nix
     ../felys/impermanence.nix
     ../felys/users.nix
     ../noah_ii/firejail.nix

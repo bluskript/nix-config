@@ -1,6 +1,6 @@
 user_pref("identity.sync.tokenserver.uri", "https://firefox.blusk.dev/token/1.0/sync/1.5", true);
 user_pref("services.sync.prefs.sync.browser.uiCustomization.state", true);
-
+user_pref("xpinstall.signatures.required", false);
 user_pref("widget.content.allow-gtk-dark-theme", true);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("browser.eme.ui.enabled", false);

@@ -2,10 +2,6 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		-- {
-		-- 	"rmagatti/goto-preview",
-		-- 	opts = {},
-		-- },
 		{
 			"b0o/schemastore.nvim",
 		},
@@ -13,6 +9,8 @@ return {
 	config = function()
 		local lspconfig = require("lspconfig")
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		capabilities.offsetEncoding = "utf-8"
+		-- capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 		-- common options that all LSPs should have
 		local common_options = {
@@ -29,6 +27,7 @@ return {
 			"terraform_lsp",
 			"dockerls",
 			"zls",
+			"clangd",
 		}
 
 		---@generic T1: table
@@ -114,17 +113,6 @@ return {
 			},
 		}))
 
-		vim.api.nvim_create_autocmd("TermOpen term://*", {
-			callback = function()
-				local opts = { buffer = 0 }
-				vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-				vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-				vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
-				vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-				vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
-				vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>:q<CR>]], opts)
-			end,
-		})
 		vim.api.nvim_exec(
 			[[
 autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>

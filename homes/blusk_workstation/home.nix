@@ -41,6 +41,7 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.stable-packages
+      inputs.nixpkgs-mozilla.overlays.firefox
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
@@ -96,6 +97,7 @@
       shell_gpt
       entr
       inputs.llamacpp.packages.${pkgs.system}.default
+      # inputs.small.legacyPackages.${pkgs.system}.floorp
 
       papirus-icon-theme
 

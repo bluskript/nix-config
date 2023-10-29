@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('config.options')
 require('config.mappings')
+require('config.autocmds')
 if vim.g.neovide then
 	require('config.neovide')
 end

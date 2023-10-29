@@ -40,6 +40,10 @@ in {
       nodePackages_latest.yaml-language-server
       nodePackages_latest.typescript-language-server
       nodePackages_latest.dockerfile-language-server-nodejs
+      # scala
+      metals
+      # c/cpp
+      clang-tools
 
       nodePackages_latest.prettier
       nodePackages_latest.eslint

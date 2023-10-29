@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    small.url = "github:nixos/nixpkgs/nixos-unstable-small";
     stable.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-generators = {
@@ -54,6 +55,8 @@
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixpkgs-mozilla.url = "github:mozilla/nixpkgs-mozilla";
   };
 
   outputs = {
@@ -124,17 +127,6 @@
           disko.nixosModules.disko
           agenix.nixosModules.default
           (import ./hosts/felys/configuration.nix)
-          {
-            environment.systemPackages = [agenix.packages.x86_64-linux.default];
-          }
-        ];
-      };
-      lapis = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          disko.nixosModules.disko
-          agenix.nixosModules.default
-          (import ./hosts/lapis/configuration.nix)
           {
             environment.systemPackages = [agenix.packages.x86_64-linux.default];
           }
