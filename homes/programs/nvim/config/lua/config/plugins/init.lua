@@ -5,31 +5,6 @@ return {
 	{ "RRethy/nvim-base16" },
 	{ "xiyaowong/transparent.nvim", opts = {} },
 	{
-		"HiPhish/rainbow-delimiters.nvim",
-		config = function()
-			local rainbow_delimiters = require("rainbow-delimiters")
-			require("rainbow-delimiters.setup")({
-				strategy = {
-					[""] = rainbow_delimiters.strategy["global"],
-					vim = rainbow_delimiters.strategy["local"],
-				},
-				query = {
-					[""] = "rainbow-delimiters",
-					lua = "rainbow-blocks",
-				},
-				highlight = {
-					"RainbowDelimiterRed",
-					"RainbowDelimiterYellow",
-					"RainbowDelimiterBlue",
-					"RainbowDelimiterOrange",
-					"RainbowDelimiterGreen",
-					"RainbowDelimiterViolet",
-					"RainbowDelimiterCyan",
-				},
-			})
-		end,
-	},
-	{
 		"j-hui/fidget.nvim",
 		tag = "legacy",
 		event = "LspAttach",
@@ -150,16 +125,10 @@ return {
 	{
 		"kylechui/nvim-surround",
 		event = "VeryLazy",
-		opts = {},
-	},
-	{
-		"RRethy/vim-illuminate",
-		event = "VeryLazy",
-		init = function()
-			vim.cmd("highlight! link IlluminatedWordText Visual")
-			vim.cmd("highlight! link IlluminatedWordRead Visual")
-			vim.cmd("highlight! link IlluminatedWordWrite Visual")
-		end,
+		opts = {
+			enable = true,
+			mode = 'topline'
+		},
 	},
 	{
 		"ray-x/lsp_signature.nvim",
@@ -230,9 +199,6 @@ return {
 		},
 	},
 	{
-		"windwp/nvim-ts-autotag",
-	},
-	{
 		"HiPhish/nvim-ts-rainbow2",
 	},
 	{
@@ -265,8 +231,7 @@ return {
 			"rcarriga/nvim-notify",
 			"nvim-tree/nvim-web-devicons",
 		},
-		opts = {
-		},
+		opts = {},
 	},
 	{
 		"scalameta/nvim-metals",
@@ -296,7 +261,7 @@ return {
 	{
 		"rcarriga/nvim-notify",
 		opts = {
-			background_colour = "#000000"
-		}
-	}
+			background_colour = "#000000",
+		},
+	},
 }

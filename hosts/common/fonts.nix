@@ -5,16 +5,16 @@
       name = "EB Garamond";
     };
     sansSerif = {
-      package = pkgs.inter;
-      name = "Inter";
+      package = pkgs.geist-font-sans;
+      name = "Geist";
     };
     emoji = {
       package = pkgs.twitter-color-emoji;
       name = "Twitter Color Emoji";
     };
     monospace = {
-      package = pkgs.jetbrains-mono;
-      name = "Jetbrains Mono";
+      package = pkgs.geist-font-mono;
+      name = "Geist Mono Code";
     };
   };
 
@@ -26,7 +26,7 @@
 
       defaultFonts = {
         sansSerif = [
-          "Inter"
+          "Geist"
           "Noto Sans CJK SC"
           "Twitter Color Emoji"
           "Symbols Nerd Font"
@@ -38,7 +38,7 @@
           "Symbols Nerd Font"
         ];
         monospace = [
-          "Jetbrains Mono"
+          "Giest Mono Code"
           "Noto Sans Mono CJK SC"
           "Twitter Color Emoji"
           "Symbols Nerd Font Mono"
@@ -60,6 +60,8 @@
       twitter-color-emoji
       inter
       eb-garamond
+      geist-font-sans
+      geist-font-mono
       (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
   };
