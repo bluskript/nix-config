@@ -28,6 +28,9 @@ return {
 			"dockerls",
 			"zls",
 			"clangd",
+			"cssls",
+			"html",
+			"eslint"
 		}
 
 		---@generic T1: table

@@ -85,9 +85,14 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter-context",
 		opts = {
+			max_lines = 2,
+			multiline_threshold = 2,
 			on_attach = function (buf)
 				return disable("bleh", buf)
 			end
 		},
+		init = function()
+			vim.cmd("hi TreesitterContext guifg=Grey")
+		end,
 	},
 }

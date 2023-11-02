@@ -38,7 +38,7 @@
           "Symbols Nerd Font"
         ];
         monospace = [
-          "Giest Mono Code"
+          "Geist Mono Code"
           "Noto Sans Mono CJK SC"
           "Twitter Color Emoji"
           "Symbols Nerd Font Mono"

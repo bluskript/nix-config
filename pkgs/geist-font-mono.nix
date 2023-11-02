@@ -1,10 +1,8 @@
 { lib
 , stdenvNoCC
-, fetchFromGitHub
 , unzip
 }:
-
-stdenvNoCC.mkDerivation rec {
+stdenvNoCC.mkDerivation {
   pname = "geist-font-mono";
   version = "1.0.0";
 

@@ -1,16 +1,19 @@
 {
   config,
   pkgs,
-  inputs,
   ...
 }: let
+  server_name = "matrix.blusk.dev";
   _wellKnownFileClient = pkgs.writeText "client" (
     builtins.toJSON
-    {"m.homeserver"."base_url" = "https://matrix.blusk.dev";}
+    {
+      "m.homeserver"."base_url" = "https://${server_name}";
+      "org.matrix.msc3575.proxy"."url" = "https://matrix.gaze.systems";
+    }
   );
   _wellKnownFileServer =
     pkgs.writeText "server"
-    (builtins.toJSON {"m.server" = "matrix.blusk.dev:443";});
+    (builtins.toJSON {"m.server" = "${server_name}:443";});
   wellKnownFiles = pkgs.runCommand "well-known" {} ''
     mkdir -p $out
     cp ${_wellKnownFileServer} $out/server
@@ -20,7 +23,7 @@ in {
   services.matrix-conduit = {
     enable = true;
     settings.global = {
-      server_name = "matrix.blusk.dev";
+      server_name = server_name;
       max_request_size = 1000 * 1000 * 100 * 20;
       allow_registration = true;
       allow_federation = true;
@@ -31,10 +34,42 @@ in {
     };
   };
 
-  services.nginx.virtualHosts."matrix.blusk.dev" = {
+  services.nginx.virtualHosts."${server_name}" = {
     enableACME = true;
     forceSSL = true;
-    locations."/".proxyPass = "http://localhost:${toString config.services.matrix-conduit.settings.global.port}";
+    listen = [
+      {
+        addr = "0.0.0.0";
+        port = 443;
+        ssl = true;
+      }
+      {
+        addr = "[::]";
+        port = 443;
+        ssl = true;
+      }
+      {
+        addr = "0.0.0.0";
+        port = 8448;
+        ssl = true;
+      }
+      {
+        addr = "[::]";
+        port = 8448;
+        ssl = true;
+      }
+    ];
+    extraConfig = ''
+      merge_slashes off;
+    '';
+    locations."/_matrix/" = {
+      proxyPass = "http://localhost:${toString config.services.matrix-conduit.settings.global.port}";
+      proxyWebsockets = true;
+      extraConfig = ''
+        proxy_set_header Host $host;
+        proxy_buffering off;
+      '';
+    };
     locations."/.well-known/matrix/".extraConfig = ''
       add_header content-type application/json;
       add_header access-control-allow-origin *;

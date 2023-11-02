@@ -84,6 +84,7 @@ return {
 		keys = {
 			{ "<leader>ff", "<cmd>Telescope find_files<CR>" },
 			{ "<leader>fg", "<cmd>Telescope live_grep<CR>" },
+			{ "<leader>fh", "<cmd>Telescope oldfiles<CR>" },
 			{ "<leader>sk", "<cmd>Telescope keymaps<CR>" },
 		},
 	},
