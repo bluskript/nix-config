@@ -19,6 +19,7 @@ return {
 		},
 		config = true,
 	},
+	{ "lewis6991/gitsigns.nvim", opts = {} },
 	{
 		"j-hui/fidget.nvim",
 		tag = "legacy",

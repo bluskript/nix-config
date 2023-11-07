@@ -7,6 +7,15 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
+    base16-schemes = prev.base16-schemes.overrideAttrs (prev: {
+      version = "git";
+      src = final.pkgs.fetchFromGitHub {
+        owner = "tinted-theming";
+        repo = "base16-schemes";
+        rev = "a9112eaae86d9dd8ee6bb9445b664fba2f94037a";
+        sha256 = "sha256-5yIHgDTPjoX/3oDEfLSQ0eJZdFL1SaCfb9d6M0RmOTM=";
+      };
+    });
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
