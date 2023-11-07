@@ -1,9 +1,30 @@
 local home = vim.fn.expand("$HOME")
+local leet_arg = "leetcode.nvim"
 
 return {
 	{ "LhKipp/nvim-nu",             opts = {} },
 	{ "RRethy/nvim-base16" },
-	{ "xiyaowong/transparent.nvim", opts = {} },
+	{ "xiyaowong/transparent.nvim", event = "BufReadPost", opts = {} },
+	{
+		"abecodes/tabout.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+		},
+		opts = {
+			enable_backwards = true,
+			completion = false,
+			tabouts = {
+				{ open = "'", close = "'" },
+				{ open = '"', close = '"' },
+				{ open = "`", close = "`" },
+				{ open = "(", close = ")" },
+				{ open = "[", close = "]" },
+				{ open = "{", close = "}" },
+				{ open = ",", close = "," },
+			},
+		},
+	},
 	{
 		"chrisgrieser/nvim-various-textobjs",
 		lazy = false,
@@ -17,6 +38,7 @@ return {
 			"sindrets/diffview.nvim",     -- optional
 			"ibhagwan/fzf-lua",           -- optional
 		},
+		cmd = "Neogit",
 		config = true,
 	},
 	{ "lewis6991/gitsigns.nvim", opts = {} },
@@ -105,6 +127,10 @@ return {
 		},
 	},
 	{
+		"stevearc/dressing.nvim",
+		opts = {},
+	},
+	{
 		"NvChad/nvim-colorizer.lua",
 		init = function()
 			require("colorizer").setup({})
@@ -145,6 +171,31 @@ return {
 		opts = {
 			enable = true,
 			mode = "topline",
+			surrounds = {
+				["y"] = {
+					add = function()
+						local result = require("nvim-surround.config").get_input("Enter the type name: ")
+						if result then
+							return { { result .. "<" }, { ">" } }
+						end
+					end,
+					find = function()
+						return require("nvim-surround.config").get_selection({
+							pattern = "[^=%s%(%)]+%b<>",
+						})
+					end,
+					delete = "^(.-<)().-(>)()$",
+					change = {
+						target = "^.-([%w_]+)()<.->()()$",
+						replacement = function()
+							local result = require("nvim-surround.config").get_input("Enter new type replacement: ")
+							if result then
+								return { { result }, { "" } }
+							end
+						end,
+					},
+				},
+			},
 		},
 	},
 	{
@@ -167,6 +218,7 @@ return {
 	},
 	{
 		"akinsho/toggleterm.nvim",
+		event = "VeryLazy",
 		version = "*",
 		opts = {
 			open_mapping = [[<A-\>]],
@@ -218,15 +270,14 @@ return {
 		},
 	},
 	{
-		"HiPhish/nvim-ts-rainbow2",
-	},
-	{
 		"lukas-reineke/indent-blankline.nvim",
 	},
 	{
 		"windwp/nvim-autopairs",
 		event = "VeryLazy",
-		opts = {},
+		opts = {
+			check_ts = true,
+		},
 	},
 	{
 		"dccsillag/magma-nvim",
@@ -240,6 +291,7 @@ return {
 	{
 		"kawre/leetcode.nvim",
 		build = ":TSUpdate html",
+		lazy = leet_arg ~= vim.fn.argv()[1],
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-telescope/telescope.nvim",
@@ -250,10 +302,13 @@ return {
 			"rcarriga/nvim-notify",
 			"nvim-tree/nvim-web-devicons",
 		},
-		opts = {},
+		opts = {
+			arg = leet_arg,
+		},
 	},
 	{
 		"scalameta/nvim-metals",
+		ft = { "scala", "sbt", "java" },
 		dependencies = { "nvim-lua/plenary.nvim" },
 		init = function()
 			local metals_config = require("metals").bare_config()

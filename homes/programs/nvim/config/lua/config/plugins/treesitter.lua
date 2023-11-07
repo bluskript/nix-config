@@ -14,7 +14,7 @@ return {
 			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup({
 				auto_install = true,
-				ensure_installed = "all",
+				-- ensure_installed = "all",
 				sync_install = true,
 				ignore_install = {},
 				highlight = {
@@ -22,16 +22,6 @@ return {
 					disable = disable,
 				},
 				indent = { enable = true, disable = disable },
-				incremental_selection = {
-					enable = true,
-					disable = disable,
-					keymaps = {
-						init_selection = "gnn",
-						node_incremental = "grn",
-						scope_incremental = "grc",
-						node_decremental = "grm",
-					},
-				},
 				rainbow = {
 					disable = disable,
 				},
@@ -40,6 +30,30 @@ return {
 				},
 				autotag = {
 					disable = disable,
+				},
+				textobjects = {
+					select = {
+						enable = true,
+						disable = disable,
+						lookahead = true,
+						keymaps = {
+							-- You can use the capture groups defined in textobjects.scm
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+							["ac"] = "@class.outer",
+							["ic"] = "@class.inner",
+							["ap"] = "@parameter.outer",
+							["ip"] = "@parameter.inner",
+							["ai"] = "@conditional.outer",
+							["ii"] = "@conditional.inner",
+							["al"] = "@loop.outer",
+							["il"] = "@loop.inner",
+							["ab"] = "@block.outer",
+							["ib"] = "@block.inner",
+							["ar"] = "@return.outer",
+							["ir"] = "@return.inner"
+						},
+					},
 				},
 			})
 		end,
@@ -99,4 +113,5 @@ return {
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		opts = {},
 	},
+	{ "nvim-treesitter/nvim-treesitter-textobjects" },
 }

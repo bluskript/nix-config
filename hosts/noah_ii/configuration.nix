@@ -21,6 +21,7 @@
   ];
 
   age.secrets.xornet.file = ../../secrets/felys-xornet.age;
+  age.identityPaths = ["/home/blusk/.ssh/id_ed25519"];
 
   networking.networkmanager = {
     wifi.macAddress = "random";

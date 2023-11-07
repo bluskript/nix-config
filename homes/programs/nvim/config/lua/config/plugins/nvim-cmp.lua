@@ -44,15 +44,13 @@ return {
 						fallback()
 					end
 				end, { "i", "s", "c" }),
-				["<S-Tab>"] = function(fallback)
-					if not cmp.select_prev_item() then
-						if vim.bo.buftype ~= "prompt" and has_words_before() then
-							cmp.complete()
-						else
-							fallback()
-						end
+				["<S-Tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					else
+						fallback()
 					end
-				end,
+				end, { "i", "s", "c" }),
 			}),
 			sources = cmp.config.sources({
 				{

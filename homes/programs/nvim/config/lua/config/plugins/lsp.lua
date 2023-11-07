@@ -7,6 +7,15 @@ return {
 		},
 	},
 	config = function()
+		local tb = require("telescope.builtin")
+		vim.lsp.handlers["callHierarchy/incomingCalls"] = tb.lsp_incoming_calls
+		vim.lsp.handlers["callHierarchy/outgoingCalls"] = tb.lsp_outgoing_calls
+		vim.lsp.handlers["textDocument/references"] = tb.lsp_references
+		vim.lsp.handlers["textDocument/typeDefinition"] = tb.lsp_type_definitions
+		vim.lsp.handlers["textDocument/implementation"] = tb.lsp_implementations
+		vim.lsp.handlers["textDocument/documentSymbol"] = tb.lsp_document_symbols
+		vim.lsp.handlers["workspace/symbol"] = tb.lsp_workspace_symbols
+
 		local lspconfig = require("lspconfig")
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		capabilities.offsetEncoding = "utf-8"
@@ -31,7 +40,7 @@ return {
 			"cssls",
 			"html",
 			"eslint",
-			"gopls"
+			"gopls",
 		}
 
 		---@generic T1: table
