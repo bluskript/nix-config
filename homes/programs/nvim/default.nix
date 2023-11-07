@@ -44,6 +44,7 @@ in {
       metals
       # c/cpp
       clang-tools
+      gopls
 
       nodePackages_latest.prettier
       nodePackages_latest.eslint

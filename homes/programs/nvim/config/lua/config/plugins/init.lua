@@ -5,6 +5,21 @@ return {
 	{ "RRethy/nvim-base16" },
 	{ "xiyaowong/transparent.nvim", opts = {} },
 	{
+		"chrisgrieser/nvim-various-textobjs",
+		lazy = false,
+		opts = { useDefaultKeymaps = true },
+	},
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",      -- required
+			"nvim-telescope/telescope.nvim", -- optional
+			"sindrets/diffview.nvim",     -- optional
+			"ibhagwan/fzf-lua",           -- optional
+		},
+		config = true,
+	},
+	{
 		"j-hui/fidget.nvim",
 		tag = "legacy",
 		event = "LspAttach",
@@ -128,7 +143,7 @@ return {
 		event = "VeryLazy",
 		opts = {
 			enable = true,
-			mode = 'topline'
+			mode = "topline",
 		},
 	},
 	{
@@ -161,8 +176,10 @@ return {
 	},
 	{
 		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
+		init = function()
+			require("Comment").setup({
+				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+			})
 		end,
 	},
 	{

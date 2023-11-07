@@ -121,6 +121,7 @@
         ".config/Element"
         ".config/shell_gpt"
         ".mozilla/firefox/Default"
+        ".floorp"
         ".config/Yubico"
         ".local/share/zsh"
         # note: clear this out every once in a while to make sure it still can install from scratch

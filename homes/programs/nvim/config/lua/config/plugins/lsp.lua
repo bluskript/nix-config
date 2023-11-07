@@ -30,7 +30,8 @@ return {
 			"clangd",
 			"cssls",
 			"html",
-			"eslint"
+			"eslint",
+			"gopls"
 		}
 
 		---@generic T1: table

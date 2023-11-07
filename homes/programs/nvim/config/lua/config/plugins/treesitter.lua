@@ -1,5 +1,5 @@
 local disable = function(lang, buf)
-	local max_filesize = 5 * 1024 -- 10 KB
+	local max_filesize = 20 * 1024 -- 20 KB
 	local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 	if ok and stats and stats.size > max_filesize then
 		return true
@@ -87,12 +87,16 @@ return {
 		opts = {
 			max_lines = 2,
 			multiline_threshold = 2,
-			on_attach = function (buf)
+			on_attach = function(buf)
 				return disable("bleh", buf)
-			end
+			end,
 		},
 		init = function()
 			vim.cmd("hi TreesitterContext guifg=Grey")
 		end,
+	},
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		opts = {},
 	},
 }
