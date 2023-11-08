@@ -16,6 +16,7 @@ in {
       signByDefault = true;
       key = "0x5F7286501D9A677D";
     };
+    difftastic.enable = true;
     extraConfig = {
       init.defaultBranch = "main";
       push = {
