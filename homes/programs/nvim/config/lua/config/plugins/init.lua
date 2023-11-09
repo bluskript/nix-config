@@ -2,9 +2,9 @@ local home = vim.fn.expand("$HOME")
 local leet_arg = "leetcode.nvim"
 
 return {
-	{ "LhKipp/nvim-nu",             opts = {} },
+	{ "LhKipp/nvim-nu", opts = {} },
 	{ "RRethy/nvim-base16" },
-	{ "xiyaowong/transparent.nvim", event = "BufReadPost", opts = {} },
+	{ "xiyaowong/transparent.nvim", opts = {} },
 	{
 		"abecodes/tabout.nvim",
 		event = "VeryLazy",
@@ -26,6 +26,27 @@ return {
 		},
 	},
 	{
+		"chrisgrieser/nvim-spider",
+		opts = {},
+		keys = {
+			{
+				"e",
+				"<cmd>lua require('spider').motion('e')<CR>",
+				mode = { "n", "o", "x" },
+			},
+			{
+				"w",
+				"<cmd>lua require('spider').motion('w')<CR>",
+				mode = { "n", "o", "x" },
+			},
+			{
+				"b",
+				"<cmd>lua require('spider').motion('b')<CR>",
+				mode = { "n", "o", "x" },
+			},
+		},
+	},
+	{
 		"chrisgrieser/nvim-various-textobjs",
 		lazy = false,
 		opts = { useDefaultKeymaps = true },
@@ -33,10 +54,10 @@ return {
 	{
 		"NeogitOrg/neogit",
 		dependencies = {
-			"nvim-lua/plenary.nvim",      -- required
+			"nvim-lua/plenary.nvim", -- required
 			"nvim-telescope/telescope.nvim", -- optional
-			"sindrets/diffview.nvim",     -- optional
-			"ibhagwan/fzf-lua",           -- optional
+			"sindrets/diffview.nvim", -- optional
+			"ibhagwan/fzf-lua", -- optional
 		},
 		cmd = "Neogit",
 		config = true,
@@ -124,6 +145,7 @@ return {
 			{ "<leader>fg", "<cmd>Telescope live_grep<CR>" },
 			{ "<leader>fh", "<cmd>Telescope oldfiles<CR>" },
 			{ "<leader>sk", "<cmd>Telescope keymaps<CR>" },
+			{ "<leader>b", "<cmd>Telescope buffers<CR>" },
 		},
 	},
 	{
@@ -264,8 +286,8 @@ return {
 		end,
 		opts = {},
 		keys = {
-			{ "<Tab>",     "<cmd>BufferNext<CR>" },
-			{ "<S-Tab>",   "<cmd>BufferPrev<CR>" },
+			{ "<Tab>", "<cmd>BufferNext<CR>" },
+			{ "<S-Tab>", "<cmd>BufferPrev<CR>" },
 			{ "<leader>x", "<cmd>BufferClose<CR>" },
 		},
 	},

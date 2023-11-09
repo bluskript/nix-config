@@ -16,7 +16,10 @@ in {
       signByDefault = true;
       key = "0x5F7286501D9A677D";
     };
-    difftastic.enable = true;
+    difftastic = {
+      enable = true;
+      display = "inline";
+    };
     extraConfig = {
       init.defaultBranch = "main";
       push = {

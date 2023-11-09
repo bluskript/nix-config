@@ -20,6 +20,8 @@
     ./nvidia.nix
   ];
 
+  work-mode.enable = true;
+
   age.secrets.xornet.file = ../../secrets/felys-xornet.age;
   age.identityPaths = ["/home/blusk/.ssh/id_ed25519"];
 
