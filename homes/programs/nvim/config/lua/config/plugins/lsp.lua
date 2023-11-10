@@ -1,5 +1,5 @@
 return {
-	"neovim/nvim-lspconfig",
+	"Bluskript/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		{
@@ -41,6 +41,7 @@ return {
 			"html",
 			"eslint",
 			"gopls",
+			"nushell",
 		}
 
 		---@generic T1: table

@@ -27,7 +27,9 @@ return {
 	},
 	{
 		"chrisgrieser/nvim-spider",
-		opts = {},
+		opts = {
+			skipInsignificantPunctuation = false,
+		},
 		keys = {
 			{
 				"e",
@@ -49,7 +51,12 @@ return {
 	{
 		"chrisgrieser/nvim-various-textobjs",
 		lazy = false,
-		opts = { useDefaultKeymaps = true },
+		opts = {
+			useDefaultKeymaps = true,
+			disabledKeymaps = {
+				"gc",
+			},
+		},
 	},
 	{
 		"NeogitOrg/neogit",
@@ -78,7 +85,15 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		opts = {},
+		opts = {
+			options = {
+				symbols = {
+					modified = " ●", -- Text to show when the buffer is modified
+					alternate_file = "#", -- Text to show to identify the alternate file
+					directory = "", -- Text to show when the buffer is a directory
+				},
+			},
+		},
 	},
 	{
 		"sindrets/diffview.nvim",
@@ -145,7 +160,7 @@ return {
 			{ "<leader>fg", "<cmd>Telescope live_grep<CR>" },
 			{ "<leader>fh", "<cmd>Telescope oldfiles<CR>" },
 			{ "<leader>sk", "<cmd>Telescope keymaps<CR>" },
-			{ "<leader>b", "<cmd>Telescope buffers<CR>" },
+			{ "<leader>r", "<cmd>Telescope buffers<CR>" },
 		},
 	},
 	{

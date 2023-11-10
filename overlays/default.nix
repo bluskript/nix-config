@@ -16,6 +16,32 @@
         sha256 = "sha256-5yIHgDTPjoX/3oDEfLSQ0eJZdFL1SaCfb9d6M0RmOTM=";
       };
     });
+    nushell = prev.nushell.overrideAttrs (self: rec {
+      version = "git";
+      src = final.pkgs.fetchFromGitHub {
+        owner = "nushell";
+        repo = "nushell";
+        rev = "91920373b50acc0ca0dc65b80592627a5c2c6a84";
+        sha256 = "sha256-2t8G3V5tWZwWj3o8O+mPwV1ULt2proUtIHhIFltKxq4=";
+      };
+      cargoPurityFlag = "--offline";
+      cargoDeps = prev.rustPlatform.importCargoLock {
+        lockFile = "${src}/Cargo.lock";
+        outputHashes = {
+          "reedline-0.25.0" = "sha256-J6AtZXoV8sRGQ75xq3ReRt3Hjz09bWLFzUnFDYCKg7s=";
+        };
+      };
+      buildFeatures =
+        self.buildFeatures
+        or []
+        ++ [
+          "which-support"
+          "zip"
+          "sqlite"
+          "dataframe"
+          "extra"
+        ];
+    });
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });

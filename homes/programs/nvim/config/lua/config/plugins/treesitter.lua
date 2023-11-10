@@ -17,6 +17,10 @@ return {
 				-- ensure_installed = "all",
 				sync_install = true,
 				ignore_install = {},
+				context_commentstring = {
+					enable = true,
+					enable_autocmd = false,
+				},
 				highlight = {
 					enable = true,
 					disable = disable,
@@ -51,7 +55,7 @@ return {
 							["ab"] = "@block.outer",
 							["ib"] = "@block.inner",
 							["ar"] = "@return.outer",
-							["ir"] = "@return.inner"
+							["ir"] = "@return.inner",
 						},
 					},
 				},
