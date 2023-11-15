@@ -6,7 +6,7 @@
       terminal = 0.8;
     };
     fonts.sizes = {
-      terminal = 11;
+      terminal = 10;
     };
   };
 }

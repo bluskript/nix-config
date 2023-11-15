@@ -1,5 +1,5 @@
 return {
-	"Bluskript/nvim-lspconfig",
+	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		{

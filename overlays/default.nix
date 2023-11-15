@@ -18,6 +18,7 @@
     });
     nushell = prev.nushell.overrideAttrs (self: rec {
       version = "git";
+      doCheck = false;
       src = final.pkgs.fetchFromGitHub {
         owner = "nushell";
         repo = "nushell";

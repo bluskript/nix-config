@@ -6,6 +6,19 @@ return {
 	{ "RRethy/nvim-base16" },
 	{ "xiyaowong/transparent.nvim", opts = {} },
 	{
+		"L3MON4D3/LuaSnip",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+		},
+		version = "v2.*",
+		build = "make install_jsregexp",
+		opts = {},
+		init = function()
+			require("luasnip.loaders.from_vscode").lazy_load()
+		end,
+	},
+	{ "rafamadriz/friendly-snippets" },
+	{
 		"abecodes/tabout.nvim",
 		event = "VeryLazy",
 		dependencies = {
@@ -161,6 +174,13 @@ return {
 			{ "<leader>fh", "<cmd>Telescope oldfiles<CR>" },
 			{ "<leader>sk", "<cmd>Telescope keymaps<CR>" },
 			{ "<leader>r", "<cmd>Telescope buffers<CR>" },
+		},
+		opts = {
+			pickers = {
+				oldfiles = {
+					cwd_only = true,
+				},
+			},
 		},
 	},
 	{
