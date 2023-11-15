@@ -328,7 +328,9 @@ return {
 		init = function()
 			vim.g.barbar_auto_setup = false
 		end,
-		opts = {},
+		opts = {
+			animation = false,
+		},
 		keys = {
 			{ "<Tab>", "<cmd>BufferNext<CR>" },
 			{ "<S-Tab>", "<cmd>BufferPrev<CR>" },
