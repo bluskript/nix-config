@@ -56,6 +56,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    discordrp-mpris.url = "github:bluskript/discordrp-mpris-flake";
+    discordrp-mpris.inputs.nixpkgs.follows = "nixpkgs";
+
     nixpkgs-mozilla.url = "github:mozilla/nixpkgs-mozilla";
   };
 

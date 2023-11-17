@@ -2,9 +2,18 @@ vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 -- for folding
 vim.o.foldcolumn = "1" -- '0' is not bad
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
+-- remember folds
+vim.cmd([[
+set viewoptions-=curdir
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave *.* mkview
+  autocmd BufWinEnter *.* silent! loadview
+augroup END
+]])
 
 local handler = function(virtText, lnum, endLnum, width, truncate)
 	local newVirtText = {}
@@ -46,8 +55,8 @@ return {
 					require("statuscol").setup({
 						relculright = true,
 						segments = {
-							{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-							{ text = { "%s" }, click = "v:lua.ScSa" },
+							{ text = { builtin.foldfunc },      click = "v:lua.ScFa" },
+							{ text = { "%s" },                  click = "v:lua.ScSa" },
 							{ text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
 						},
 					})
@@ -57,14 +66,20 @@ return {
 		opts = {
 			fold_virt_text_handler = handler,
 		},
-		init = function()
-			vim.keymap.set("n", "zR", function()
-				require("ufo").openAllFolds()
-			end)
-			vim.keymap.set("n", "zM", function()
-				require("ufo").closeAllFolds()
-			end)
-		end,
+		custom_keys = {
+			["zR"] = {
+				desc = "Open All Folds",
+				function()
+					require("ufo").openAllFolds()
+				end,
+			},
+			["zM"] = {
+				desc = "Close All Folds",
+				function()
+					require("ufo").closeAllFolds()
+				end,
+			},
+		},
 	},
 	{
 		"anuvyklack/fold-preview.nvim",

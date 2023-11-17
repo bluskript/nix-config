@@ -10,6 +10,9 @@ return {
 		{ "<C-l>", "<cmd>Neotree float toggle reveal<CR>" },
 	},
 	opts = {
+		filesystem = {
+			hijack_netrw_behavior = "open_current"
+		},
 		window = {
 			mappings = {
 				["<space>"] = {

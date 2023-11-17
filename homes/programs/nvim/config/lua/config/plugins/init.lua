@@ -2,7 +2,14 @@ local home = vim.fn.expand("$HOME")
 local leet_arg = "leetcode.nvim"
 
 return {
-	{ "LhKipp/nvim-nu", opts = {} },
+	{
+		"andweeb/presence.nvim",
+		opts = {
+			main_image = "file",
+			neovim_image_text = "menthol illness",
+		},
+	},
+	{ "LhKipp/nvim-nu",             opts = {} },
 	{ "RRethy/nvim-base16" },
 	{ "xiyaowong/transparent.nvim", opts = {} },
 	{
@@ -74,15 +81,15 @@ return {
 	{
 		"NeogitOrg/neogit",
 		dependencies = {
-			"nvim-lua/plenary.nvim", -- required
+			"nvim-lua/plenary.nvim",      -- required
 			"nvim-telescope/telescope.nvim", -- optional
-			"sindrets/diffview.nvim", -- optional
-			"ibhagwan/fzf-lua", -- optional
+			"sindrets/diffview.nvim",     -- optional
+			"ibhagwan/fzf-lua",           -- optional
 		},
 		cmd = "Neogit",
 		config = true,
 	},
-	{ "lewis6991/gitsigns.nvim", opts = {} },
+	{ "lewis6991/gitsigns.nvim",     opts = {} },
 	{
 		"j-hui/fidget.nvim",
 		tag = "legacy",
@@ -173,7 +180,7 @@ return {
 			{ "<leader>fg", "<cmd>Telescope live_grep<CR>" },
 			{ "<leader>fh", "<cmd>Telescope oldfiles<CR>" },
 			{ "<leader>sk", "<cmd>Telescope keymaps<CR>" },
-			{ "<leader>r", "<cmd>Telescope buffers<CR>" },
+			{ "<leader>r",  "<cmd>Telescope buffers<CR>" },
 		},
 		opts = {
 			pickers = {
@@ -332,8 +339,8 @@ return {
 			animation = false,
 		},
 		keys = {
-			{ "<Tab>", "<cmd>BufferNext<CR>" },
-			{ "<S-Tab>", "<cmd>BufferPrev<CR>" },
+			{ "<Tab>",     "<cmd>BufferNext<CR>" },
+			{ "<S-Tab>",   "<cmd>BufferPrev<CR>" },
 			{ "<leader>x", "<cmd>BufferClose<CR>" },
 		},
 	},

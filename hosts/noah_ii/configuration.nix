@@ -16,7 +16,6 @@
     ../common/profiles/desktop.nix
     ./users.nix
     ./impermanence.nix
-    ./firejail.nix
     ./nvidia.nix
   ];
 
@@ -35,13 +34,6 @@
   networking.hostName = "NoAH-II";
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
-
-  stylix = let
-    palette = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
-  in {
-    base16Scheme = palette;
-    image = (import ../common/stylix.nix {inherit pkgs;}).processWallpaper palette ../felys/wallpaper.png;
-  };
 
   # services.snowflake-proxy = {
   #   enable = true;

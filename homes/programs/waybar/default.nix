@@ -25,12 +25,14 @@ in {
           "battery"
           "network"
           "tray"
-          "clock#date"
-          "clock#time"
+          "clock"
         ];
-        "clock#time" = {
+        tray = {
+          spacing = 10;
+        };
+        "clock" = {
           interval = 1;
-          format = "{:%H:%M:%S}";
+          format = "{:%Y-%m-%d | %H:%M:%OS}";
         };
         cpu = {
           format = "${offsetY { icon = ""; offset = "1"; }}  {}%";

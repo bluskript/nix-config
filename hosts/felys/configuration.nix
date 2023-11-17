@@ -15,7 +15,6 @@
     ../common/wayfire.nix
     ../felys/impermanence.nix
     ../felys/users.nix
-    ../noah_ii/firejail.nix
     ./passthrough.nix
     ./disks.nix
     ./bluetooth.nix
@@ -39,13 +38,6 @@
 
   services.xserver.desktopManager.pantheon.enable = true;
   hardware.pulseaudio.enable = false;
-
-  stylix = let
-    palette = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
-  in {
-    base16Scheme = palette;
-    image = (import ../common/stylix.nix {inherit pkgs;}).processWallpaper palette ../felys/wallpaper.png;
-  };
 
   services.hardware.openrgb = {
     enable = true;

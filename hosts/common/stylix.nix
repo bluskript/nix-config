@@ -28,8 +28,8 @@
           echo $command
           eval $command
         '';
-  in (p: w:
+  in (p: hue: w:
     pkgs.runCommand "image.png" {} ''
-      ${pkgs.imagemagick}/bin/magick convert ${w} -remap ${palette p} -dither FloydSteinberg -depth 8 -enhance $out
+      ${pkgs.imagemagick}/bin/magick convert ${w} -remap ${palette p} -dither FloydSteinberg -modulate 100,100,${builtins.toString hue} -depth 8 -enhance $out
     '');
 }

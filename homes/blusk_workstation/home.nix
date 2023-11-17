@@ -16,6 +16,8 @@
     inputs.impermanence.nixosModules.home-manager.impermanence
 
     ../common/profile-cli.nix
+    ../programs/arrpc.nix
+    ../programs/discordrp-mpris.nix
     ../programs/nvim
     ../programs/nvim/neovide.nix
     ../programs/nvim/stylix.nix
@@ -65,10 +67,6 @@
     username = "blusk";
     homeDirectory = "/home/blusk";
     shellAliases = nixosConfig.environment.shellAliases;
-    pointerCursor = {
-      package = pkgs.capitaine-cursors;
-      name = "capitaine-cursors";
-    };
     packages = with pkgs; [
       distrobox
       ntfs3g
