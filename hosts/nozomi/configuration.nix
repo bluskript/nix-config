@@ -21,6 +21,7 @@ in {
     ./ff-sync.nix
     ./abletonzip.nix
     ./owncast.nix
+    ./navidrome.nix
   ];
 
   nix.settings.trusted-users = [ "blusk" ];
