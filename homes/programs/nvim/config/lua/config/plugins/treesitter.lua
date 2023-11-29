@@ -25,7 +25,7 @@ return {
 					enable = true,
 					disable = disable,
 				},
-				indent = { enable = true, disable = disable },
+				indent = { enable = false, disable = disable },
 				rainbow = {
 					disable = disable,
 				},
@@ -33,6 +33,7 @@ return {
 					disable = disable,
 				},
 				autotag = {
+					enable = true,
 					disable = disable,
 				},
 				textobjects = {

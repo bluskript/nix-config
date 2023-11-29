@@ -36,7 +36,6 @@
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  services.xserver.desktopManager.pantheon.enable = true;
   hardware.pulseaudio.enable = false;
 
   services.hardware.openrgb = {

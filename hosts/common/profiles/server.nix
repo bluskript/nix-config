@@ -18,7 +18,7 @@
   dns.encryption.enable = false;
   dns.nameservers = [ "1.1.1.1" ];
   services.openssh.enable = true;
-  environment.noXlibs = true;
+  # environment.noXlibs = true;
 
   services.fail2ban.enable = true;
 

@@ -31,23 +31,23 @@ in {
       xxd
 
       nil
-      rust-analyzer
-      terraform-lsp
-      nodePackages_latest.pyright
-      sumneko-lua-language-server
+      # rust-analyzer
+      # terraform-lsp
+      # nodePackages_latest.pyright
+      # sumneko-lua-language-server
       vscode-langservers-extracted
-      haskell-language-server
+      # haskell-language-server
       nodePackages_latest.yaml-language-server
-      nodePackages_latest.typescript-language-server
-      nodePackages_latest.dockerfile-language-server-nodejs
-      # scala
-      metals
-      # c/cpp
-      clang-tools
-      gopls
+      # nodePackages_latest.typescript-language-server
+      # nodePackages_latest.dockerfile-language-server-nodejs
+      # # scala
+      # metals
+      # # c/cpp
+      # clang-tools
+      # gopls
 
-      nodePackages_latest.prettier
-      nodePackages_latest.eslint
+      # nodePackages_latest.prettier
+      # nodePackages_latest.eslint
       stylua
       alejandra
     ];
@@ -61,7 +61,7 @@ in {
     vimAlias = true;
     withRuby = false;
     withNodeJs = false;
-    withPython3 = true;
+    withPython3 = false;
     vimdiffAlias = true;
     defaultEditor = true;
   };

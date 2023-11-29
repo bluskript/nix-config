@@ -13,8 +13,9 @@
       terminal = 10;
     };
     cursor = {
-      package = pkgs.capitaine-cursors;
-      name = "capitaine-cursors";
+      package = pkgs.capitaine-cursors-themed;
+      name = "Capitaine Cursors (Palenight)";
+      size = 1;
     };
   };
 }

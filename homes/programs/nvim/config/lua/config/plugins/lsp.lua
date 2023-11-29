@@ -18,7 +18,7 @@ return {
 
 		local lspconfig = require("lspconfig")
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-		capabilities.offsetEncoding = "utf-8"
+		capabilities.offsetEncoding = { "utf-8" }
 		capabilities.textDocument.foldingRange = {
 			dynamicRegistration = false,
 			lineFoldingOnly = true

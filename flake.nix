@@ -82,9 +82,11 @@
   in {
     # Your custom packages
     # Acessible through 'nix build', 'nix shell', etc
-    packages = forAllSystems (system:
-      let pkgs = nixpkgs.legacyPackages.${system};
-      in import ./pkgs { inherit pkgs; }
+    packages = forAllSystems (
+      system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+        import ./pkgs {inherit pkgs;}
     );
     # Devshell for bootstrapping
     # Acessible through 'nix develop' or 'nix-shell' (legacy)
@@ -145,6 +147,24 @@
           {
             _module.args.nixinate = {
               host = "5.161.75.53";
+              sshUser = "blusk";
+              buildOn = "local";
+              substituteOnTarget = true;
+              hermetic = false;
+            };
+          }
+        ];
+      };
+      muse = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          outputs.nixosModules.xornet-reporter
+          agenix.nixosModules.default
+          (import ./hosts/muse/configuration.nix)
+          disko.nixosModules.disko
+          {
+            _module.args.nixinate = {
+              host = "10.9.1.12";
               sshUser = "blusk";
               buildOn = "local";
               substituteOnTarget = true;

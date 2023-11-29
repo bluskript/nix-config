@@ -1,5 +1,6 @@
 local home = vim.fn.expand("$HOME")
 local leet_arg = "leetcode.nvim"
+local is_netrw = vim.bo.filetype == "netrw"
 
 return {
 	{
@@ -44,6 +45,10 @@ return {
 				{ open = ",", close = "," },
 			},
 		},
+		keys = {
+			{ "<C-j>", "<Plug>(TaboutMulti)" },
+			{ "<C-k>", "<Plug>(TaboutBackMulti)" },
+		}
 	},
 	{
 		"chrisgrieser/nvim-spider",

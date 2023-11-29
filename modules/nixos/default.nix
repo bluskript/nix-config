@@ -5,4 +5,5 @@
   # my-module = import ./my-module.nix;
   # qemu-guest = import ./qemu-guest.nix;
 	xornet-reporter = import ./xornet-reporter.nix;
+	rathole = import ./rathole.nix;
 }

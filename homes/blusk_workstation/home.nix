@@ -99,7 +99,7 @@
 
       papirus-icon-theme
 
-      strawberry
+      sonixd
       signal-desktop
 
       vscode
@@ -130,6 +130,8 @@
         ".local/share/strawberry"
         ".local/share/keyrings"
         ".config/transmission"
+        ".config/Sonixd"
+        ".local/share/nicotine"
         {
           directory = ".local/share/containers";
           method = "symlink";
@@ -192,8 +194,14 @@
         "x-scheme-handler/signalcaptcha" = "signal-desktop.desktop";
         "x-scheme-handler/slack" = "slack.desktop";
       };
-      associations.added = {
-        "x-scheme-handler/magnet" = "transmission-gtk.desktop";
+      associations = {
+        added = {
+          "x-scheme-handler/magnet" = "transmission-gtk.desktop";
+        };
+        removed = {
+          "text/plain" = "code.desktop";
+          "inode/directory" = "code.desktop";
+        };
       };
     };
   };

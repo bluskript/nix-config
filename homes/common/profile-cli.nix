@@ -8,6 +8,7 @@
     ../programs/zoxide.nix
     ../programs/zsh.nix
     ../programs/nushell
+    ../programs/carapace.nix
     ../programs/direnv.nix
   ];
 
