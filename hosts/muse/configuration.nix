@@ -40,9 +40,9 @@ in {
 
   environment.noXlibs = lib.mkForce false;
 
-  services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "${pkgs.icewm}/bin/icewm";
-  services.xrdp.openFirewall = true;
+  # services.xrdp.enable = true;
+  # services.xrdp.defaultWindowManager = "${pkgs.icewm}/bin/icewm";
+  # services.xrdp.openFirewall = true;
 
   age.secrets.xornet.file = ../../secrets/nozomi-xornet.age;
   services.xornet-reporter.enable = lib.mkForce false;
@@ -66,22 +66,9 @@ in {
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups = ["wheel"];
-    password = "blehhh";
     openssh.authorizedKeys.keys = [
       blusk.pubkey
     ];
-  };
-
-  home-manager = {
-    extraSpecialArgs = {
-      inherit inputs outputs;
-      nixosConfig = config;
-    };
-    # useGlobalPkgs = true;
-    # useUserPackages = true;
-    users = {
-      blusk = import ../../homes/blusk_server/home.nix;
-    };
   };
 
   boot.loader.grub = {
@@ -90,10 +77,6 @@ in {
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
-  boot.loader.efi.canTouchEfiVariables = false;
-  services.logrotate.checkConfig = false;
-
-  hardware.cpu.intel.updateMicrocode = true;
 
   system.activationScripts.createPersist = "mkdir -p /nix/persist";
 

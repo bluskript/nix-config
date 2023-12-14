@@ -66,6 +66,9 @@ return {
 		lspconfig.rust_analyzer.setup(extend_config({
 			settings = {
 				["rust-analyzer"] = {
+					checkOnSave = {
+						allFeatures = true,
+					},
 					cargo = {
 						allFeatures = true,
 					},

@@ -10,7 +10,6 @@ return {
 			neovim_image_text = "menthol illness",
 		},
 	},
-	{ "LhKipp/nvim-nu",             opts = {} },
 	{ "RRethy/nvim-base16" },
 	{ "xiyaowong/transparent.nvim", opts = {} },
 	{

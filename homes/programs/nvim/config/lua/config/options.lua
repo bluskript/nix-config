@@ -16,5 +16,6 @@ set.fillchars = set.fillchars + "diff:╱"
 vim.filetype.add({
   pattern = {
     ["\v.*.(vert|frag|shader|vs|fs|gs|vsh|fsh|comp)"] = "glsl",
+    ["\v.*.nu"] = "nu",
   },
 })

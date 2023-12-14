@@ -6,7 +6,13 @@ local disable = function(lang, buf)
 	end
 end
 
+vim.g.skip_ts_context_commentstring_module = true
+
 return {
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		opts = {},
+	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
@@ -113,10 +119,6 @@ return {
 		init = function()
 			vim.cmd("hi TreesitterContext guifg=Grey")
 		end,
-	},
-	{
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		opts = {},
 	},
 	{ "nvim-treesitter/nvim-treesitter-textobjects" },
 }

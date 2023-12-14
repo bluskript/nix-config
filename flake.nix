@@ -41,11 +41,6 @@
 
     agenix.url = "github:ryantm/agenix";
 
-    llamacpp = {
-      url = "github:ggerganov/llama.cpp";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     flake-compat = {
       url = "github:inclyc/flake-compat";
       flake = false;
@@ -59,7 +54,7 @@
     discordrp-mpris.url = "github:bluskript/discordrp-mpris-flake";
     discordrp-mpris.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixpkgs-mozilla.url = "github:mozilla/nixpkgs-mozilla";
+    firefox.url = "github:nix-community/flake-firefox-nightly?rev=0abccc26273423eb95525e404d537d8139d211af";
   };
 
   outputs = {

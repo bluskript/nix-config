@@ -3,6 +3,9 @@
 # Only to be used for headless servers, at home or abroad, with more
 # security/automation-minded configuration.
 {
+  inputs,
+  outputs,
+  config,
   pkgs,
   modulesPath,
   ...
@@ -14,6 +17,19 @@
     ../networking/dns.nix
     ../networking/sshd.nix
   ];
+
+
+  home-manager = {
+    extraSpecialArgs = {
+      inherit inputs outputs;
+      nixosConfig = config;
+    };
+    # useGlobalPkgs = true;
+    # useUserPackages = true;
+    users = {
+      blusk = import ../../homes/blusk_server/home.nix;
+    };
+  };
 
   dns.encryption.enable = false;
   dns.nameservers = [ "1.1.1.1" ];
@@ -42,4 +58,8 @@
       timerConfig.OnCalendar = "weekly UTC";
     };
   };
+
+  services.logrotate.checkConfig = false;
+  hardware.cpu.intel.updateMicrocode = true;
+  boot.loader.efi.canTouchEfiVariables = false;
 }

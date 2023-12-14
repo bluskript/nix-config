@@ -81,7 +81,21 @@ let dark_theme = {
 		shape_variable: purple
 }
 
-
+export def safe_unzip [zip_file: string, dest?: string] = {
+	let absolute_path = ($zip_file | path expand)
+	let num_files = (unzip -l $absolute_path | lines | last | split row -r `\s+` | get 1 | into int)
+	let name = $zip_file | path parse | get stem
+	let dest = if $dest == null {
+		$name
+	} else {
+		$dest | path join $name
+	}
+	if $num_files == 1 {
+		unzip $absolute_path -d $dest
+	} else {
+		unzip -d $dest $absolute_path 
+	}
+}
 
 export def gpt [...query: string] = {
 	sgpt --model=gpt-4 --cache --chat=default ($query | str join " ")

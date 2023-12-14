@@ -27,7 +27,6 @@
     # ../programs/eww
     ../programs/sway
     ../programs/firefox
-    ../programs/weechat.nix
     ../programs/virtualisation/virt-manager.nix
     ../programs/virtualisation/looking-glass-client
     ../programs/ranger
@@ -43,7 +42,6 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.stable-packages
-      inputs.nixpkgs-mozilla.overlays.firefox
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
 
@@ -78,33 +76,23 @@
       slurp
       imv
       mpv
-      ranger
       zip
       unzip
       ripgrep
       skim
       dwt1-shell-color-scripts
       neofetch
-      musikcube
       yewtube
       element-desktop
       tmsu
       reaper
       transmission-gtk
       xdg_utils
-      shell_gpt
-      entr
-      inputs.llamacpp.packages.${pkgs.system}.default
-      # inputs.small.legacyPackages.${pkgs.system}.floorp
 
       papirus-icon-theme
 
       sonixd
       signal-desktop
-
-      vscode
-      # pkgs.mutableai-cli
-      # inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
     ];
     persistence."/persist/home/blusk" = {
       allowOther = true;
@@ -113,13 +101,9 @@
         ".cache"
         ".gradle"
         ".local/share/zoxide"
-        # TODO make this declarative
-        ".config/weechat"
-        ".config/musikcube"
         ".config/Element"
         ".config/shell_gpt"
         ".mozilla/firefox/Default"
-        ".floorp"
         ".config/Yubico"
         ".local/share/zsh"
         # note: clear this out every once in a while to make sure it still can install from scratch
@@ -137,11 +121,15 @@
           method = "symlink";
         }
         ".ssh"
-        "projects"
+        {
+          directory = "projects";
+          method = "symlink";
+        }
       ];
       files = [
         ".bash_history"
         ".config/nushell/history.txt"
+        ".config/nicotine/config"
       ];
     };
   };
