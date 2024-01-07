@@ -34,36 +34,29 @@ return {
 
 		-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 		local servers = {
-			"tsserver",
-			"nil_ls",
-			"yamlls",
-			"terraform_lsp",
-			"dockerls",
-			"zls",
-			"clangd",
-			"cssls",
-			"html",
-			"eslint",
-			"gopls",
-			"nushell",
-		}
-
-		---@generic T1: table
-		---@param tbl T1
-		---@return table
-		local extend_config = function(tbl)
-			return vim.tbl_deep_extend("force", tbl, common_options)
-		end
-
-		for _, lsp in ipairs(servers) do
-			lspconfig[lsp].setup(common_options)
-		end
-
-		lspconfig.hls.setup(extend_config({
-			filetypes = { "haskell", "lhaskell", "cabal" },
-		}))
-
-		lspconfig.rust_analyzer.setup(extend_config({
+			tsserver = {},
+			svelte = {},
+			nil_ls = {},
+			yamlls = {},
+			terraform_lsp = {},
+			dockerls = {},
+			zls = {},
+			clangd = {},
+			cssls = {},
+			html = {},
+			eslint = {},
+			gopls = {},
+			nushell = {},
+			bufls = {},
+			taplo = {},
+			unocss = {},
+			clangd = {
+			  filetypes = { "c", "cpp" },
+			},
+			hls = {
+			  filetypes = { "haskell", "lhaskell", "cabal" },
+			},
+			rust_analyzer = {
 			settings = {
 				["rust-analyzer"] = {
 					checkOnSave = {
@@ -74,9 +67,8 @@ return {
 					},
 				},
 			},
-		}))
-
-		lspconfig.pyright.setup(extend_config({
+		},
+		pyright = {
 			settings = {
 				python = {
 					analysis = {
@@ -85,9 +77,8 @@ return {
 					},
 				},
 			},
-		}))
-
-		lspconfig.lua_ls.setup(extend_config({
+		},
+		lua_ls = {
 			settings = {
 				Lua = {
 					runtime = {
@@ -108,18 +99,16 @@ return {
 					},
 				},
 			},
-		}))
-
-		lspconfig.jsonls.setup(extend_config({
+		},
+		jsonls = {
 			settings = {
 				json = {
 					schemas = require("schemastore").json.schemas(),
 					validate = { enable = true },
 				},
 			},
-		}))
-
-		lspconfig.yamlls.setup(extend_config({
+		},
+		yamlls = {
 			settings = {
 				yaml = {
 					schemaStore = {
@@ -132,7 +121,19 @@ return {
 					schemas = require("schemastore").yaml.schemas(),
 				},
 			},
-		}))
+		}
+		}
+
+		---@generic T1: table
+		---@param tbl T1
+		---@return table
+		local extend_config = function(tbl)
+			return vim.tbl_deep_extend("force", tbl, common_options)
+		end
+
+		for server, config in pairs(servers) do
+			lspconfig[server].setup(extend_config(config))
+		end
 
 		vim.api.nvim_exec(
 			[[

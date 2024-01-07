@@ -1,1 +1,5 @@
-["mutableai-cli"]
+[
+	{
+		"unocss-language-server": "git+https://git@github.com/Jason-Jay-Mason/unocss-language-server#main"
+	}
+]

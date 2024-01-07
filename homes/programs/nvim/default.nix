@@ -34,10 +34,12 @@ in {
       # rust-analyzer
       # terraform-lsp
       # nodePackages_latest.pyright
-      # sumneko-lua-language-server
+      sumneko-lua-language-server
       vscode-langservers-extracted
       # haskell-language-server
       nodePackages_latest.yaml-language-server
+      pkgs.unocss-language-server
+      taplo
       # nodePackages_latest.typescript-language-server
       # nodePackages_latest.dockerfile-language-server-nodejs
       # # scala

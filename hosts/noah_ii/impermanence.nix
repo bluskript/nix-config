@@ -11,6 +11,7 @@
       "/etc/mullvad-vpn"
       "/var/lib/libvirt"
       "/var/lib/containers"
+      "/etc/tailord"
     ];
     files = [
       "/etc/machine-id"

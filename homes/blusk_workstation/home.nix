@@ -93,6 +93,8 @@
 
       sonixd
       signal-desktop
+
+      nix-output-monitor
     ];
     persistence."/persist/home/blusk" = {
       allowOther = true;
@@ -100,6 +102,8 @@
         ".tmsu"
         ".cache"
         ".gradle"
+        ".cargo"
+        ".npm"
         ".local/share/zoxide"
         ".config/Element"
         ".config/shell_gpt"

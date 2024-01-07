@@ -4,6 +4,53 @@ local is_netrw = vim.bo.filetype == "netrw"
 
 return {
 	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			messages = {
+				view = "mini",
+			},
+		},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		},
+	},
+	{
+		"rcarriga/nvim-notify",
+		opts = {
+			background_colour = "#000000",
+		},
+	},
+	{
+		"direnv/direnv.vim",
+	},
+	{
+		"is0n/tui-nvim",
+		opts = {
+			y = 0.1,
+			x = 0.1,
+			height = 0.5,
+		},
+		keys = {
+			{
+				"<leader>j",
+				function()
+					require("tui-nvim"):new({
+						cmd = "ranger --choosefiles=/tmp/tui-nvim --selectfile="
+								.. vim.fn.fnameescape(vim.fn.expand("%:p")),
+						-- Read and open files from '/tmp/tui-nvim'
+						temp = "/tmp/tui-nvim",
+					})
+				end,
+			},
+		},
+	},
+	{
 		"andweeb/presence.nvim",
 		opts = {
 			main_image = "file",
@@ -25,30 +72,6 @@ return {
 		end,
 	},
 	{ "rafamadriz/friendly-snippets" },
-	{
-		"abecodes/tabout.nvim",
-		event = "VeryLazy",
-		dependencies = {
-			"hrsh7th/nvim-cmp",
-		},
-		opts = {
-			enable_backwards = true,
-			completion = false,
-			tabouts = {
-				{ open = "'", close = "'" },
-				{ open = '"', close = '"' },
-				{ open = "`", close = "`" },
-				{ open = "(", close = ")" },
-				{ open = "[", close = "]" },
-				{ open = "{", close = "}" },
-				{ open = ",", close = "," },
-			},
-		},
-		keys = {
-			{ "<C-j>", "<Plug>(TaboutMulti)" },
-			{ "<C-k>", "<Plug>(TaboutBackMulti)" },
-		}
-	},
 	{
 		"chrisgrieser/nvim-spider",
 		opts = {
@@ -95,12 +118,6 @@ return {
 	},
 	{ "lewis6991/gitsigns.nvim",     opts = {} },
 	{
-		"j-hui/fidget.nvim",
-		tag = "legacy",
-		event = "LspAttach",
-		opts = {},
-	},
-	{
 		"mg979/vim-visual-multi",
 		event = "VeryLazy",
 	},
@@ -120,51 +137,6 @@ return {
 		},
 	},
 	{
-		"sindrets/diffview.nvim",
-		event = "VeryLazy",
-		keys = {
-			{ "<leader>dp", "<cmd>DiffviewOpen<CR>" },
-			{ "<leader>dx", "<cmd>DiffviewClose<CR>" },
-		},
-		config = function()
-			local actions = require("diffview.actions")
-			require("diffview").setup({
-				enhanced_diff_hl = true,
-				keymaps = {
-					file_panel = {
-						{
-							"n",
-							"j",
-							actions.select_next_entry,
-							{ desc = "alias for tab" },
-						},
-						{
-							"n",
-							"k",
-							actions.select_prev_entry,
-							{ desc = "alias for shift-tab" },
-						},
-					},
-				},
-			})
-		end,
-	},
-	-- {
-	-- 	"jackMort/ChatGPT.nvim",
-	-- 	event = "VeryLazy",
-	-- 	keys = {
-	-- 		{ "<leader>p", "<cmd>ChatGPTCompleteCode<CR>" },
-	-- 	},
-	-- 	opts = {
-	-- 		api_key_cmd = "cat " .. home .. "/.config/shell_gpt/woozy",
-	-- 	},
-	-- 	dependencies = {
-	-- 		"MunifTanjim/nui.nvim",
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"nvim-telescope/telescope.nvim",
-	-- 	},
-	-- },
-	{
 		"RaafatTurki/hex.nvim",
 		opts = {},
 	},
@@ -179,6 +151,7 @@ return {
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		cmd = "Telescope",
+		lazy = true,
 		keys = {
 			{ "<leader>ff", "<cmd>Telescope find_files<CR>" },
 			{ "<leader>fg", "<cmd>Telescope live_grep<CR>" },
@@ -193,10 +166,6 @@ return {
 				},
 			},
 		},
-	},
-	{
-		"stevearc/dressing.nvim",
-		opts = {},
 	},
 	{
 		"NvChad/nvim-colorizer.lua",
@@ -272,16 +241,6 @@ return {
 						end,
 					},
 				},
-			},
-		},
-	},
-	{
-		"ray-x/lsp_signature.nvim",
-		-- event = "VeryLazy",
-		opts = {
-			bind = true,
-			handler_opts = {
-				border = "rounded",
 			},
 		},
 	},
@@ -378,7 +337,7 @@ return {
 			"MunifTanjim/nui.nvim",
 
 			-- optional
-			"rcarriga/nvim-notify",
+			-- "rcarriga/nvim-notify",
 			"nvim-tree/nvim-web-devicons",
 		},
 		opts = {
@@ -410,11 +369,5 @@ return {
 				group = nvim_metals_group,
 			})
 		end,
-	},
-	{
-		"rcarriga/nvim-notify",
-		opts = {
-			background_colour = "#000000",
-		},
 	},
 }

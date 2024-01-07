@@ -1,5 +1,3 @@
-local is_netrw = vim.bo.filetype == "netrw"
-
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
@@ -11,11 +9,7 @@ return {
 	keys = {
 		{ "<C-l>", "<cmd>Neotree float toggle reveal<CR>" },
 	},
-	lazy = is_netrw,
 	opts = {
-		filesystem = {
-			hijack_netrw_behavior = "open_current"
-		},
 		window = {
 			mappings = {
 				["<space>"] = {

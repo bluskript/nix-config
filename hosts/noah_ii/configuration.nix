@@ -17,9 +17,14 @@
     ./users.nix
     ./impermanence.nix
     ./nvidia.nix
+    ./clevo.nix
   ];
 
-  work-mode.enable = true;
+  services.tailscale.enable = true;
+
+  services.xserver.desktopManager.plasma5.enable = true;
+
+  work-mode.enable = false;
 
   age.secrets.xornet.file = ../../secrets/felys-xornet.age;
   age.identityPaths = ["/home/blusk/.ssh/id_ed25519"];
