@@ -1,6 +1,8 @@
 local home = vim.fn.expand("$HOME")
 local leet_arg = "leetcode.nvim"
-local is_netrw = vim.bo.filetype == "netrw"
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 return {
 	{
@@ -30,7 +32,7 @@ return {
 		"direnv/direnv.vim",
 	},
 	{
-		"is0n/tui-nvim",
+		"bluskript/tui-nvim",
 		opts = {
 			y = 0.1,
 			x = 0.1,

@@ -19,7 +19,6 @@
         "nf"
         "stl"
         "ctl"
-        "ssh"
         "du"
       ];
     in

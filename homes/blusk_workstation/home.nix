@@ -32,6 +32,7 @@
     ../programs/ranger
     ../programs/tmux.nix
     ../programs/pidgin.nix
+    ../programs/joshuto/default.nix
     # ../programs/nnn.nix
   ];
 
