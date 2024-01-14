@@ -4,6 +4,7 @@ return {
 	dependencies = {
 		{
 			"b0o/schemastore.nvim",
+			"direnv/direnv.vim",
 		},
 	},
 	config = function()
@@ -21,7 +22,7 @@ return {
 		capabilities.offsetEncoding = { "utf-8" }
 		capabilities.textDocument.foldingRange = {
 			dynamicRegistration = false,
-			lineFoldingOnly = true
+			lineFoldingOnly = true,
 		}
 		-- capabilities.textDocument.completion.completionItem.snippetSupport = false
 
@@ -51,77 +52,77 @@ return {
 			taplo = {},
 			unocss = {},
 			clangd = {
-			  filetypes = { "c", "cpp" },
+				filetypes = { "c", "cpp" },
 			},
 			hls = {
-			  filetypes = { "haskell", "lhaskell", "cabal" },
+				filetypes = { "haskell", "lhaskell", "cabal" },
 			},
 			rust_analyzer = {
-			settings = {
-				["rust-analyzer"] = {
-					checkOnSave = {
-						allFeatures = true,
-					},
-					cargo = {
-						allFeatures = true,
-					},
-				},
-			},
-		},
-		pyright = {
-			settings = {
-				python = {
-					analysis = {
-						autoSearchPaths = true,
-						extraPaths = { vim.fn.getcwd() .. "/common/", vim.fn.getcwd() .. "/ML/common/" },
+				settings = {
+					["rust-analyzer"] = {
+						checkOnSave = {
+							allFeatures = true,
+						},
+						cargo = {
+							allFeatures = true,
+						},
 					},
 				},
 			},
-		},
-		lua_ls = {
-			settings = {
-				Lua = {
-					runtime = {
-						-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-						version = "LuaJIT",
-					},
-					diagnostics = {
-						-- Get the language server to recognize the `vim` global
-						globals = { "vim" },
-					},
-					workspace = {
-						-- Make the server aware of Neovim runtime files
-						library = vim.api.nvim_get_runtime_file("", true),
-					},
-					-- Do not send telemetry data containing a randomized but unique identifier
-					telemetry = {
-						enable = false,
+			pyright = {
+				settings = {
+					python = {
+						analysis = {
+							autoSearchPaths = true,
+							extraPaths = { vim.fn.getcwd() .. "/common/", vim.fn.getcwd() .. "/ML/common/" },
+						},
 					},
 				},
 			},
-		},
-		jsonls = {
-			settings = {
-				json = {
-					schemas = require("schemastore").json.schemas(),
-					validate = { enable = true },
-				},
-			},
-		},
-		yamlls = {
-			settings = {
-				yaml = {
-					schemaStore = {
-						-- You must disable built-in schemaStore support if you want to use
-						-- this plugin and its advanced options like `ignore`.
-						enable = false,
-						-- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-						url = "",
+			lua_ls = {
+				settings = {
+					Lua = {
+						runtime = {
+							-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+							version = "LuaJIT",
+						},
+						diagnostics = {
+							-- Get the language server to recognize the `vim` global
+							globals = { "vim" },
+						},
+						workspace = {
+							-- Make the server aware of Neovim runtime files
+							library = vim.api.nvim_get_runtime_file("", true),
+						},
+						-- Do not send telemetry data containing a randomized but unique identifier
+						telemetry = {
+							enable = false,
+						},
 					},
-					schemas = require("schemastore").yaml.schemas(),
 				},
 			},
-		}
+			jsonls = {
+				settings = {
+					json = {
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
+				},
+			},
+			yamlls = {
+				settings = {
+					yaml = {
+						schemaStore = {
+							-- You must disable built-in schemaStore support if you want to use
+							-- this plugin and its advanced options like `ignore`.
+							enable = false,
+							-- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+							url = "",
+						},
+						schemas = require("schemastore").yaml.schemas(),
+					},
+				},
+			},
 		}
 
 		---@generic T1: table

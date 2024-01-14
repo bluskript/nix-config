@@ -10,6 +10,7 @@
     settings = {
       xdg_open = true;
       xdg_open_fork = true;
+      preview.preview_script = pkgs.writeShellScript "preview_file" (builtins.readFile ./preview_file.sh);
       custom_commands = let
         rg = "${pkgs.ripgrep}/bin/rg";
         bat = "${pkgs.bat}/bin/bat";
@@ -32,9 +33,10 @@
           command = "nvim";
         }
       ];
+      extension = {
+        ts."inherit" = "text_default";
+      };
       mimetype.text."inherit" = "text_default";
-    };
-    theme = {
     };
     keymap = {
       default_view = {
@@ -54,6 +56,10 @@
           {
             keys = ["T"];
             commands = ["new_tab --current"];
+          }
+          {
+            keys = ["e"];
+            commands = ["shell nvim %s"];
           }
           {
             keys = ["W"];
@@ -200,12 +206,8 @@
             commands = ["cursor_move_page_down 0.5"];
           }
           {
-            keys = ["ctrl+b"];
-            commands = ["cursor_move_page_up"];
-          }
-          {
             keys = ["ctrl+f"];
-            commands = ["cursor_move_page_down"];
+            commands = ["custom_search rgfzf"];
           }
 
           {
@@ -324,7 +326,6 @@
             keys = ["p" "o"];
             commands = ["paste_files --overwrite=true"];
           }
-
           {
             keys = ["a"];
             commands = [":touch "];
@@ -333,12 +334,6 @@
             keys = ["A"];
             commands = [":mkdir "];
           }
-
-          {
-            keys = ["f" "t"];
-            commands = [":touch "];
-          }
-
           {
             keys = [" "];
             commands = ["select --toggle=true"];

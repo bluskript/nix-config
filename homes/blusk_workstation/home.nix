@@ -32,8 +32,8 @@
     ../programs/ranger
     ../programs/tmux.nix
     ../programs/pidgin.nix
+    ../programs/bat.nix
     ../programs/joshuto/default.nix
-    # ../programs/nnn.nix
   ];
 
   nixpkgs = {
@@ -121,6 +121,7 @@
         ".config/transmission"
         ".config/Sonixd"
         ".local/share/nicotine"
+        ".config/nicotine"
         {
           directory = ".local/share/containers";
           method = "symlink";
@@ -134,7 +135,6 @@
       files = [
         ".bash_history"
         ".config/nushell/history.txt"
-        ".config/nicotine/config"
       ];
     };
   };

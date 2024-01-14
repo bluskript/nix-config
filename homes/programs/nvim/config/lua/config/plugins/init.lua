@@ -43,8 +43,8 @@ return {
 				"<leader>j",
 				function()
 					require("tui-nvim"):new({
-						cmd = "ranger --choosefiles=/tmp/tui-nvim --selectfile="
-								.. vim.fn.fnameescape(vim.fn.expand("%:p")),
+						cmd = "joshuto --file-chooser --output-file /tmp/tui-nvim "
+								.. vim.fn.fnameescape(vim.fn.expand("%:p:h")),
 						-- Read and open files from '/tmp/tui-nvim'
 						temp = "/tmp/tui-nvim",
 					})
