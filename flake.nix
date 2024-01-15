@@ -22,7 +22,7 @@
     hardware.url = "github:nixos/nixos-hardware";
     impermanence.url = "github:nix-community/impermanence";
 
-    stylix.url = "github:bluskript/stylix";
+    stylix.url = "github:bluskript/stylix/myfork";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,7 +54,7 @@
     discordrp-mpris.url = "github:bluskript/discordrp-mpris-flake";
     discordrp-mpris.inputs.nixpkgs.follows = "nixpkgs";
 
-    firefox.url = "github:nix-community/flake-firefox-nightly?rev=0abccc26273423eb95525e404d537d8139d211af";
+    firefox.url = "github:nix-community/flake-firefox-nightly?rev=50d8b1e0de42e80cab989e44176ae2add770da46";
   };
 
   outputs = {

@@ -65,6 +65,10 @@ in {
       terminal = "alacritty msg create-window || alacritty";
       menu = "${pkgs.wofi}/bin/wofi --show run";
       bars = [];
+      fonts = {
+        names = pkgs.lib.mkBefore [ "Cozette" ];
+        size = 10.0;
+      };
       # gaps = {
       #   inner = 8;
       # };

@@ -26,6 +26,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     pciutils
+    killall
     ripgrep
     skim
     bottom

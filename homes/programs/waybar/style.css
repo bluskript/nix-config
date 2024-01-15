@@ -8,8 +8,8 @@
 * {
   /* border: none; */
   border-radius: 0px;
-  font-family: sans-serif, "Material Design Icons";
-  font-size: 14px;
+  font-family: cozette;
+  font-size: 10pt;
 }
 
 window#waybar {

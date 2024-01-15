@@ -1,3 +1,8 @@
+* {
+  font-family: "Cozette", monospace !important;
+  font-size: 10pt !important;
+}
+
 .tabbrowser-tab {
   visibility: collapse;
 }

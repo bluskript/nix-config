@@ -89,13 +89,11 @@
       reaper
       transmission-gtk
       xdg_utils
-
       papirus-icon-theme
-
       sonixd
       signal-desktop
-
       nix-output-monitor
+      wf-recorder
     ];
     persistence."/persist/home/blusk" = {
       allowOther = true;
@@ -172,6 +170,9 @@
           x = 16;
           y = 4;
         };
+      };
+      font.bold = {
+        family = "CozetteVector";
       };
     };
   };

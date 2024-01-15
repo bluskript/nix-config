@@ -1,21 +1,77 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  termify = {
+    name,
+    fontfile,
+    dpi ? 100,
+    ptSize ? 10,
+    extraWidth ? 9,
+    ...
+  }: let
+    bdf2psf-data = "${pkgs.bdf2psf}/share/bdf2psf";
+    inherit (pkgs.lib) hasSuffix;
+  in
+    pkgs.runCommand name
+    {
+      buildInputs = with pkgs; [otf2bdf bdf2psf gzip];
+      sets = pkgs.lib.concatStringsSep "+" (map (x: "${bdf2psf-data}/${x}") [
+        "ascii.set"
+        "linux.set"
+        "fontsets/Lat2.256"
+        "fontsets/Uni1.512"
+        "useful.set"
+      ]);
+    } ''
+      ${
+        if hasSuffix ".ttf" fontfile || hasSuffix ".otf" fontfile
+        then "otf2bdf ${fontfile} -r ${toString dpi} -p ${toString ptSize} -o tmp.bdf || true"
+        else if hasSuffix ".bdf" fontfile
+        then "cp ${fontfile} tmp.bdf"
+        else throw "termify: unrecognised font format: ${fontfile}"
+      }
+
+      if ! grep -q AVERAGE_WIDTH tmp.bdf; then
+        sed -i 's,POINT_SIZE \(.*\),&\nAVERAGE_WIDTH \1,' tmp.bdf
+      fi
+
+      AV=$( sed -n 's,AVERAGE_WIDTH ,,p' tmp.bdf )
+      AV=$(( ( AV + ${builtins.toString extraWidth} ) / 10 * 10 ))
+      sed -i "/AVERAGE_WIDTH/s, .*, $AV," tmp.bdf
+
+      bdf2psf --fb tmp.bdf ${bdf2psf-data}/standard.equivalents $sets 512 - | gzip -k - > $out
+    '';
+in {
   stylix.fonts = {
     serif = {
       package = pkgs.eb-garamond;
       name = "EB Garamond";
     };
-    sansSerif = {
-      package = pkgs.geist-font-sans;
-      name = "Geist";
-    };
+    # sansSerif = {
+    #   package = pkgs.geist-font-sans;
+    #   name = "Geist";
+    # };
+    # monospace = {
+    #   package = pkgs.geist-font-mono;
+    #   name = "Geist Mono Code";
+    # };
     emoji = {
       package = pkgs.twitter-color-emoji;
       name = "Twitter Color Emoji";
     };
     monospace = {
-      package = pkgs.geist-font-mono;
-      name = "Geist Mono Code";
+      package = pkgs.cozette;
+      name = "Cozette";
     };
+    sansSerif = {
+      package = pkgs.cozette;
+      name = "Cozette";
+    };
+  };
+
+  console.font = termify {
+    name = "cozette.psf.gz";
+    earlySetup = true;
+    useXkbConfig = true;
+    fontfile = "${pkgs.cozette}/share/fonts/misc/cozette.bdf";
   };
 
   fonts = {
@@ -26,6 +82,8 @@
 
       defaultFonts = {
         sansSerif = [
+          "Cozette"
+          "CozetteVector"
           "Geist"
           "Noto Sans CJK SC"
           "Twitter Color Emoji"
@@ -38,7 +96,9 @@
           "Symbols Nerd Font"
         ];
         monospace = [
-          "Geist Mono Code"
+          # "Geist Mono Code"
+          "Cozette"
+          "CozetteVector"
           "Noto Sans Mono CJK SC"
           "Twitter Color Emoji"
           "Symbols Nerd Font Mono"

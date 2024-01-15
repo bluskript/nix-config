@@ -11,7 +11,7 @@ in {
           offset ? "1",
           size ? "medium",
           icon,
-        }: "<span font_family='Symbols Nerd Font' rise='${offset}pt' size='${size}'>${icon}</span>";
+        }: "<span rise='${offset}pt' size='${size}'>${icon}</span>";
         offsetNerdIcon = icon:
           offsetY {icon = icon;};
       in {
@@ -34,26 +34,29 @@ in {
           interval = 1;
           format = "{:%Y-%m-%d | %H:%M:%OS}";
         };
+        memory = {
+          format = " {}%";
+        };
         cpu = {
-          format = "${offsetY { icon = ""; offset = "1"; }}  {}%";
+          format = " {}%";
         };
         network = let
-          upDownFormat = "${offsetY { icon = ""; offset = "1"; }} {bandwidthUpBits} / ${offsetY { icon = ""; offset = "1"; }} {bandwidthDownBits}";
+          upDownFormat = "↑ {bandwidthUpBits} │ ↓ {bandwidthDownBits}";
         in {
           interval = 1;
-          formatWifi = "${""}  {essid} ({signalStrength}%) :: ${upDownFormat}";
-          formatEthernet = "${"󰈀"}  {ifname}: {ipaddr}/{cidr} :: ${upDownFormat}";
+          formatWifi = " {essid} ({signalStrength}%) :: ${upDownFormat}";
+          formatEthernet = "  {ifname}: {ipaddr}/{cidr} :: ${upDownFormat}";
           format = "{ifname} :: ${upDownFormat}";
-          formatDisconnected = "${"⚠"}  Disconnected";
+          formatDisconnected = "⚠  Disconnected";
           tooltipFormat = "{ifname}: {ipaddr}";
         };
         sway = {
           mode = {
-            format = "<span style=\"italic\">  {}</span>"; # Icon: expand-arrows-alt
+            format = "<span style=\"italic\">  {}</span>";
           };
         };
         pulseaudio = {
-          format = "{icon}  {volume}%";
+          format = "{icon} {volume}%";
           format-bluetooth = "{icon}  {volume}%";
           format-muted = "";
           format-icons = {
@@ -63,7 +66,7 @@ in {
             phone = offsetNerdIcon "";
             portable = offsetNerdIcon "";
             car = offsetNerdIcon "";
-            default = [(offsetY { icon = ""; offset = "0.82"; }) (offsetY { icon = ""; offset = "0.82"; })];
+            default = ["" ""];
           };
           on-click = "pavucontrol";
         };
