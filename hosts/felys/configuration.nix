@@ -43,17 +43,17 @@
     motherboard = "amd";
   };
 
-  systemd.services.post-suspend-actions = {
-    description = "Restore openrgb profile";
-    environment.WAYLAND_DISPLAY = "wayland-1";
-    environment.XDG_RUNTIME_DIR = "/run/user/1000";
-    wantedBy = ["multi-user.target" "suspend.target"];
-    serviceConfig = {
-      Type = "forking";
-      User = "blusk";
-      ExecStart = "${pkgs.openrgb}/bin/openrgb -p main.orp";
-    };
-  };
+  # systemd.services.post-suspend-actions = {
+  #   description = "Restore openrgb profile";
+  #   environment.WAYLAND_DISPLAY = "wayland-1";
+  #   environment.XDG_RUNTIME_DIR = "/run/user/1000";
+  #   wantedBy = ["multi-user.target" "suspend.target"];
+  #   serviceConfig = {
+  #     Type = "forking";
+  #     User = "blusk";
+  #     ExecStart = "${pkgs.openrgb}/bin/openrgb -p main.orp";
+  #   };
+  # };
 
   services.openssh.enable = true;
   services.openssh.allowSFTP = true;

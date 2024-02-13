@@ -15,23 +15,19 @@ in {
     ./disks.nix
   ];
 
+  security.apparmor.enable = false;
+
   networking.hostName = "muse";
   nix.settings.trusted-users = ["blusk"];
 
-  services.navidrome = {
+  services.jellyfin = {
     enable = true;
-    settings = {
-      MusicFolder = "/music";
-      Address = "0.0.0.0";
-      Port = 4533;
-      # EnableTranscodingConfig = true;
-    };
+    openFirewall = true;
   };
 
   networking.firewall = {
-    enable = false;
-    allowedTCPPorts = [22 80 443 4533];
-    allowedUDPPortRanges = [];
+    allowedTCPPorts = [22 80 443 8096 8920 564];
+    allowedUDPPorts = [1900 7359];
   };
 
   environment.systemPackages = [
@@ -43,9 +39,6 @@ in {
   # services.xrdp.enable = true;
   # services.xrdp.defaultWindowManager = "${pkgs.icewm}/bin/icewm";
   # services.xrdp.openFirewall = true;
-
-  age.secrets.xornet.file = ../../secrets/nozomi-xornet.age;
-  services.xornet-reporter.enable = lib.mkForce false;
 
   services.openssh.enable = true;
   services.openssh.allowSFTP = true;
@@ -84,8 +77,14 @@ in {
     hideMounts = true;
     directories = [
       "/var/log"
-      "/var/lib/private/navidrome"
-      "/music"
+      "/var/lib/jellyfin"
+    ];
+    files = [
+      "/etc/machine-id"
+      "/etc/ssh/ssh_host_rsa_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
     ];
   };
 

@@ -52,13 +52,13 @@ return {
 			},
 		},
 	},
-	{
-		"andweeb/presence.nvim",
-		opts = {
-			main_image = "file",
-			neovim_image_text = "menthol illness",
-		},
-	},
+	-- {
+	-- 	"andweeb/presence.nvim",
+	-- 	opts = {
+	-- 		main_image = "file",
+	-- 		neovim_image_text = "menthol illness",
+	-- 	},
+	-- },
 	{ "RRethy/nvim-base16" },
 	{ "xiyaowong/transparent.nvim", opts = {} },
 	{

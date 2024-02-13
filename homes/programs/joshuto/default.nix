@@ -10,6 +10,7 @@
     settings = {
       xdg_open = true;
       xdg_open_fork = true;
+      use_trash = false;
       preview.preview_script = pkgs.writeShellScript "preview_file" (builtins.readFile ./preview_file.sh);
       custom_commands = let
         rg = "${pkgs.ripgrep}/bin/rg";

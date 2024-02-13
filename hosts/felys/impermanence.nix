@@ -12,6 +12,12 @@
       "/etc/NetworkManager"
       "/var/log"
       "/etc/mullvad-vpn"
+      {
+        directory = "/etc/wireguard";
+        mode = "u+rw,g=,o=";
+        user = "root";
+        group = "root";
+      }
       "/var/lib/libvirt"
       "/var/lib/containers"
     ];

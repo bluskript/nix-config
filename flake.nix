@@ -54,7 +54,9 @@
     discordrp-mpris.url = "github:bluskript/discordrp-mpris-flake";
     discordrp-mpris.inputs.nixpkgs.follows = "nixpkgs";
 
-    firefox.url = "github:nix-community/flake-firefox-nightly?rev=50d8b1e0de42e80cab989e44176ae2add770da46";
+    firefox.url = "github:nix-community/flake-firefox-nightly?rev=57df49781ef1b803e9b8f39509d32f864824df87";
+
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
   outputs = {
@@ -64,6 +66,7 @@
     disko,
     nix-index-database,
     agenix,
+    deploy-rs,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -101,8 +104,6 @@
     # These are usually stuff you would upstream into home-manager
     homeManagerModules = import ./modules/home-manager;
 
-    apps = inputs.nixinate.nixinate.x86_64-linux self;
-
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
@@ -139,15 +140,6 @@
           agenix.nixosModules.default
           (import ./hosts/nozomi/configuration.nix)
           disko.nixosModules.disko
-          {
-            _module.args.nixinate = {
-              host = "5.161.75.53";
-              sshUser = "blusk";
-              buildOn = "local";
-              substituteOnTarget = true;
-              hermetic = false;
-            };
-          }
         ];
       };
       muse = nixpkgs.lib.nixosSystem {
@@ -157,17 +149,26 @@
           agenix.nixosModules.default
           (import ./hosts/muse/configuration.nix)
           disko.nixosModules.disko
-          {
-            _module.args.nixinate = {
-              host = "10.9.1.12";
-              sshUser = "blusk";
-              buildOn = "local";
-              substituteOnTarget = true;
-              hermetic = false;
-            };
-          }
         ];
       };
     };
+
+    deploy = {
+      magicRollback = false;
+      autoRollback = false;
+      nodes.muse = {
+        hostname = "10.9.1.12";
+        profiles.system = {
+          sshUser = "blusk";
+          user = "root";
+          fastConnection = true;
+          path =
+            deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.muse;
+        };
+      };
+    };
+    #
+    # # This is highly advised, and will prevent many possible mistakes
+    # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }

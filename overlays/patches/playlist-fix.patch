@@ -1,0 +1,19 @@
+diff --git a/MediaBrowser.Controller/Playlists/Playlist.cs b/MediaBrowser.Controller/Playlists/Playlist.cs
+index ca032e7..2dc5fff 100644
+--- a/MediaBrowser.Controller/Playlists/Playlist.cs
++++ b/MediaBrowser.Controller/Playlists/Playlist.cs
+@@ -24,11 +24,7 @@ namespace MediaBrowser.Controller.Playlists
+     {
+         public static readonly IReadOnlyList<string> SupportedExtensions = new[]
+         {
+-            ".m3u",
+-            ".m3u8",
+-            ".pls",
+-            ".wpl",
+-            ".zpl"
++            ".none"
+         };
+
+         public Playlist()
+--
+2.43.0

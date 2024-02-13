@@ -11,7 +11,7 @@
   ...
 }: {
   imports = [
-    (modulesPath + "/profiles/hardened.nix")
+    # (modulesPath + "/profiles/hardened.nix")
     ./base_cli.nix
     ../nix.nix
     ../networking/dns.nix
@@ -27,7 +27,7 @@
     # useGlobalPkgs = true;
     # useUserPackages = true;
     users = {
-      blusk = import ../../homes/blusk_server/home.nix;
+      blusk = import ../../../homes/blusk_server/home.nix;
     };
   };
 

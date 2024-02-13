@@ -1,5 +1,5 @@
 {
-  disko,
+  pkgs,
   modulesPath,
   ...
 }: {
@@ -8,6 +8,23 @@
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
   fileSystems."/nix".neededForBoot = true;
+  fileSystems."/nix/persist/music" = {
+    fsType = "fuse";
+    device = "${pkgs.sshfs-fuse}/bin/sshfs#muse@10.9.1.16:/";
+    options = [
+      "noauto"
+      "_netdev"
+      "allow_other"
+      "reconnect"
+      "follow_symlinks"
+      "x-systemd.automount"
+      "StrictHostKeyChecking=no"
+      "UserKnownHostsFile=/dev/null"
+      "ServerAliveInterval=10"
+      "IdentityFile=/etc/ssh/ssh_host_ed25519_key"
+      "port=2022"
+    ];
+  };
   disko.devices = {
     nodev."/" = {
       fsType = "tmpfs";

@@ -84,6 +84,7 @@ in {
         sansSerif = [
           "Cozette"
           "CozetteVector"
+          "Ark Pixel 10px Monospaced"
           "Geist"
           "Noto Sans CJK SC"
           "Twitter Color Emoji"
@@ -99,6 +100,7 @@ in {
           # "Geist Mono Code"
           "Cozette"
           "CozetteVector"
+          "Ark Pixel 10px Monospaced"
           "Noto Sans Mono CJK SC"
           "Twitter Color Emoji"
           "Symbols Nerd Font Mono"
@@ -122,6 +124,7 @@ in {
       eb-garamond
       geist-font-sans
       geist-font-mono
+      ark-pixel-font
       (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
   };

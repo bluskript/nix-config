@@ -1,12 +1,14 @@
-# This file defines overlays
 {inputs, ...}: {
-  # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs {pkgs = final;};
 
-  # This one contains whatever you want to overlay
-  # You can change versions, add patches, set compilation flags, anything really.
-  # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
+    jellyfin = prev.jellyfin.overrideAttrs (self: {
+      patches =
+        (self.patches or [])
+        ++ [
+          ./patches/playlist-fix.patch
+        ];
+    });
     base16-schemes = prev.base16-schemes.overrideAttrs (prev: {
       version = "git";
       src = final.pkgs.fetchFromGitHub {
@@ -16,26 +18,18 @@
         sha256 = "sha256-5yIHgDTPjoX/3oDEfLSQ0eJZdFL1SaCfb9d6M0RmOTM=";
       };
     });
-    nushell = prev.nushell.overrideAttrs (self: {
-      doCheck = false;
-      buildFeatures =
-        self.buildFeatures
-        or []
+    firefox-hardenedsupport = prev.wrapFirefox (prev.firefox-devedition.unwrapped.override {
+      jemallocSupport = false;
+    }) {};
+    libvirt = prev.libvirt.overrideAttrs (prev: {
+      patches =
+        (prev.patches or [])
         ++ [
-          "which-support"
-          "zip"
-          "sqlite"
-          "dataframe"
-          "extra"
+          ./patches/0003-substitute-modules-path.patch
         ];
     });
-    # example = prev.example.overrideAttrs (oldAttrs: rec {
-    # ...
-    # });
   };
 
-  # When applied, the unstable nixpkgs set (declared in the flake inputs) will
-  # be accessible through 'pkgs.unstable'
   stable-packages = final: _prev: {
     stable = import inputs.stable {
       system = final.system;

@@ -69,7 +69,7 @@ in {
     # useGlobalPkgs = true;
     # useUserPackages = true;
     users = {
-      blusk = import ../../homes/blusk_server/home.nix;
+      blusk = (import ../../homes/blusk_server/home.nix);
     };
   };
 

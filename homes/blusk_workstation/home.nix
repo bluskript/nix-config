@@ -17,23 +17,22 @@
 
     ../common/profile-cli.nix
     ../programs/arrpc.nix
-    ../programs/discordrp-mpris.nix
+    # ../programs/discordrp-mpris.nix
     ../programs/nvim
     ../programs/nvim/neovide.nix
     ../programs/nvim/stylix.nix
     ../programs/qt
     ../programs/gtk.nix
     ../programs/waybar
-    # ../programs/eww
     ../programs/sway
     ../programs/firefox
     ../programs/virtualisation/virt-manager.nix
     ../programs/virtualisation/looking-glass-client
     ../programs/ranger
     ../programs/tmux.nix
-    ../programs/pidgin.nix
     ../programs/bat.nix
     ../programs/joshuto/default.nix
+    ../programs/zathura.nix
   ];
 
   nixpkgs = {
@@ -43,15 +42,6 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.stable-packages
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
     ];
     # Configure your nixpkgs instance
     config = {
@@ -90,7 +80,7 @@
       transmission-gtk
       xdg_utils
       papirus-icon-theme
-      sonixd
+      feishin
       signal-desktop
       nix-output-monitor
       wf-recorder
@@ -106,7 +96,7 @@
         ".local/share/zoxide"
         ".config/Element"
         ".config/shell_gpt"
-        ".mozilla/firefox/Default"
+        ".mozilla/firefox/dev-edition-default"
         ".config/Yubico"
         ".local/share/zsh"
         # note: clear this out every once in a while to make sure it still can install from scratch
@@ -117,9 +107,10 @@
         ".local/share/strawberry"
         ".local/share/keyrings"
         ".config/transmission"
-        ".config/Sonixd"
+        ".config/feishin"
         ".local/share/nicotine"
         ".config/nicotine"
+        ".local/share/zathura"
         {
           directory = ".local/share/containers";
           method = "symlink";
@@ -151,6 +142,15 @@
 
   programs.bash.enable = true;
 
+  programs.imv = {
+    enable = true;
+    settings = {
+      binds = {
+        y = ''exec wl-copy -t image/png < "$imv_current_file"'';
+      };
+    };
+  };
+
   programs.starship = {
     enable = true;
     settings = {
@@ -174,6 +174,13 @@
       font.bold = {
         family = "CozetteVector";
       };
+      keyboard.bindings = [
+        {
+          key = "E";
+          mods = "Control";
+          action = "ToggleViMode";
+        }
+      ];
     };
   };
 
@@ -187,6 +194,7 @@
         "x-scheme-handler/sgnl" = "signal-desktop.desktop";
         "x-scheme-handler/signalcaptcha" = "signal-desktop.desktop";
         "x-scheme-handler/slack" = "slack.desktop";
+        "application/pdf" = "org.pwmt.zathura.desktop";
       };
       associations = {
         added = {

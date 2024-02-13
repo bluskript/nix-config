@@ -5,8 +5,8 @@
   inputs,
   ...
 }: let
-  nvimBase16 = pkgs.vimUtils.buildVimPluginFrom2Nix {
-    pname = "nvim-base16";
+  nvimBase16 = pkgs.vimUtils.buildVimPlugin {
+    name = "nvim-base16";
     version = "6247ca9aa9f34644dfa290a6df3f6feefb73eb97";
     src = pkgs.fetchFromGitHub {
       owner = "RRethy";

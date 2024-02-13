@@ -105,6 +105,10 @@ export def howdoi [...query: string] = {
 	sgpt --model=gpt-4 --cache --shell ($query | str join " ")
 }
 
+export def nosrss [verb: string = "switch", ...opts: string] {
+	run-external --redirect-combine sudo ...[nixos-rebuild $verb --fast ...$opts] | nom
+}
+
 $env.config = {
 	color_config: $dark_theme
 	show_banner: false

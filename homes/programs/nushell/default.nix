@@ -5,7 +5,7 @@
 }: {
   programs.nushell = {
     enable = true;
-    package = pkgs.nushell;
+    package = pkgs.nushellFull;
     shellAliases = let
       include = [
         "nosrs"
@@ -70,6 +70,7 @@
         | get 0.0.0
       }
       ${builtins.readFile ./config.nu}
+      register ${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats
       use ${nu_scripts}/modules/nix/nix.nu *
       # use ${nu_scripts}/modules/network/sockets/sockets.nu
     '';

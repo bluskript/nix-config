@@ -42,7 +42,6 @@ return {
 			terraform_lsp = {},
 			dockerls = {},
 			zls = {},
-			clangd = {},
 			cssls = {},
 			html = {},
 			eslint = {},
@@ -52,7 +51,10 @@ return {
 			taplo = {},
 			unocss = {},
 			clangd = {
-				filetypes = { "c", "cpp" },
+				-- filetypes = { "c", "cpp" },
+				capabilities = {
+					offsetEncoding = "utf-8",
+				},
 			},
 			hls = {
 				filetypes = { "haskell", "lhaskell", "cabal" },
@@ -129,7 +131,7 @@ return {
 		---@param tbl T1
 		---@return table
 		local extend_config = function(tbl)
-			return vim.tbl_deep_extend("force", tbl, common_options)
+			return vim.tbl_deep_extend("keep", tbl, common_options)
 		end
 
 		for server, config in pairs(servers) do

@@ -16,9 +16,9 @@
       popups = 10;
     };
     cursor = {
-      package = pkgs.capitaine-cursors-themed;
-      name = "Capitaine Cursors (Palenight)";
-      size = 1;
+      package = pkgs.capitaine-cursors;
+      name = "capitaine-cursors";
+      size = 12;
     };
   };
 }

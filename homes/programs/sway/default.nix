@@ -164,12 +164,6 @@ in {
       corner_radius 4
       smart_corner_radius enable
 
-      for_window [class="REAPER" title="FX:.*"] floating enable
-      for_window [class="REAPER" title="(LV2i?|VST3?i?|JS):.*"] floating enable
-      for_window [class="REAPER" title="Add FX.*"] floating enable, resize set height 800
-      for_window [class="REAPER" title="Insert Virtual Instrument on New Track.*"] floating enable, resize set height 800
-      for_window [class="REAPER" title="Media Item Properties:.*"] floating enable, resize set width 600
-      for_window [class="REAPER" title="MIDI take:.*"] floating enable
       for_window [app_id="imv"] floating enable
       for_window [app_id="mpv"] floating enable
     '';

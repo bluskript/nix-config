@@ -13,17 +13,6 @@
 in {
   users.mutableUsers = false;
 
-  services.xornet-reporter = {
-    enable = true;
-    configFile = config.age.secrets.xornet.path;
-  };
-
-  age.secrets.xornet = {
-    mode = "770";
-    owner = "xornet";
-    group = "xornet";
-  };
-
   environment.systemPackages = with pkgs; [
     pciutils
     killall
