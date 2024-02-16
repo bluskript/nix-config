@@ -18,6 +18,7 @@
     ./passthrough.nix
     ./disks.nix
     ./bluetooth.nix
+    # ./microvm.nix
 
     ./hidden.nix
   ];

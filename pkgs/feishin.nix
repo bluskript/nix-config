@@ -21,7 +21,7 @@
   appimageContents = appimageTools.extractType2 {inherit name src;};
 in
   appimageTools.wrapType2 {
-    inherit name src;
+    inherit pname version src;
 
     extraInstallCommands = ''
       mv $out/bin/${name} $out/bin/${pname}
@@ -37,6 +37,7 @@ in
     '';
 
     meta = with lib; {
+      mainProgram = "feishin";
       description = "A modern self-hosted music player (AppImage).";
       homepage = "https://github.com/jeffvli/feishin";
       license = licenses.gpl3Only;

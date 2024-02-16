@@ -1,11 +1,8 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-hardenedsupport;
+    # because its wrapped with nixpak we cant have home-manager wrap it again
+    package = null;
     profiles = {
       dev-edition-default = {
         id = 0;

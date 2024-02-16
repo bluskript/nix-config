@@ -66,12 +66,22 @@ in {
       menu = "${pkgs.wofi}/bin/wofi --show run";
       bars = [];
       fonts = {
-        names = pkgs.lib.mkBefore [ "Cozette" ];
+        names = pkgs.lib.mkBefore ["Cozette"];
         size = 10.0;
       };
-      # gaps = {
-      #   inner = 8;
-      # };
+      window = {
+        titlebar = false;
+        border = 0;
+        commands = [
+          {
+            criteria.app_id = "privileged";
+            command = "border normal 2";
+          }
+        ];
+      };
+      gaps = {
+        inner = 2;
+      };
       floating.criteria = [
         {app_id = "virt-manager";}
       ];
@@ -128,10 +138,13 @@ in {
         forceKill = pkgs.writeShellScript "forcekill" ''
           kill -9 $(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true).pid')
         '';
+        unsanboxedShell = "${pkgs.nushellFull}/bin/nu";
+        privileged_args = "--title \"!! PRIVILEGED SHELL !!\" -e ${unsanboxedShell}";
+        privileged_terminal = "alacritty msg create-window --class privileged ${privileged_args} || alacritty --class privileged ${privileged_args}";
       in
         lib.mkOptionDefault {
           "${mod}+space" = "exec ${cfg.menu}";
-          #"${mod}+Return" = "exec $(cfg.terminal)";
+          "${mod}+Shift+Return" = "exec $(${privileged_terminal})";
           "${mod}+w" = "kill";
           "${mod}+shift+w" = "exec ${forceKill}";
           "${mod}+s" = "floating toggle";
@@ -161,9 +174,8 @@ in {
     };
     extraConfigEarly = ''
       default_dim_inactive 0.1
-      corner_radius 4
+      corner_radius 8
       smart_corner_radius enable
-
       for_window [app_id="imv"] floating enable
       for_window [app_id="mpv"] floating enable
     '';

@@ -1,5 +1,9 @@
 {inputs, ...}: {
-  additions = final: _prev: import ../pkgs {pkgs = final;};
+  additions = final: _prev:
+    import ../pkgs {
+      pkgs = final;
+      inputs = inputs;
+    };
 
   modifications = final: prev: {
     jellyfin = prev.jellyfin.overrideAttrs (self: {
@@ -28,12 +32,5 @@
           ./patches/0003-substitute-modules-path.patch
         ];
     });
-  };
-
-  stable-packages = final: _prev: {
-    stable = import inputs.stable {
-      system = final.system;
-      config.allowUnfree = true;
-    };
   };
 }

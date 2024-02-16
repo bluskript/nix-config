@@ -57,6 +57,21 @@
     firefox.url = "github:nix-community/flake-firefox-nightly?rev=57df49781ef1b803e9b8f39509d32f864824df87";
 
     deploy-rs.url = "github:serokell/deploy-rs";
+
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixpak = {
+      url = "github:nixpak/nixpak";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixpak-pkgs = {
+      url = "github:nixpak/pkgs";
+      inputs.nixpak.follows = "nixpak";
+    };
   };
 
   outputs = {
@@ -67,6 +82,7 @@
     nix-index-database,
     agenix,
     deploy-rs,
+    microvm,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -82,9 +98,13 @@
     # Acessible through 'nix build', 'nix shell', etc
     packages = forAllSystems (
       system: let
-        pkgs = nixpkgs.legacyPackages.${system};
+        overlays = import ./overlays {inherit inputs;};
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [overlays.additions overlays.modifications];
+        };
       in
-        import ./pkgs {inherit pkgs;}
+        import ./pkgs {inherit pkgs inputs system;}
     );
     # Devshell for bootstrapping
     # Acessible through 'nix develop' or 'nix-shell' (legacy)

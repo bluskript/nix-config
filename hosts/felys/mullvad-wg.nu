@@ -108,23 +108,30 @@ def "main update-secrets" [--secrets_path: path = /etc/wireguard/secrets.json] {
 	if ($data | get -i account_id) == null {
 		let account_id = (input "Enter your Mullvad Account ID: ")
 		$data.account_id = $account_id
-		echo "Updated Account ID"
+		echo "updated account id"
 	}
 	if ($data | get -i privkey) == null {
 		$data.privkey = (wg genkey)
-		echo "Updated Private Key"
+		echo "generated new private key"
 	}
 	let old_pubkey = $data | get -i pubkey
 	$data.pubkey = ($data.privkey | wg pubkey)
 	if old_pubkey != $data.pubkey {
-		echo "Updated Public Key"
+		echo "updated public key"
 	}
 	let old_addr = $data | get -i addr
 	$data.addr = (get_addr $data.account_id $data.pubkey)
 	if old_addr != $data.addr {
-		echo "Updated Address"
+		echo "updated address"
 	}
 	$data | to json | save -f $secrets_path
 	echo "✅ Secrets updated"
 }
 
+def "main" [] {
+	echo `Available subcommands:
+  - up
+  - down
+  - update-relays
+  - update-secrets`
+}

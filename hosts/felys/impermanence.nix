@@ -11,7 +11,6 @@
       }
       "/etc/NetworkManager"
       "/var/log"
-      "/etc/mullvad-vpn"
       {
         directory = "/etc/wireguard";
         mode = "u+rw,g=,o=";

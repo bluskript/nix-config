@@ -1,4 +1,8 @@
-{pkgs ? (import ../nixpkgs.nix) {}}: let
+{
+  inputs,
+  pkgs ? (import ../nixpkgs.nix) {},
+  ...
+} @ args: let
   node-packages = pkgs.callPackage (import ./node-packages/default.nix) {};
 in {
   feishin = pkgs.callPackage (import ./feishin.nix) {};
@@ -7,4 +11,5 @@ in {
   geist-font-sans = pkgs.callPackage (import ./geist-font-sans.nix) {};
   geist-font-mono = pkgs.callPackage (import ./geist-font-mono.nix) {};
   unocss-language-server = node-packages."unocss-language-server-git+https://git@github.com/Jason-Jay-Mason/unocss-language-server#main";
+  nixpaked = builtins.mapAttrs (k: v: a: (v a).config.env) ((import ./nixpak/default.nix) args);
 }

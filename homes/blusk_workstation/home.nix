@@ -3,6 +3,7 @@
   outputs,
   nixosConfig,
   pkgs,
+  config,
   ...
 }: {
   # You can import other home-manager modules here
@@ -33,6 +34,7 @@
     ../programs/bat.nix
     ../programs/joshuto/default.nix
     ../programs/zathura.nix
+    ../programs/feishin.nix
   ];
 
   nixpkgs = {
@@ -41,7 +43,6 @@
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
-      outputs.overlays.stable-packages
     ];
     # Configure your nixpkgs instance
     config = {
@@ -56,35 +57,45 @@
     username = "blusk";
     homeDirectory = "/home/blusk";
     shellAliases = nixosConfig.environment.shellAliases;
-    packages = with pkgs; [
-      distrobox
-      ntfs3g
-      ncdu
-      light
-      pavucontrol
-      # transmission-gtk
-      grim
-      slurp
-      imv
-      mpv
-      zip
-      unzip
-      ripgrep
-      skim
-      dwt1-shell-color-scripts
-      neofetch
-      yewtube
-      element-desktop
-      tmsu
-      reaper
-      transmission-gtk
-      xdg_utils
-      papirus-icon-theme
-      feishin
-      signal-desktop
-      nix-output-monitor
-      wf-recorder
-    ];
+    packages = with pkgs;
+      [
+        distrobox
+        ntfs3g
+        ncdu
+        light
+        pavucontrol
+        # transmission-gtk
+        grim
+        slurp
+        imv
+        mpv
+        zip
+        unzip
+        ripgrep
+        skim
+        dwt1-shell-color-scripts
+        neofetch
+        yewtube
+        element-desktop
+        tmsu
+        reaper
+        transmission-gtk
+        xdg_utils
+        papirus-icon-theme
+        signal-desktop
+        nix-output-monitor
+        wf-recorder
+      ]
+      ++ (let
+        guiPrefs = (import ../common/nixpak-hm.nix) {inherit config pkgs;};
+      in [
+        (nixpaked.nicotine-plus guiPrefs)
+        (nixpaked.firefox {
+          imports = [guiPrefs];
+
+          bubblewrap.bind.ro = ["/sys/bus/pci"];
+        })
+      ]);
     persistence."/persist/home/blusk" = {
       allowOther = true;
       directories = [
@@ -163,7 +174,17 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      shell.program = "${pkgs.nushell}/bin/nu";
+      shell.program = "${pkgs.nixpaked.nushellFull
+        ({sloth, ...}: {
+          bubblewrap.bind = {
+            rw = [
+              (sloth.concat' sloth.homeDir "/projects")
+            ];
+            ro = [
+              (sloth.concat' sloth.homeDir "/.config/nushell")
+            ];
+          };
+        })}/bin/nu";
       window = {
         dynamic_padding = false;
         padding = {
