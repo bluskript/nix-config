@@ -2,7 +2,9 @@
   pkgs,
   config,
   ...
-}: {
+}: let
+  nixpakedNushell = (import ./nixpak.nix) { inherit pkgs; };
+in {
   programs.nushell = {
     enable = true;
     package = pkgs.nushellFull;
@@ -73,10 +75,12 @@
       register ${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats
       use ${nu_scripts}/modules/nix/nix.nu *
       # use ${nu_scripts}/modules/network/sockets/sockets.nu
+
+      ${nixpakedNushell.enterScript}
     '';
     extraEnv = ''
       $env.HOME = '${config.home.homeDirectory}'
-      $env.HISTFILE = '${config.home.homeDirectory}/.local/share/nushell/history'
+      $env.HISTFILE = '${config.home.homeDirectory}/.config/nushell/history'
     '';
     # environmentVariables = builtins.mapAttrs (name: value: "\"${builtins.toString value}\"") config.home.sessionVariables;
   };

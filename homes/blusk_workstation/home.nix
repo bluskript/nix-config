@@ -82,13 +82,15 @@
         transmission-gtk
         xdg_utils
         papirus-icon-theme
-        signal-desktop
         nix-output-monitor
         wf-recorder
       ]
       ++ (let
         guiPrefs = (import ../common/nixpak-hm.nix) {inherit config pkgs;};
+        signal-desktop = nixpaked.signal-desktop guiPrefs;
+        signal-wrapper = pkgs.writeShellScriptBin "signal-desktop" "sudo -E ${pkgs.iproute2}/bin/ip netns exec torjail sudo -E -u blusk ${signal-desktop}/bin/signal-desktop \"$@\"";
       in [
+        signal-wrapper
         (nixpaked.nicotine-plus guiPrefs)
         (nixpaked.firefox {
           imports = [guiPrefs];
@@ -106,12 +108,14 @@
         ".npm"
         ".local/share/zoxide"
         ".config/Element"
+        ".config/Signal"
         ".config/shell_gpt"
         ".mozilla/firefox/dev-edition-default"
         ".config/Yubico"
         ".local/share/zsh"
         # note: clear this out every once in a while to make sure it still can install from scratch
         ".local/share/nvim"
+        ".local/state/nvim"
         ".local/share/direnv"
         # to make me not go insane reconfiguring output devices all the time
         ".local/state/wireplumber"
@@ -119,6 +123,7 @@
         ".local/share/keyrings"
         ".config/transmission"
         ".config/feishin"
+        ".config/nushell/hist"
         ".local/share/nicotine"
         ".config/nicotine"
         ".local/share/zathura"
@@ -171,20 +176,12 @@
     };
   };
 
-  programs.alacritty = {
+  programs.alacritty = let
+    nixpakNushell = (import ../programs/nushell/nixpak.nix) {inherit pkgs;};
+  in {
     enable = true;
     settings = {
-      shell.program = "${pkgs.nixpaked.nushellFull
-        ({sloth, ...}: {
-          bubblewrap.bind = {
-            rw = [
-              (sloth.concat' sloth.homeDir "/projects")
-            ];
-            ro = [
-              (sloth.concat' sloth.homeDir "/.config/nushell")
-            ];
-          };
-        })}/bin/nu";
+      shell.program = "${nixpakNushell.rootShell}/bin/nu";
       window = {
         dynamic_padding = false;
         padding = {

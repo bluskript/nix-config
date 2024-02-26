@@ -32,7 +32,7 @@ with lib; {
 
   security.protectKernelImage = mkDefault true;
 
-  # security.allowSimultaneousMultithreading = mkDefault false;
+  security.allowSimultaneousMultithreading = mkDefault false;
 
   security.forcePageTableIsolation = mkDefault true;
 

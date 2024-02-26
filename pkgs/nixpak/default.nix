@@ -18,8 +18,72 @@ in {
         "${inputs.nixpak-pkgs}/pkgs/modules/network.nix"
         extraConfig
       ];
+
+      bubblewrap.bind.ro = [
+        "/bin/sh"
+        "/usr/bin/env"
+      ];
     };
   });
+
+  signal-desktop = extraConfig:
+    mkNixPak {
+      config = {
+        sloth,
+        pkgs,
+        ...
+      }: {
+        imports = [
+          "${inputs.nixpak-pkgs}/pkgs/modules/gui-base.nix"
+          "${inputs.nixpak-pkgs}/pkgs/modules/network.nix"
+          extraConfig
+        ];
+
+        app.package = pkgs.signal-desktop;
+
+        dbus = {
+          enable = true;
+          policies = {
+            # We need to send notifications
+            "org.freedesktop.Notifications" = "talk";
+            "org.gnome.Mutter.IdleMonitor" = "talk";
+            "org.kde.StatusNotifierWatcher" = "talk";
+            "com.canonical.AppMenu.Registrar" = "talk";
+            "com.canonical.indicator.application" = "talk";
+            "org.ayatana.indicator.application" = "talk";
+            # Allow running in background
+            "org.freedesktop.portal.Background" = "talk";
+            # Allow advanced input methods
+            "org.freedesktop.portal.Fcitx" = "talk";
+            # This is needed for the tray icon
+            "org.kde.*" = "own";
+
+            # FIXME: signal doesn't know how to use this
+            # "org.freedesktop.portal.*" = "talk";
+          };
+        };
+
+        flatpak.appId = "org.signal.Signal";
+
+        bubblewrap = {
+          network = true;
+          shareIpc = true;
+
+          bind.rw = [
+            # double check if this is necessary
+            (sloth.runtimeDir)
+            (sloth.concat' (sloth.xdgConfigHome) "/Signal")
+            # download without a file picker prompt
+            (sloth.concat' sloth.homeDir "/Downloads")
+          ];
+          bind.ro = [
+            # pulseaudio socket
+            # is this necessary? we already bind a containing directory rw
+            (sloth.concat' (sloth.runtimeDir) "/pulse/native")
+          ];
+        };
+      };
+    };
 
   nicotine-plus = extraConfig: (mkNixPak {
     config = {sloth, ...}: {
@@ -33,8 +97,10 @@ in {
       ];
 
       bubblewrap = {
+        network = true;
+        shareIpc = true;
         bind.rw = [
-          (sloth.env "XDG_RUNTIME_DIR")
+          (sloth.runtimeDir)
           (sloth.concat' sloth.homeDir "/.config/nicotine")
         ];
       };

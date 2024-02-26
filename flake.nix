@@ -64,7 +64,8 @@
     };
 
     nixpak = {
-      url = "github:nixpak/nixpak";
+      # url = "github:nixpak/nixpak";
+      url = "/home/blusk/projects/contrib/nixpak";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -973,17 +973,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1707358904,
-        "narHash": "sha256-WYP9+8nHYWmBh3tsQhos7GJ+SozP9/jv0dZsQLYlwo0=",
-        "owner": "nixpak",
-        "repo": "nixpak",
-        "rev": "903020fdc3e77e896404a2888f4b896638400854",
-        "type": "github"
+        "lastModified": 1708294885,
+        "narHash": "sha256-91BGEpSvEFY9tpCbUa8C7ZgQl8ckLalyO/krW+79cog=",
+        "ref": "refs/heads/work/blusk/extra-args-script",
+        "rev": "289793a25a9261a709eded6df204da4927e39bc8",
+        "revCount": 157,
+        "type": "git",
+        "url": "file:///home/blusk/projects/contrib/nixpak"
       },
       "original": {
-        "owner": "nixpak",
-        "repo": "nixpak",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/blusk/projects/contrib/nixpak"
       }
     },
     "nixpak-pkgs": {
