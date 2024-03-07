@@ -132,9 +132,6 @@ in {
           (sloth.concat' sloth.homeDir "/.config/feishin")
           "/tmp/.X11-unix/X0"
         ];
-        bind.ro = [
-          (sloth.concat' sloth.homeDir "/.nix-profile/bin/mpv")
-        ];
 
         tmpfs = ["/tmp"];
       };
