@@ -9,6 +9,7 @@ vim.o.clipboard = "unnamedplus"
 vim.o.termguicolors = true
 -- custom config file vim uses
 vim.o.exrc = true
+vim.o.swapfile = false
 
 local set = vim.opt -- set options
 set.fillchars = set.fillchars + "diff:╱"

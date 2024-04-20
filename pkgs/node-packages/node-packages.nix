@@ -13,94 +13,76 @@ let
         sha512 = "gFPqTG7otEJ8uP6wrhDv6mqwGWYZKNvAcCq6u9hOj0c+IKCEsY4L1oC9trPq2SaWIzAfHvqfBDxF591JkMf+kg==";
       };
     };
-    "@unocss/autocomplete-0.56.5" = {
+    "@unocss/autocomplete-0.55.7" = {
       name = "_at_unocss_slash_autocomplete";
       packageName = "@unocss/autocomplete";
-      version = "0.56.5";
+      version = "0.55.7";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@unocss/autocomplete/-/autocomplete-0.56.5.tgz";
-        sha512 = "2vPkVZUDtd8xgdN9faHtp1f4HPx5/YS6l/RpqeLIE4jNlwxmNXqpIAQsLblDoOdq72PqMWYrrvjTg7STyADAJQ==";
+        url = "https://registry.npmjs.org/@unocss/autocomplete/-/autocomplete-0.55.7.tgz";
+        sha512 = "pUPDEviRogpFw3s+ai9oBzScznClMcamfUoGcjjBiYx5HKS0CrkxOb8oKbEG0hCXi72luJiRgXnBZPC6TCNSPw==";
       };
     };
-    "@unocss/config-0.56.5" = {
+    "@unocss/config-0.55.7" = {
       name = "_at_unocss_slash_config";
       packageName = "@unocss/config";
-      version = "0.56.5";
+      version = "0.55.7";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@unocss/config/-/config-0.56.5.tgz";
-        sha512 = "rscnFIYgUlN/0hXHdhANyjFcDjDutt3JO0ZRITdNLzoglh7GVNiDTURBJwUZejF/vGJ7IkMd3qOdNhPFuRY1Bg==";
+        url = "https://registry.npmjs.org/@unocss/config/-/config-0.55.7.tgz";
+        sha512 = "+X6rPScyFEWbkZyCyM+HfoJhJNN+CEl2n2izWkm0kuDj3w9fY9B3f/0dsk+jmx/gJEI5Y797q9zspNMNDib1AA==";
       };
     };
-    "@unocss/core-0.56.5" = {
+    "@unocss/core-0.55.7" = {
       name = "_at_unocss_slash_core";
       packageName = "@unocss/core";
-      version = "0.56.5";
+      version = "0.55.7";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@unocss/core/-/core-0.56.5.tgz";
-        sha512 = "fx5VhOjSHn0HdV2D34pEwFMAHJcJQRTCp1xEE4GzxY1irXzaa+m2aYf5PZjmDxehiOC16IH7TO9FOWANXk1E0w==";
+        url = "https://registry.npmjs.org/@unocss/core/-/core-0.55.7.tgz";
+        sha512 = "c+bWe844Xjlwc1EPwHj0+n3LpntJG7ELPbEOOxNIG+CQdcEX0l1G0rkM8+nKstJ9WJmgpf1HdJQLVMF62HXvhw==";
       };
     };
-    "@unocss/extractor-arbitrary-variants-0.56.5" = {
+    "@unocss/extractor-arbitrary-variants-0.55.7" = {
       name = "_at_unocss_slash_extractor-arbitrary-variants";
       packageName = "@unocss/extractor-arbitrary-variants";
-      version = "0.56.5";
+      version = "0.55.7";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@unocss/extractor-arbitrary-variants/-/extractor-arbitrary-variants-0.56.5.tgz";
-        sha512 = "p2pyzz/ONvc5CGcaB9OZvWE8qkRSgyuhaQqFQLdBFeUhveHC0CGP0iSnXwBgAFHWM7DJo4/JpWeZ+mBt0ogVLA==";
+        url = "https://registry.npmjs.org/@unocss/extractor-arbitrary-variants/-/extractor-arbitrary-variants-0.55.7.tgz";
+        sha512 = "imK2g/frlo5Ag0uVB+C/Psyo5+9AnqhoRAgYa6gyrQ/TJnrnwf+M3jFngU9evIMHw92vig1DGfPa2ZId901DwQ==";
       };
     };
-    "@unocss/preset-mini-0.56.5" = {
+    "@unocss/preset-mini-0.55.7" = {
       name = "_at_unocss_slash_preset-mini";
       packageName = "@unocss/preset-mini";
-      version = "0.56.5";
+      version = "0.55.7";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@unocss/preset-mini/-/preset-mini-0.56.5.tgz";
-        sha512 = "/KhlThhs1ilauM7MwRSpahLbIPZ5VGeGvaUsU8+ZlNT3sis4yoVYkPtR14tL2IT6jhOU05N/uu3aBj+1bP8GjQ==";
+        url = "https://registry.npmjs.org/@unocss/preset-mini/-/preset-mini-0.55.7.tgz";
+        sha512 = "ZCskE2uprjGkpQezEPM6KPMf84rIZEUNc1p2DxWVHaFUPRV24/JSNsO4PsKrQgNIb2dLQxzPNlMzQJI7ssdBXQ==";
       };
     };
-    "@unocss/preset-uno-0.56.5" = {
+    "@unocss/preset-uno-0.55.7" = {
       name = "_at_unocss_slash_preset-uno";
       packageName = "@unocss/preset-uno";
-      version = "0.56.5";
+      version = "0.55.7";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@unocss/preset-uno/-/preset-uno-0.56.5.tgz";
-        sha512 = "3hzE0X1oxMbHLvWyTj/4BrJQ7OAL428BpzEJos0RsxifM04vOJX4GC4khIbmTl8KIMECMtATK3ren3JqzD2bFw==";
+        url = "https://registry.npmjs.org/@unocss/preset-uno/-/preset-uno-0.55.7.tgz";
+        sha512 = "z4pCxOv/OU1ARo++cvbijWNW2zy/EVTMqJXa+SEep9b99wFXPQE3gaPvLdURp/e5f1PoxVyPZ6JiBknbClSDuA==";
       };
     };
-    "@unocss/preset-wind-0.56.5" = {
+    "@unocss/preset-wind-0.55.7" = {
       name = "_at_unocss_slash_preset-wind";
       packageName = "@unocss/preset-wind";
-      version = "0.56.5";
+      version = "0.55.7";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@unocss/preset-wind/-/preset-wind-0.56.5.tgz";
-        sha512 = "iyMPvCEZkrGLHFXXlcqxDo/UcSK7KWw4x7/QUz7irrvc78cxYVuPm98QZgpCRcCwKerKVyFLjGOtwQ0kmVSVsQ==";
+        url = "https://registry.npmjs.org/@unocss/preset-wind/-/preset-wind-0.55.7.tgz";
+        sha512 = "vLi0mtYDnvx3uYtBR4fSCR52T59drTUp3XVAAqQTbhvRctnSWm65MWE4G+gqdt2qQ9fM4SVCsxLLaXuJkI2eqw==";
       };
     };
-    "@unocss/rule-utils-0.56.5" = {
-      name = "_at_unocss_slash_rule-utils";
-      packageName = "@unocss/rule-utils";
-      version = "0.56.5";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/@unocss/rule-utils/-/rule-utils-0.56.5.tgz";
-        sha512 = "CXIGHCIC9B8WUl9KbbFMSZHcsIgfmI/+X0bjBv6xrgBVC1EQ2Acq4PYnJIbaRGBRAhl9wYjNL7Zq2UWOdowHAw==";
-      };
-    };
-    "acorn-8.11.3" = {
-      name = "acorn";
-      packageName = "acorn";
-      version = "8.11.3";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/acorn/-/acorn-8.11.3.tgz";
-        sha512 = "Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==";
-      };
-    };
-    "defu-6.1.3" = {
+    "defu-6.1.4" = {
       name = "defu";
       packageName = "defu";
-      version = "6.1.3";
+      version = "6.1.4";
       src = fetchurl {
-        url = "https://registry.npmjs.org/defu/-/defu-6.1.3.tgz";
-        sha512 = "Vy2wmG3NTkmHNg/kzpuvHhkqeIx3ODWqasgCRbKtbXEN0G+HpEEv9BtJLp7ZG1CZloFaC41Ah3ZFbq7aqCqMeQ==";
+        url = "https://registry.npmjs.org/defu/-/defu-6.1.4.tgz";
+        sha512 = "mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==";
       };
     };
     "fzf-0.5.2" = {
@@ -121,94 +103,49 @@ let
         sha512 = "gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==";
       };
     };
-    "jsonc-parser-3.2.0" = {
-      name = "jsonc-parser";
-      packageName = "jsonc-parser";
-      version = "3.2.0";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/jsonc-parser/-/jsonc-parser-3.2.0.tgz";
-        sha512 = "gfFQZrcTc8CnKXp6Y4/CBT3fTc0OVuDofpre4aEeEpSBPV5X5v4+Vmx+8snU7RLPrNHPKSgLxGo9YuQzz20o+w==";
-      };
-    };
-    "lru-cache-10.1.0" = {
+    "lru-cache-10.2.0" = {
       name = "lru-cache";
       packageName = "lru-cache";
-      version = "10.1.0";
+      version = "10.2.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/lru-cache/-/lru-cache-10.1.0.tgz";
-        sha512 = "/1clY/ui8CzjKFyjdvwPWJUYKiFVXG2I2cY0ssG7h4+hwk+XOIX7ZSG9Q7TW8TW3Kp3BUSqgFWBLgL4PJ+Blag==";
+        url = "https://registry.npmjs.org/lru-cache/-/lru-cache-10.2.0.tgz";
+        sha512 = "2bIM8x+VAf6JT4bKAljS1qUWgMsqZRPGJS6FSahIMPVvctcNhyVp7AJu7quxOW9jwkryBReKZY5tY5JYv2n/7Q==";
       };
     };
-    "mlly-1.4.2" = {
-      name = "mlly";
-      packageName = "mlly";
-      version = "1.4.2";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/mlly/-/mlly-1.4.2.tgz";
-        sha512 = "i/Ykufi2t1EZ6NaPLdfnZk2AX8cs0d+mTzVKuPfqPKPatxLApaBoxJQ9x1/uckXtrS/U5oisPMDkNs0yQTaBRg==";
-      };
-    };
-    "pathe-1.1.1" = {
-      name = "pathe";
-      packageName = "pathe";
-      version = "1.1.1";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/pathe/-/pathe-1.1.1.tgz";
-        sha512 = "d+RQGp0MAYTIaDBIMmOfMwz3E+LOZnxx1HZd5R18mmCZY0QBlK0LDZfPc8FW8Ed2DlvsuE6PRjroDY+wg4+j/Q==";
-      };
-    };
-    "pkg-types-1.0.3" = {
-      name = "pkg-types";
-      packageName = "pkg-types";
-      version = "1.0.3";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/pkg-types/-/pkg-types-1.0.3.tgz";
-        sha512 = "nN7pYi0AQqJnoLPC9eHFQ8AcyaixBUOwvqc5TDnIKCMEE6I0y8P7OKA7fPexsXGCGxQDl/cmrLAp26LhcwxZ4A==";
-      };
-    };
-    "ufo-1.3.2" = {
-      name = "ufo";
-      packageName = "ufo";
-      version = "1.3.2";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/ufo/-/ufo-1.3.2.tgz";
-        sha512 = "o+ORpgGwaYQXgqGDwd+hkS4PuZ3QnmqMMxRuajK/a38L6fTpcE5GPIfrf+L/KemFzfUpeUQc1rRS1iDBozvnFA==";
-      };
-    };
-    "unconfig-0.3.11" = {
+    "unconfig-0.3.13" = {
       name = "unconfig";
       packageName = "unconfig";
-      version = "0.3.11";
+      version = "0.3.13";
       src = fetchurl {
-        url = "https://registry.npmjs.org/unconfig/-/unconfig-0.3.11.tgz";
-        sha512 = "bV/nqePAKv71v3HdVUn6UefbsDKQWRX+bJIkiSm0+twIds6WiD2bJLWWT3i214+J/B4edufZpG2w7Y63Vbwxow==";
+        url = "https://registry.npmjs.org/unconfig/-/unconfig-0.3.13.tgz";
+        sha512 = "N9Ph5NC4+sqtcOjPfHrRcHekBCadCXWTBzp2VYYbySOHW0PfD9XLCeXshTXjkPYwLrBr9AtSeU0CZmkYECJhng==";
       };
     };
-    "vscode-jsonrpc-8.2.0" = {
+    "vscode-jsonrpc-6.0.0" = {
       name = "vscode-jsonrpc";
       packageName = "vscode-jsonrpc";
-      version = "8.2.0";
+      version = "6.0.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/vscode-jsonrpc/-/vscode-jsonrpc-8.2.0.tgz";
-        sha512 = "C+r0eKJUIfiDIfwJhria30+TYWPtuHJXHtI7J0YlOmKAo7ogxP20T0zxB7HZQIFhIyvoBPwWskjxrvAtfjyZfA==";
+        url = "https://registry.npmjs.org/vscode-jsonrpc/-/vscode-jsonrpc-6.0.0.tgz";
+        sha512 = "wnJA4BnEjOSyFMvjZdpiOwhSq9uDoK8e/kpRJDTaMYzwlkrhG1fwDIZI94CLsLzlCK5cIbMMtFlJlfR57Lavmg==";
       };
     };
-    "vscode-languageserver-9.0.1" = {
+    "vscode-languageserver-7.0.0" = {
       name = "vscode-languageserver";
       packageName = "vscode-languageserver";
-      version = "9.0.1";
+      version = "7.0.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/vscode-languageserver/-/vscode-languageserver-9.0.1.tgz";
-        sha512 = "woByF3PDpkHFUreUa7Hos7+pUWdeWMXRd26+ZX2A8cFx6v/JPTtd4/uN0/jB6XQHYaOlHbio03NTHCqrgG5n7g==";
+        url = "https://registry.npmjs.org/vscode-languageserver/-/vscode-languageserver-7.0.0.tgz";
+        sha512 = "60HTx5ID+fLRcgdHfmz0LDZAXYEV68fzwG0JWwEPBode9NuMYTIxuYXPg4ngO8i8+Ou0lM7y6GzaYWbiDL0drw==";
       };
     };
-    "vscode-languageserver-protocol-3.17.5" = {
+    "vscode-languageserver-protocol-3.16.0" = {
       name = "vscode-languageserver-protocol";
       packageName = "vscode-languageserver-protocol";
-      version = "3.17.5";
+      version = "3.16.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/vscode-languageserver-protocol/-/vscode-languageserver-protocol-3.17.5.tgz";
-        sha512 = "mb1bvRJN8SVznADSGWM9u/b07H7Ecg0I3OgXDuLdn307rl/J3A9YD6/eYOssqhecL27hK1IPZAsaqh00i/Jljg==";
+        url = "https://registry.npmjs.org/vscode-languageserver-protocol/-/vscode-languageserver-protocol-3.16.0.tgz";
+        sha512 = "sdeUoAawceQdgIfTI+sdcwkiK2KU+2cbEYA0agzM2uqaUy2UpnnGHtWTHVEtS0ES4zHU0eMFRGN+oQgDxlD66A==";
       };
     };
     "vscode-languageserver-textdocument-1.0.11" = {
@@ -220,53 +157,46 @@ let
         sha512 = "X+8T3GoiwTVlJbicx/sIAF+yuJAqz8VvwJyoMVhwEMoEKE/fkDmrqUgDMyBECcM2A2frVZIUj5HI/ErRXCfOeA==";
       };
     };
-    "vscode-languageserver-types-3.17.5" = {
+    "vscode-languageserver-types-3.16.0" = {
       name = "vscode-languageserver-types";
       packageName = "vscode-languageserver-types";
-      version = "3.17.5";
+      version = "3.16.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/vscode-languageserver-types/-/vscode-languageserver-types-3.17.5.tgz";
-        sha512 = "Ld1VelNuX9pdF39h2Hgaeb5hEZM2Z3jUrrMgWQAu82jMtZp7p3vJT3BzToKtZI7NgQssZje5o0zryOrhQvzQAg==";
+        url = "https://registry.npmjs.org/vscode-languageserver-types/-/vscode-languageserver-types-3.16.0.tgz";
+        sha512 = "k8luDIWJWyenLc5ToFQQMaSrqCHiLwyKPHKPQZ5zz21vM+vIVUSvsRpcbiECH4WR88K2XZqc4ScRcZ7nk/jbeA==";
       };
     };
   };
 in
 {
-  "unocss-language-server-git+https://git@github.com/Jason-Jay-Mason/unocss-language-server#main" = nodeEnv.buildNodePackage {
+  "unocss-language-server-git+https://git@github.com/rogersanctus/unocss-language-server#main" = nodeEnv.buildNodePackage {
     name = "unocss-language-server";
     packageName = "unocss-language-server";
     version = "0.0.10";
     src = fetchgit {
-      url = "https://git@github.com/Jason-Jay-Mason/unocss-language-server";
-      rev = "9293c24d538fa52dbe9ebe73166824b830e124e6";
-      sha256 = "e93640174cccaea7d9df5a92b6fbc2e74e0ad8a6074fefc9dd8dca063eeb895c";
+      url = "https://git@github.com/rogersanctus/unocss-language-server";
+      rev = "7ebd11ffc752244cdbb90e6944dfee12a4f48ead";
+      sha256 = "78976744fa1746cbd5bf881c1aff5fef841d0fb5d9d9882462c7f45c37437ac0";
     };
     dependencies = [
       sources."@antfu/utils-0.7.7"
-      sources."@unocss/autocomplete-0.56.5"
-      sources."@unocss/config-0.56.5"
-      sources."@unocss/core-0.56.5"
-      sources."@unocss/extractor-arbitrary-variants-0.56.5"
-      sources."@unocss/preset-mini-0.56.5"
-      sources."@unocss/preset-uno-0.56.5"
-      sources."@unocss/preset-wind-0.56.5"
-      sources."@unocss/rule-utils-0.56.5"
-      sources."acorn-8.11.3"
-      sources."defu-6.1.3"
+      sources."@unocss/autocomplete-0.55.7"
+      sources."@unocss/config-0.55.7"
+      sources."@unocss/core-0.55.7"
+      sources."@unocss/extractor-arbitrary-variants-0.55.7"
+      sources."@unocss/preset-mini-0.55.7"
+      sources."@unocss/preset-uno-0.55.7"
+      sources."@unocss/preset-wind-0.55.7"
+      sources."defu-6.1.4"
       sources."fzf-0.5.2"
       sources."jiti-1.21.0"
-      sources."jsonc-parser-3.2.0"
-      sources."lru-cache-10.1.0"
-      sources."mlly-1.4.2"
-      sources."pathe-1.1.1"
-      sources."pkg-types-1.0.3"
-      sources."ufo-1.3.2"
-      sources."unconfig-0.3.11"
-      sources."vscode-jsonrpc-8.2.0"
-      sources."vscode-languageserver-9.0.1"
-      sources."vscode-languageserver-protocol-3.17.5"
+      sources."lru-cache-10.2.0"
+      sources."unconfig-0.3.13"
+      sources."vscode-jsonrpc-6.0.0"
+      sources."vscode-languageserver-7.0.0"
+      sources."vscode-languageserver-protocol-3.16.0"
       sources."vscode-languageserver-textdocument-1.0.11"
-      sources."vscode-languageserver-types-3.17.5"
+      sources."vscode-languageserver-types-3.16.0"
     ];
     buildInputs = globalBuildInputs;
     meta = {

@@ -38,7 +38,6 @@ return {
 			tsserver = {},
 			svelte = {},
 			nil_ls = {},
-			yamlls = {},
 			terraform_lsp = {},
 			dockerls = {},
 			zls = {},

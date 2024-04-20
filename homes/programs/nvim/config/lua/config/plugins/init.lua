@@ -6,6 +6,40 @@ vim.g.loaded_netrwPlugin = 1
 
 return {
 	{
+		"abecodes/tabout.nvim",
+		lazy = false,
+		config = function()
+			require("tabout").setup({
+				tabkey = "<Tab>",         -- key to trigger tabout, set to an empty string to disable
+				backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
+				act_as_tab = true,        -- shift content if tab out is not possible
+				act_as_shift_tab = true, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+				default_tab = "<C-t>",    -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+				default_shift_tab = "<C-d>", -- reverse shift default action,
+				enable_backwards = true,  -- well ...
+				completion = false,       -- if the tabkey is used in a completion pum
+				tabouts = {
+					{ open = "'", close = "'" },
+					{ open = '"', close = '"' },
+					{ open = "`", close = "`" },
+					{ open = "(", close = ")" },
+					{ open = "[", close = "]" },
+					{ open = "{", close = "}" },
+				},
+				ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+				exclude = {}, -- tabout will ignore these filetypes
+			})
+		end,
+		requires = {
+			"nvim-treesitter/nvim-treesitter",
+			"L3MON4D3/LuaSnip",
+			"hrsh7th/nvim-cmp",
+		},
+		opt = true,            -- Set this to true if the plugin is optional
+		event = "InsertCharPre", -- Set the event to 'InsertCharPre' for better compatibility
+		priority = 1000,
+	},
+	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		opts = {
@@ -86,12 +120,12 @@ return {
 				mode = { "n", "o", "x" },
 			},
 			{
-				"w",
+				"q",
 				"<cmd>lua require('spider').motion('w')<CR>",
 				mode = { "n", "o", "x" },
 			},
 			{
-				"b",
+				"Q",
 				"<cmd>lua require('spider').motion('b')<CR>",
 				mode = { "n", "o", "x" },
 			},
@@ -121,7 +155,6 @@ return {
 	{ "lewis6991/gitsigns.nvim",     opts = {} },
 	{
 		"mg979/vim-visual-multi",
-		event = "VeryLazy",
 	},
 	{
 		"elkowar/yuck.vim",
@@ -161,13 +194,16 @@ return {
 			{ "<leader>sk", "<cmd>Telescope keymaps<CR>" },
 			{ "<leader>r",  "<cmd>Telescope buffers<CR>" },
 		},
-		opts = {
-			pickers = {
-				oldfiles = {
-					cwd_only = true,
+		init = function()
+			require("telescope").setup({
+				defaults = vim.tbl_extend("force", require("telescope.themes").get_dropdown(), {}),
+				pickers = {
+					oldfiles = {
+						cwd_only = true,
+					},
 				},
-			},
-		},
+			})
+		end,
 	},
 	{
 		"NvChad/nvim-colorizer.lua",
@@ -189,28 +225,32 @@ return {
 	},
 	{
 		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
 		requires = { "nvim-lua/plenary.nvim" },
 		config = function(_, opts)
-			local mark = require("harpoon.mark")
-			local ui = require("harpoon.ui")
+			local harpoon = require("harpoon")
+			harpoon:setup()
 
-			vim.keymap.set("n", "<leader>m", mark.add_file)
-			vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
+			vim.keymap.set("n", "<C-f>", function()
+				harpoon.ui:toggle_quick_menu(harpoon:list())
+			end)
+
+			vim.keymap.set("n", "<leader>m", function()
+				harpoon:list():append()
+			end)
 
 			vim.keymap.set("n", "<leader>1", function()
-				ui.nav_file(1)
+				harpoon:list():select(1)
 			end)
 			vim.keymap.set("n", "<leader>2", function()
-				ui.nav_file(2)
+				harpoon:list():select(2)
 			end)
 			vim.keymap.set("n", "<leader>3", function()
-				ui.nav_file(3)
+				harpoon:list():select(3)
 			end)
 			vim.keymap.set("n", "<leader>4", function()
-				ui.nav_file(4)
+				harpoon:list():select(4)
 			end)
-
-			require("harpoon").setup(opts)
 		end,
 	},
 	{

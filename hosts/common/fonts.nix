@@ -45,6 +45,14 @@ in {
       package = pkgs.eb-garamond;
       name = "EB Garamond";
     };
+    monospace = {
+      package = pkgs.cozette;
+      name = "Cozette";
+    };
+    sansSerif = {
+      package = pkgs.cozette;
+      name = "Cozette";
+    };
     # sansSerif = {
     #   package = pkgs.geist-font-sans;
     #   name = "Geist";
@@ -56,14 +64,6 @@ in {
     emoji = {
       package = pkgs.twitter-color-emoji;
       name = "Twitter Color Emoji";
-    };
-    monospace = {
-      package = pkgs.cozette;
-      name = "Cozette";
-    };
-    sansSerif = {
-      package = pkgs.cozette;
-      name = "Cozette";
     };
   };
 
@@ -84,8 +84,8 @@ in {
         sansSerif = [
           "Cozette"
           "CozetteVector"
-          "Ark Pixel 10px Monospaced"
-          "Geist"
+          # "Ark Pixel 10px Monospaced"
+          # "Geist"
           "Noto Sans CJK SC"
           "Twitter Color Emoji"
           "Symbols Nerd Font"
@@ -100,7 +100,7 @@ in {
           # "Geist Mono Code"
           "Cozette"
           "CozetteVector"
-          "Ark Pixel 10px Monospaced"
+          # "Ark Pixel 10px Monospaced"
           "Noto Sans Mono CJK SC"
           "Twitter Color Emoji"
           "Symbols Nerd Font Mono"
@@ -124,7 +124,7 @@ in {
       eb-garamond
       geist-font-sans
       geist-font-mono
-      ark-pixel-font
+      # ark-pixel-font
       (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
   };

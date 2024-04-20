@@ -25,7 +25,7 @@ with lib; {
 
   nix.settings.allowed-users = mkDefault ["@users"];
 
-  environment.memoryAllocator.provider = mkDefault "graphene-hardened";
+  # environment.memoryAllocator.provider = mkDefault "graphene-hardened";
   # environment.variables.SCUDO_OPTIONS = mkDefault "ZeroContents=1";
 
   security.lockKernelModules = mkDefault true;

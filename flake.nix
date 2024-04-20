@@ -2,10 +2,7 @@
   description = "Mia's nix config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    small.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    stable.url = "github:nixos/nixpkgs/nixos-23.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?rev=9a9dae8f6319600fa9aebde37f340975cab4b8c0";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -64,8 +61,8 @@
     };
 
     nixpak = {
-      # url = "github:nixpak/nixpak";
-      url = "/home/blusk/projects/contrib/nixpak";
+      url = "github:bluskript/nixpak/work/blusk/extra-args-script";
+      # url = "/home/blusk/projects/contrib/nixpak";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -73,6 +70,9 @@
       url = "github:nixpak/pkgs";
       inputs.nixpak.follows = "nixpak";
     };
+
+    kagi-cli.url = "git+ssh://git@github.com/bluskript/kagi-cli.git";
+    nix-inspect.url = "github:bluskript/nix-inspect";
   };
 
   outputs = {

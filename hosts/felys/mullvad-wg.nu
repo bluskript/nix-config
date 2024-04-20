@@ -16,7 +16,7 @@ def get_addr [account: string, pubkey: string] {
 	http post -H [Content-Type application/x-www-form-urlencoded] -e "https://api.mullvad.net/wg" $body
 }
 
-def ifup [secrets: any, host: any, --ns: string, --if: string = "wg0"] {
+def ifup [secrets: any, entry_host: any, exit_host: any, --ns: string, --if: string = "wg0"] {
 	$secrets.addr | split row ',' | each {|addr| 
 		if ($addr | str contains '.') {
 			echo $"Adding ipv4 address ($addr)"
@@ -40,9 +40,9 @@ def ifup [secrets: any, host: any, --ns: string, --if: string = "wg0"] {
 		[Interface]
 		PrivateKey=($secrets.privkey)
 		[Peer]
-		PublicKey=($host.public_key)
+		PublicKey=(if $exit_host == null { $entry_host.public_key } else { $exit_host.public_key })
 		AllowedIPs=0.0.0.0/0,::/0
-		Endpoint=($host.ipv4_addr_in):51820
+		Endpoint=($entry_host.ipv4_addr_in):(if $exit_host == null { 51820 } else { $exit_host.multihop_port })
 	" | save -f $conf_file
 	echo "setting wireguard configuration"
 	if $ns != null {
@@ -56,12 +56,13 @@ def ifup [secrets: any, host: any, --ns: string, --if: string = "wg0"] {
 	} else {
 		ip link set wg0 up
 	}
-	rm -f $conf_file
+	# rm -f $conf_file
 }
 
-def "main up" [--secrets_path: path = /etc/wireguard/secrets.json, --country: closure, --city: closure, --ns: string] {
-	let selected = select_host --country $country --city $city
-	echo $"Connecting to ($selected.hostname)..."
+def "main up" [entry_country?: closure, entry_city?: closure, exit_country?: closure, exit_city?: closure, --secrets_path: path = /etc/wireguard/secrets.json, --ns = "mullvad"] {
+	let selected = select_host --country $entry_country --city $entry_city
+	let exit_selected = select_host --country $exit_country --city $exit_country
+	echo $"Connecting to ($exit_selected.hostname) via ($selected.hostname)..."
 	let secrets = open $secrets_path
 
 	echo "- adding link"
@@ -73,7 +74,8 @@ def "main up" [--secrets_path: path = /etc/wireguard/secrets.json, --country: cl
 		ip link set wg0 netns $ns 
 	}
 	echo "- setting up link"
-	ifup $secrets $selected --ns $ns 
+
+	ifup $secrets $selected $exit_selected --ns $ns 
 
 	echo "- setting default route"
 	if $ns != null {
@@ -85,7 +87,7 @@ def "main up" [--secrets_path: path = /etc/wireguard/secrets.json, --country: cl
 	echo "- setting as default"
 }
 
-def "main down" [--secrets_path: path = /etc/wireguard/secrets.json, --country: closure, --city: closure, --ns: string] {
+def "main down" [--secrets_path: path = /etc/wireguard/secrets.json, --country: closure, --city: closure, --ns: string = "mullvad"] {
 	echo "deleting link"
 	if $ns == null {
 		ip link delete wg0

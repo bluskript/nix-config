@@ -56,7 +56,7 @@ in {
   };
 
   wayland.windowManager.sway = {
-    package = inputs.swayfx.packages.${pkgs.system}.default;
+    # package = inputs.swayfx.packages.${pkgs.system}.default;
     enable = true;
     systemd.enable = true;
     wrapperFeatures.gtk = true;
@@ -130,7 +130,7 @@ in {
         screenshot =
           pkgs.writeShellScript "screenshot"
           ''
-            ${grim} -o "$(${currentoutput})" - | (${imv} -f - &)
+            ${grim} -o "$(${currentoutput})" - | ${imv} -f - &
             ID=$!
             ${slurp} | ${grim} -g - - | ${wl-copy} -t image/png
             kill $ID
@@ -173,9 +173,6 @@ in {
         };
     };
     extraConfigEarly = ''
-      default_dim_inactive 0.1
-      corner_radius 8
-      smart_corner_radius enable
       for_window [app_id="imv"] floating enable
       for_window [app_id="mpv"] floating enable
     '';

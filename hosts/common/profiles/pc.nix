@@ -24,7 +24,16 @@
 
   nix.settings.trusted-users = ["@wheel"];
 
+  programs.hamster.enable = true;
+
   systemd = {
+    coredump = {
+      extraConfig = ''
+        Storage=external
+        Compress=no
+        Directory=/tmp
+      '';
+    };
     services = {
       NetworkManager-wait-online.enable = false;
     };

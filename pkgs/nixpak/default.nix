@@ -9,6 +9,17 @@
     inherit pkgs;
   };
 in {
+  vscode = extraConfig: (mkNixPak {
+    config = {sloth, ...}: {
+      app.package = pkgs.vscode;
+      imports = [
+        "${inputs.nixpak-pkgs}/pkgs/modules/gui-base.nix"
+        "${inputs.nixpak-pkgs}/pkgs/modules/network.nix"
+        extraConfig
+      ];
+    };
+  });
+
   # A highly restricted nushell that doesn't get access to the rest of the system.
   nushellFull = extraConfig: (mkNixPak {
     config = {sloth, ...}: {
@@ -137,8 +148,29 @@ in {
       };
     };
   });
+
+  obsidian = extraConfig: (mkNixPak {
+    config = {sloth, ...}: {
+      flatpak.appId = "com.myself.obsidian";
+      app.package = pkgs.obsidian;
+
+      imports = [
+        "${inputs.nixpak-pkgs}/pkgs/modules/gui-base.nix"
+        extraConfig
+      ];
+
+      bubblewrap = {
+        bind.rw = [
+          "/persist/home/blusk/vault"
+          "/tmp/.X11-unix/X0"
+          (sloth.concat' sloth.homeDir "/.config/obsidian")
+        ];
+      };
+    };
+  });
+
   firefox = let
-    pkg = pkgs.firefox-hardenedsupport;
+    pkg = pkgs.firefox-devedition;
   in
     extraConfig: (mkNixPak {
       config = {
@@ -170,11 +202,18 @@ in {
 
         bubblewrap = {
           network = true;
+          sockets = {
+            pipewire = true;
+            pulse = true;
+          };
           bind.rw = let
             envSuffix = envKey: sloth.concat' (sloth.env envKey);
           in [
+            (sloth.concat' sloth.homeDir "/Downloads")
             (sloth.envOr "XAUTHORITY" "/no-xauth")
 
+            (envSuffix "XDG_RUNTIME_DIR" "/at-spi/bus")
+            (envSuffix "XDG_RUNTIME_DIR" "/gvfsd")
             (envSuffix "XDG_RUNTIME_DIR" "/doc")
             (envSuffix "XDG_RUNTIME_DIR" "/dconf")
             (sloth.concat' sloth.homeDir "/.mozilla")

@@ -1,8 +1,24 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   scheme = config.lib.stylix.colors {template = builtins.readFile ./default.mustache;};
 in {
   programs.waybar = {
     enable = true;
+    package = pkgs.waybar.override {
+      wireplumber = pkgs.wireplumber.overrideAttrs rec {
+        version = "0.4.17";
+        src = pkgs.fetchFromGitLab {
+          domain = "gitlab.freedesktop.org";
+          owner = "pipewire";
+          repo = "wireplumber";
+          rev = version;
+          hash = "sha256-vhpQT67+849WV1SFthQdUeFnYe/okudTQJoL3y+wXwI=";
+        };
+      };
+    };
     systemd.enable = true;
     systemd.target = "sway-session.target";
     settings = {

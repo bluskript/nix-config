@@ -59,6 +59,7 @@
     shellAliases = nixosConfig.environment.shellAliases;
     packages = with pkgs;
       [
+        (builtins.getFlake "github:bluskript/nix-inspect?rev=f6c31657c320d655377f0e5c982093a9b1579734").packages.x86_64-linux.default
         distrobox
         ntfs3g
         ncdu
@@ -84,6 +85,7 @@
         papirus-icon-theme
         nix-output-monitor
         wf-recorder
+        kagi-cli
       ]
       ++ (let
         guiPrefs = (import ../common/nixpak-hm.nix) {inherit config pkgs;};
@@ -92,6 +94,8 @@
       in [
         signal-wrapper
         (nixpaked.nicotine-plus guiPrefs)
+        (nixpaked.obsidian {})
+        (nixpaked.vscode {})
         (nixpaked.firefox {
           imports = [guiPrefs];
 
@@ -124,9 +128,12 @@
         ".config/transmission"
         ".config/feishin"
         ".config/nushell/hist"
+        ".config/kagi-cli"
         ".local/share/nicotine"
         ".config/nicotine"
+        ".config/obsidian"
         ".local/share/zathura"
+        ".local/share/hamster"
         {
           directory = ".local/share/containers";
           method = "symlink";
@@ -192,13 +199,13 @@
       font.bold = {
         family = "CozetteVector";
       };
-      keyboard.bindings = [
-        {
-          key = "E";
-          mods = "Control";
-          action = "ToggleViMode";
-        }
-      ];
+      # keyboard.bindings = [
+      #   {
+      #     key = "E";
+      #     mods = "Control";
+      #     action = "ToggleViMode";
+      #   }
+      # ];
     };
   };
 
