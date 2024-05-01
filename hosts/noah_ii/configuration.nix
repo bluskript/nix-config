@@ -40,18 +40,6 @@
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # services.snowflake-proxy = {
-  #   enable = true;
-  #   capacity = 100;
-  # };
-  #
-  # services.tor = {
-  #   enable = true;
-  #   settings = {
-  #     ServerTransportPlugin.transports = ["snowflake"];
-  #   };
-  # };
-
   # vfio.enable = true;
   # specialisation."NOVFIO".configuration = {
   #   system.nixos.tags = [ "no-vfio" ];

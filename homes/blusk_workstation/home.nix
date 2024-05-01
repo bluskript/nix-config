@@ -79,7 +79,6 @@
         yewtube
         element-desktop
         tmsu
-        reaper
         transmission-gtk
         xdg_utils
         papirus-icon-theme

@@ -10,6 +10,10 @@ in {
 
   services.tor = {
     enable = true;
+    client.enable = true;
+    torsocks = {
+      enable = true;
+    };
     settings = {
       TransPort = [
         {
@@ -78,8 +82,8 @@ in {
   };
 
   networking.firewall = {
-    allowedTCPPorts = [transPort];
-    allowedUDPPorts = [dnsPort];
+    allowedTCPPorts = [transPort 9050];
+    allowedUDPPorts = [dnsPort 9050];
   };
 
   environment.etc."resolv-torjail.conf".text = "nameserver ${subnet}.1";

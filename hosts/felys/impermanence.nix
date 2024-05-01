@@ -19,6 +19,7 @@
       }
       "/var/lib/libvirt"
       "/var/lib/containers"
+      "/var/lib/thelounge/users"
     ];
     files = [
       "/etc/machine-id"

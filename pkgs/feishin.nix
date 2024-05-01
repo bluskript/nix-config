@@ -24,7 +24,6 @@ in
     inherit pname version src;
 
     extraInstallCommands = ''
-      mv $out/bin/${name} $out/bin/${pname}
       install -m 444 -D ${appimageContents}/feishin.desktop $out/share/applications/feishin.desktop
       substituteInPlace $out/share/applications/feishin.desktop \
         --replace 'Exec=AppRun' 'Exec=${pname}'

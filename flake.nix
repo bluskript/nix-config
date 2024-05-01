@@ -2,7 +2,7 @@
   description = "Mia's nix config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?rev=9a9dae8f6319600fa9aebde37f340975cab4b8c0";
+    nixpkgs.url = "github:nixos/nixpkgs";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
