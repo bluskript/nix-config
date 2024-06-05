@@ -1,3 +1,4 @@
+
 user_pref("identity.sync.tokenserver.uri", "https://firefox.blusk.dev/token/1.0/sync/1.5");
 user_pref("services.sync.prefs.sync.browser.uiCustomization.state", true);
 user_pref("xpinstall.signatures.required", false);

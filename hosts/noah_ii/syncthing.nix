@@ -13,7 +13,7 @@
       };
       folders."main_vault" = {
         path = "/persist/home/blusk/vault/main";
-        devices = ["phone"];
+        devices = ["phone" "felys"];
         ignorePerms = true;
       };
     };
