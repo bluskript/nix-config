@@ -59,7 +59,7 @@ def ifup [secrets: any, entry_host: any, exit_host: any, --ns: string, --if: str
 	# rm -f $conf_file
 }
 
-def "main up" [entry_country?: closure, entry_city?: closure, exit_country?: closure, exit_city?: closure, --secrets_path: path = /etc/wireguard/secrets.json, --ns = "mullvad"] {
+def "main up" [entry_country?: closure, entry_city?: closure, exit_country?: closure, exit_city?: closure, --secrets_path: path = /etc/wireguard/secrets.json, --ns: string = "mullvad"] {
 	let selected = select_host --country $entry_country --city $entry_city
 	let exit_selected = select_host --country $exit_country --city $exit_country
 	echo $"Connecting to ($exit_selected.hostname) via ($selected.hostname)..."

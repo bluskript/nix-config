@@ -49,6 +49,7 @@ return {
 			bufls = {},
 			taplo = {},
 			unocss = {},
+			ocamllsp = {},
 			clangd = {
 				-- filetypes = { "c", "cpp" },
 				capabilities = {

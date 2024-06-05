@@ -28,6 +28,8 @@
 
   work-mode.enable = false;
 
+  services.tailscale.enable = true;
+
   # services.stalwart-mail = {
   #   enable = true;
   #   configFile = ../nozomi/mail.toml;

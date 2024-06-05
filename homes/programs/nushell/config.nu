@@ -106,7 +106,7 @@ export def howdoi [...query: string] = {
 }
 
 export def nosrss [verb: string = "switch", ...opts: string] {
-	run-external --redirect-combine sudo ...[nixos-rebuild $verb --fast ...$opts] | nom
+	sudo ...[nixos-rebuild $verb --fast ...$opts] o+e>| nom
 }
 
 $env.config = {

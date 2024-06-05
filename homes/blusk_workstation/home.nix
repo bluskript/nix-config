@@ -59,7 +59,7 @@
     shellAliases = nixosConfig.environment.shellAliases;
     packages = with pkgs;
       [
-        (builtins.getFlake "github:bluskript/nix-inspect?rev=f6c31657c320d655377f0e5c982093a9b1579734").packages.x86_64-linux.default
+        inputs.nix-inspect.packages.x86_64-linux.default
         distrobox
         ntfs3g
         ncdu
