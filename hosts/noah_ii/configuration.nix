@@ -18,11 +18,16 @@
     ./impermanence.nix
     ./nvidia.nix
     ./clevo.nix
+    ../felys/hidden.nix
+    ../felys/syncthing.nix
   ];
 
   services.tailscale.enable = true;
 
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.openssh.enable = true;
+  services.openssh.allowSFTP = true;
+
+  # services.xserver.desktopManager.plasma5.enable = true;
 
   work-mode.enable = false;
 
