@@ -7,13 +7,13 @@
     ../audio.nix
     ../video.nix
     ../fonts.nix
-    ../flatpak.nix
     ../printing.nix
     ../work.nix
     ../networking/dns
     ../networking/sshd.nix
     ../networking/podman.nix
     ../stylix-prefs.nix
+    ../nixpak-tricks.nix
   ];
 
   hardware.keyboard.qmk.enable = true;

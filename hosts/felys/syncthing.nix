@@ -8,12 +8,12 @@
     dataDir = "/persist/home/blusk/Documents";
     settings = {
       devices = {
-        "felys" = {id = "Y3TQBUJ-M5ZX3GO-NA4QGQV-7UBIHCN-XBYQULE-SXAQGBH-EWM2JHV-SIOSWQK";};
+        "NoAH-II" = {id = "IRAOIJL-ZNG2RJC-Z5X32HO-CV23NBE-D6VQKRX-GS6IOSV-EXV67MG-RY3NAA7";};
         "phone" = {id = "ZSLUX2F-4DYBYTL-DNFUBWU-E62GMMO-F2FLP76-XMY2H7M-N2E4G3D-IYMO6QG";};
       };
       folders."main_vault" = {
         path = "/persist/home/blusk/vault/main";
-        devices = ["phone"];
+        devices = ["phone" "NoAH-II"];
         ignorePerms = true;
       };
     };
