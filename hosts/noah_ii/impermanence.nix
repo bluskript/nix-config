@@ -12,6 +12,7 @@
       "/var/lib/libvirt"
       "/var/lib/containers"
       "/etc/tailord"
+      "/var/lib/tailscale"
     ];
     files = [
       "/etc/machine-id"

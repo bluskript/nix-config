@@ -22,7 +22,14 @@
     ../felys/syncthing.nix
   ];
 
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+    extraUpFlags = ["--accept-routes"];
+    openFirewall = true;
+  };
+
+  boot.kernelModules = ["wireguard" "xt_nat" "xt_mark" "macvtap" "xt_MASQUERADE"];
 
   services.openssh.enable = true;
   services.openssh.allowSFTP = true;
@@ -34,10 +41,10 @@
   age.secrets.xornet.file = ../../secrets/felys-xornet.age;
   age.identityPaths = ["/home/blusk/.ssh/id_ed25519"];
 
-  networking.networkmanager = {
-    wifi.macAddress = "random";
-    ethernet.macAddress = "random";
-  };
+  # networking.networkmanager = {
+  #   wifi.macAddress = "random";
+  #   ethernet.macAddress = "random";
+  # };
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
