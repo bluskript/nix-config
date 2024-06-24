@@ -1,7 +1,6 @@
 {
   description = "Mia's nix config";
 
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-generators = {
@@ -179,11 +178,12 @@
       magicRollback = false;
       autoRollback = false;
       nodes.muse = {
-        hostname = "10.9.1.12";
+        hostname = "10.9.1.5";
         profiles.system = {
           sshUser = "blusk";
           user = "root";
-          fastConnection = true;
+          fastConnection = false;
+          remoteBuild = true;
           path =
             deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.muse;
         };

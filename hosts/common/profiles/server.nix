@@ -14,10 +14,9 @@
     # (modulesPath + "/profiles/hardened.nix")
     ./base_cli.nix
     ../nix.nix
-    ../networking/dns.nix
+    # ../networking/dns
     ../networking/sshd.nix
   ];
-
 
   home-manager = {
     extraSpecialArgs = {
@@ -31,8 +30,6 @@
     };
   };
 
-  dns.encryption.enable = false;
-  dns.nameservers = [ "1.1.1.1" ];
   services.openssh.enable = true;
   # environment.noXlibs = true;
 

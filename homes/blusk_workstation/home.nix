@@ -37,22 +37,6 @@
     ../programs/feishin.nix
   ];
 
-  nixpkgs = {
-    # You can add overlays here
-    overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-    ];
-    # Configure your nixpkgs instance
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = _: true;
-    };
-  };
-
   home = {
     username = "blusk";
     homeDirectory = "/home/blusk";

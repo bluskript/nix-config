@@ -13,4 +13,5 @@ in {
   unocss-language-server = node-packages."unocss-language-server-git+https://git@github.com/rogersanctus/unocss-language-server#main";
   nixpaked = builtins.mapAttrs (k: v: a: (v a).config.env) ((import ./nixpak/default.nix) args);
   kagi-cli = inputs.kagi-cli.packages.${pkgs.system}.kagi-cli-release;
+  patched-firefox = pkgs.callPackage (import ./patched-firefox.nix) {};
 }

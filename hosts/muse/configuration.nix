@@ -15,6 +15,26 @@ in {
     ./disks.nix
   ];
 
+  age.secrets.slskd-env.file = ../../secrets/slskd-env.age;
+
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  services.slskd = {
+    enable = true;
+    openFirewall = true;
+    domain = null;
+    environmentFile = config.age.secrets.slskd-env.path;
+    settings = {
+      shares.directories = ["/nix/persist/music"];
+      directories = {
+        downloads = "/nix/persist/music/unsorted";
+      };
+    };
+  };
+
   security.apparmor.enable = false;
 
   networking.hostName = "muse";
@@ -26,7 +46,7 @@ in {
   };
 
   networking.firewall = {
-    allowedTCPPorts = [22 80 443 8096 8920 564];
+    allowedTCPPorts = [22 80 443 8096 8920 564 5030];
     allowedUDPPorts = [1900 7359];
   };
 
@@ -78,6 +98,8 @@ in {
     directories = [
       "/var/log"
       "/var/lib/jellyfin"
+      "/var/lib/tailscale"
+      "/var/lib/slskd"
     ];
     files = [
       "/etc/machine-id"

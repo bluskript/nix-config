@@ -22,6 +22,8 @@
     ../felys/syncthing.nix
   ];
 
+  time.hardwareClockInLocalTime = true;
+
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "client";

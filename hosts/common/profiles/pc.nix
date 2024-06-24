@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./base_cli.nix
     ../nix.nix
@@ -25,6 +29,8 @@
   nix.settings.trusted-users = ["@wheel"];
 
   programs.hamster.enable = true;
+
+  environment.systemPackages = [inputs.agenix.packages."${pkgs.system}".default];
 
   systemd = {
     coredump = {
