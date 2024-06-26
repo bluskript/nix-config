@@ -13,7 +13,7 @@
     inputs.hardware.nixosModules.common-pc-laptop-acpi_call
 
     ./hardware-configuration.nix
-    ../common/profiles/desktop.nix
+    ../common/profiles/laptop.nix
     ./users.nix
     ./impermanence.nix
     ./nvidia.nix

@@ -112,7 +112,6 @@ export def nosrss [verb: string = "switch", ...opts: string] {
 $env.config = {
 	color_config: $dark_theme
 	show_banner: false
-	shell_integration: false
 	edit_mode: vi
 	table: {
 		mode: rounded

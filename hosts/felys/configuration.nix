@@ -21,6 +21,7 @@
     ./syncthing.nix
 
     ./hidden.nix
+    ../common/profiles/hardened.nix
   ];
 
   age.secrets.xornet.file = ../../secrets/felys-xornet.age;

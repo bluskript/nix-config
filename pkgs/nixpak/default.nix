@@ -170,7 +170,7 @@ in {
   });
 
   firefox = let
-    pkg = pkgs.patched-firefox;
+    pkg = pkgs.firefox-devedition;
   in
     extraConfig: (mkNixPak {
       config = {
